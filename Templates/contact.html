@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<article class="contact-page">
+
+    <section class="top-content-container">
+
+        <div class="top-content">
+
+            <div class="top-content-wrapper">
+                <h2>Contact Us</h2>
+
+                <div class="nav-links">
+                    <a href="/">Home</a>
+                    <span>|</span>
+                    <a>Contact</a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="contact-form-container">
+
+        <form class="contact-form" method="POST" autocomplete="off">
+
+            {% csrf_token %}
+            <h3 class="form-heading">Get In Touch</h3>
+            <textarea class="customer_query" name="customerquery" type="text"
+                placeholder="Enter your Message"></textarea>
+
+            <div class="user_details">
+                <input class="user_name" name="username" type="text" placeholder="Your Name">
+                <input class="user_email" name="useremail" type="text" placeholder="Your Email">
+            </div>
+
+            <input class="query_subject" name="querysubject" type="text" placeholder="Subject">
+
+            <input class="send_button" type="submit" value="Send">
+
+        </form>
+
+        <div class="contact-details">
+            <ul class="contacts">
+
+                <li>
+                    <img src="{% static 'Assets/Images/contact_03.png' %}">
+                    &nbsp;<span>+91 983 432 8823</span>
+                </li>
+
+                <li>
+                    <img src="{% static 'Assets/Images/contact_02.png' %}">
+                    &nbsp;<span>info@courseoline.com</span>
+                </li>
+
+                <li>
+                    <img src="{% static 'Assets/Images/contact_01.png' %}">
+                    &nbsp;<span>137, liquor street,<br>Chennai - 600008</span>
+                </li>
+
+            </ul>
+        </div>
+
+    </section>
+
+</article>
+
+{% endblock %}

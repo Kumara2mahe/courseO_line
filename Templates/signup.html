@@ -1,0 +1,64 @@
+{% load static %}
+
+
+<!doctype html>
+<html lang="en-US" dir="ltr">
+
+<head>
+    <title>courseO_line - Admin Interface</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="stylesheet" href="{% static 'Assets/CSS/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'Assets/CSS/login.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'Assets/Images/favicon.png' %}">
+    <script type="module" src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script type="module" src="{% static 'Assets/JavaScript/login.js' %}"></script>
+</head>
+
+<body>
+
+    <main>
+
+        <article class="login-menu">
+
+            <section class="login-popup">
+
+                <div class="login-form-container">
+
+                    <h2>Create Admin Account</h2>
+
+                    <form class="create_adminAuthentication_form" method="POST" autocomplete="off">
+
+                        {% csrf_token %}
+
+                        <p>&ensp;User Id</p>
+                        <input class="new_admin_name" type="text" name="newadminname" placeholder="eg: Phil Coulson">
+
+                        <p>&ensp;Email Id</p>
+                        <input class="new_email" type="email" name="newemail" placeholder="daisyjohnson@shield.com">
+
+                        <div class="login-button-container">
+
+                            <input type="submit" class="login-button signup" value="Sign UP">
+
+                        </div>
+
+                    </form>
+
+                    <h5 class="error-message">Error 404</h5>
+
+                    <!-- Abort-Button -->
+                    <a class="login-abort" href="/admin-login/close-admin-login">&#129092;&nbsp;back</a>
+
+                </div>
+
+            </section>
+
+        </article>
+
+    </main>
+
+</body>
+
+</html>

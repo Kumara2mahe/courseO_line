@@ -1,0 +1,181 @@
+{% load static %}
+
+
+<!doctype html>
+<html lang="en-US" dir="ltr">
+
+<head>
+    <title>courseO_line - online courses</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="stylesheet" href="{% static 'Assets/CSS/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'Assets/CSS/settings.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'Assets/Images/favicon.png' %}">
+    <script type="module" src="{% static 'Assets/JavaScript/script.js' %}"></script>
+    <script type="module" src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script type="module" src="{% static 'Assets/JavaScript/adminTools.js' %}"></script>
+</head>
+
+<body>
+
+    <header>
+
+        <section class="navigation-bar">
+
+            <div class="nav-wrapper">
+
+                <div class="site-logo">
+                    <a href="/"><img src="{% static 'Assets/Images/logo.png' %}"></a>
+                </div>
+
+                <nav class="page-options">
+
+                    <a href="/"><span>Home</span></a>
+
+                    {% if not user.is_authenticated %}
+                    <a href="/about"><span>About</span></a>
+                    {% endif %}
+
+                    <a href="/courses"><span>Courses</span></a>
+                    <a href=""><span>Blog</span></a>
+
+                    {% if user.is_authenticated %}
+                    <a class="tools"><span>Tools</span></a>
+                    <!---->
+
+                    {% else %}
+                    <a href="/contact"><span>Contact</span></a>
+
+                    {% endif %}
+
+                    <ul class="admin-tools hide">
+                        <li class="hide">Settings</li>
+                        <li class="hide">Create Admin</li>
+                        <li class="hide">log out</li>
+                    </ul>
+
+                </nav>
+
+            </div>
+
+        </section>
+
+    </header>
+
+    <main>
+
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+    <!-- Scroll to top button -->
+    <a class="scroll-top-button hide" href="#top">&#11165;</a>
+
+    <footer>
+
+        <section class="bottom-info">
+
+            <div class="bottom-logo-section">
+
+                <a class="bottom-logo" href="/">
+                    <img src="{% static 'Assets/Images/logo.png' %}">
+                </a>
+
+                <p class="bottom-text">Build your skills with our courses, tutorials, articles and more for completely
+                    free.</p>
+
+                <figure class="social-icon">
+                    <a href=""><img src="{% static 'Assets/Images/Svgs/facebook.svg' %}"></a>
+
+                    <a href=""><img src="{% static 'Assets/Images/Svgs/instagram.svg' %}"></a>
+
+                    <a href=""><img src="{% static 'Assets/Images/Svgs/linkedin.svg' %}"></a>
+                </figure>
+
+            </div>
+
+            <div class="bottom-topics-section">
+
+                <h3>Our Topics</h3>
+
+                <ul class="topics">
+                    {% if footer_topics %}
+
+                    {% for category in footer_topics %}
+
+                    <li><a href="/courses#topic-{{category.category_name}}">{{category.category_name}}</a></li>
+
+                    {% endfor %}
+                    {% else %}
+                    <li><a>Business2</a></li>
+                    <li><a>Web Development</a></li>
+                    <li><a>Photography</a></li>
+                    <li><a>Technology</a></li>
+                    {% endif %}
+                </ul>
+
+            </div>
+
+            <div class="bottom-support-section">
+
+                <h3>Support</h3>
+
+                <ul class="support">
+                    <li><a href="/about">About</a></li>
+                    <li><a href="">Terms & Condition</a></li>
+                    <li><a href="">Privacy Policy</a></li>
+
+                    {% if not user.is_authenticated %}
+                    <li><a href="/admin-login">Authenticate</a></li>
+                    {% endif %}
+
+                    <li><a href="">Help</a></li>
+                </ul>
+
+            </div>
+
+            <div class="bottom-contact-section">
+
+                <h3>Contact Info</h3>
+
+                <ul class="contact">
+
+                    <li>
+                        <a href="tel:9834328823">
+                            <img src="{% static 'Assets/Images/contact_03.png' %}">
+                            &nbsp;<span>+91 983 432 8823</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="mailto:info@courseoline.com">
+                            <img src="{% static 'Assets/Images/contact_02.png' %}">
+                            &nbsp;<span>info@courseoline.com</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a>
+                            <img src="{% static 'Assets/Images/contact_01.png' %}">
+                            &nbsp;<span>courseoline.com</span>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+        <section class="copyrights">
+            <p>Copyright &copy; 2022 All rights reserved | This template is made by&nbsp;<a>Kumara</a></p>
+        </section>
+
+    </footer>
+
+</body>
+
+</html>

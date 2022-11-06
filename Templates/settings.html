@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<article class="settings-page">
+
+    <section class="top-content-container">
+
+        <div class="top-content">
+
+            <div class="top-content-wrapper">
+                <h2>Admin Interface</h2>
+
+                <div class="nav-links">
+                    <a href="/">Home</a>
+                    <span>|</span>
+                    <a>Settings</a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="admin-interface-container">
+
+        <div class="admin-interface">
+
+            <div class="admin-interface-wrapper">
+
+                <a class="addcourse {{interfaces.addinterface}}">Add Course</a>
+                <a class="updatecourse {{interfaces.updateinterface}}">Update Course</a>
+                <a class="deletecourse {{interfaces.deleteinterface}}">Delete Course</a>
+
+            </div>
+
+        </div>
+
+        <div class="admin-interface-content">
+
+            <form class="main_form" enctype="multipart/form-data">
+                <input class="which_form" name="whichform" type="text" value="main" hidden>
+            </form>
+
+            <!--  (((((((((  Add Course Form  ))))))))) -->
+
+            <form class="add_course_form {{interfaces.addinterface}}" method="POST" enctype="multipart/form-data"
+                autocomplete="off">
+
+                {% csrf_token %}
+
+                <!-- Form Heading -->
+                <h2 class="new_course_head">Add New Course</h2>
+
+                <!-- Course Title -->
+                <input class="new_course_title" name="newcoursetitle" type="text" placeholder="Course Title*">
+
+                <!-- Category Name -->
+                <input class="new_course_category" name="newcoursecategory" type="text" placeholder="Course Category*">
+
+                <div class="new_image_container">
+
+                    <!-- Image Upload Button -->
+                    <input class="new_course_image_upload" name="newcourseimageupload" type="button" value="Upload">
+
+                    <!-- Uploaded Image -->
+                    <input class="new_course_category_image" name="newcoursecategoryimage" type="file"
+                        style="display: none;">
+
+                    <label>&ensp;a Category Image</label>
+
+                </div>
+
+                <!-- Course Video Link -->
+                <input class="new_course_link" name="newcourselink" type="text" placeholder="paste your link here*">
+
+                <label class="show-pdf-container"><input class="show-pdf" type="checkbox">Add Course Material</label>
+
+                <div class="new_pdf_container hide">
+
+                    <!-- Pdf Upload Button -->
+                    <input class="new_course_pdf_upload" name="newcoursepdfupload" type="button" value="Upload">
+
+                    <!-- Uploaded Pdf -->
+                    <input class="new_course_pdf" name="newcoursepdf" type="file" style="display: none;">
+
+                    <label>&ensp;a Pdf Course Material</label>
+
+                </div>
+
+                <!-- AutoHide Message -->
+                <h4 class="popup-message hide">Error 404</h4>
+
+                <!-- Add & Clear Buttons -->
+                <div class="add_course_buttons">
+                    <input class="new_clear_button" name="newclearbutton" type="button" value="Clear">
+                    <input class="new_add_button" name="newaddbutton" type="submit" value="Add">
+                </div>
+
+            </form>
+
+            <!--  (((((((((  Update Course Form  ))))))))) -->
+
+            <form class="update_course_form {{interfaces.updateinterface}}" method="POST" enctype="multipart/form-data"
+                autocomplete="off">
+
+                {% csrf_token %}
+
+                <!-- Form Heading -->
+                <h2 class="update_course_head">Update Existing Course</h2>
+
+                <!-- Form Select Section -->
+                <div class="update_course_picker">
+
+                    <p><span class="line-left"></span>Choose<span class="line-right"></span></p>
+
+                    <!-- Category Picker -->
+                    <select class="update_course_category" name="updatecoursecategory">
+
+                        <option class="invisible-option" value="Category" selected hidden>Category*</option>
+
+                        {% for category in categories_list %}
+                        <option class="category_option" value="{{category.category_name}}">{{category.category_name}}
+                        </option>
+                        {% endfor %}
+
+                    </select>
+
+                    <!-- Course Picker -->
+                    <select class="update_course_name" name="updatecoursename">
+
+                        <option class="invisible-option" value="Course Title" selected hidden>Course Title*</option>
+
+                    </select>
+
+                </div>
+
+                <!-- Form Edit Section -->
+                <div class="update_course_editer">
+
+                    <p><span class="line-left"></span>Edit Section<span class="line-right"></span></p>
+
+                    <!-- Course Title -->
+                    <input class="update_course_title" name="updatecoursetitle" type="text" placeholder="Course Title">
+
+                    <!-- Course Video Link -->
+                    <input class="update_course_link" name="updatecourselink" type="text"
+                        placeholder="paste your link here">
+
+                    <div class="update_pdf_container">
+
+                        <!-- Pdf Upload Button -->
+                        <input class="update_course_pdf_upload" name="updatecoursepdfupload" type="button"
+                            value="Upload">
+
+                        <!-- Uploaded Pdf -->
+                        <input class="update_course_pdf" name="updatecoursepdf" type="file" style="display: none;">
+
+                        <label>&ensp;a Pdf Course Material</label>
+
+                    </div>
+
+                </div>
+
+                <!-- AutoHide Message -->
+                <h4 class="popup-message hide">Error 404</h4>
+
+                <!-- Update & Clear Buttons -->
+                <div class="update_course_button">
+                    <input class="update_edit_button" name="updateeditbutton" type="submit" value="Update">
+                </div>
+
+            </form>
+
+            <!--  (((((((((  Delete Course Form  ))))))))) -->
+
+            <form class="delete_course_form {{interfaces.deleteinterface}}" method="POST" enctype="multipart/form-data"
+                autocomplete="off">
+
+                {% csrf_token %}
+
+                <!-- Form Heading -->
+                <h2 class="delete_course_head">Delete Course</h2>
+
+                <!-- Category Picker -->
+                <select class="delete_course_category" name="deletecoursecategory">
+
+                    <option class="invisible-option" value="Category" selected hidden>Category*</option>
+
+                    {% for category in categories_list %}
+                    <option class="category_option" value="{{category.category_name}}">{{category.category_name}}
+                    </option>
+                    {% endfor %}
+
+                </select>
+
+                <!-- Course Picker -->
+                <select class="delete_course_name" name="deletecoursename">
+
+                    <option class="invisible-option" value="Course Title" selected hidden>Course Title*</option>
+
+                </select>
+
+                <!-- AutoHide Message -->
+                <h4 class="popup-message hide delete">Error 404</h4>
+
+                <!-- Delete Button -->
+                <div class="delete_course_button">
+                    <div></div>
+                    <input class="delete_button" name="deletebutton" type="submit" value="Delete">
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</article>
+
+{% endblock %}

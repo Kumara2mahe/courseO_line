@@ -1,0 +1,373 @@
+/* ---------------- Stylesheet for Settings page ---------------- */
+
+
+
+/* -------------------------------------------
+            Admin Settings Styles
+------------------------------------------- */
+
+.settings-page .top-content-container {
+    height: 28rem;
+    background-image: url(../Images/background_00.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    margin-top: -5.15rem;
+}
+
+.settings-page .top-content-container .top-content {
+    background-image: linear-gradient(to bottom, rgba(0, 18, 25, 0.6) 0%, rgba(55, 64, 80, 0.3) 50%, rgba(234, 234, 234, 0.5) 100%);
+    height: 100%;
+    color: white;
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+/* -------- Top Content - Wrapper Styles -------- */
+
+.settings-page .top-content-container .top-content .top-content-wrapper {
+    padding: 4rem;
+    padding-bottom: 0;
+}
+
+.settings-page .top-content-container .top-content .top-content-wrapper h2 {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 3rem;
+    line-height: 1.3;
+    margin: 20px 0;
+}
+
+.settings-page .top-content-container .top-content .top-content-wrapper .nav-links {
+    padding: 10px;
+    padding-left: 0;
+}
+
+.settings-page .top-content-container .top-content .top-content-wrapper a {
+    font-size: 0.95rem;
+    transition: 600ms;
+    color: rgba(240, 248, 255, 0.7);
+    display: inline-block;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.settings-page .top-content-container .top-content .top-content-wrapper a:last-of-type {
+    color: white;
+    cursor: default;
+    text-decoration: line-through;
+    text-decoration-color: wheat;
+}
+
+.settings-page .top-content-container .top-content .top-content-wrapper a:hover {
+    color: white;
+}
+
+/*      Admin Interface Styles
+------------------------------------------- */
+
+.settings-page .admin-interface-container {
+    padding: 4rem 0;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    background-color: rgba(222, 164, 240, 0.1);
+}
+
+.settings-page .admin-interface-container .admin-interface,
+.settings-page .admin-interface-container .admin-interface-content {
+    margin: 1rem;
+}
+
+.settings-page .admin-interface-container .admin-interface .admin-interface-wrapper {
+    margin: 0 2rem;
+    margin-right: 0;
+}
+
+/* -------- Admin Interface - Link Styles -------- */
+
+.settings-page .admin-interface-container .admin-interface .admin-interface-wrapper a {
+    transition: 250ms;
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 500;
+    background-color: rgba(222, 164, 240, 0.1);
+    color: rgba(0, 18, 25, 0.5);
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    cursor: pointer;
+}
+
+.settings-page .admin-interface-container .admin-interface .admin-interface-wrapper a:hover {
+    transition: 300ms;
+    background-color: rgba(222, 164, 240, 0.1);
+    color: #6B1853;
+}
+
+/* -------- Admin Interface - ActiveLink Styles -------- */
+
+.settings-page .admin-interface-container .admin-interface .admin-interface-wrapper a.active {
+    transition: 250ms;
+    background-color: #DEA4F0;
+    color: #420039;
+    box-shadow: 1px 1px 10px #DEA4F0;
+    cursor: default;
+}
+
+.settings-page .admin-interface-container .admin-interface .admin-interface-wrapper a.active:hover {
+    transition: 300ms;
+    background-color: #DEA4F0;
+    color: #420039;
+}
+
+/*      Admin Interface Content Styles
+------------------------------------------- */
+
+.settings-page .admin-interface-container .admin-interface-content {
+    background-color: rgba(222, 164, 240, 0.2);
+    margin: 1rem 2rem;
+    box-shadow: 1px 1px 10px #DEA4F0;
+    border-radius: 2rem;
+}
+
+/* -------- Admin Interface - Form Styles -------- */
+
+.settings-page .admin-interface-container .admin-interface-content .add_course_form,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form,
+.settings-page .admin-interface-container .admin-interface-content .delete_course_form {
+    display: none;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .add_course_form.active,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form.active,
+.settings-page .admin-interface-container .admin-interface-content .delete_course_form.active {
+    display: grid;
+    padding: 4rem;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_course_head,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_head,
+.settings-page .admin-interface-container .admin-interface-content .delete_course_form .delete_course_head {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #420039;
+    margin-bottom: 3rem;
+    margin-top: 0;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_pdf_container.hide {
+    display: none;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .add_course_form input,
+.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_image_container,
+.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_pdf_container,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form input,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form select,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_image_container,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_pdf_container,
+.settings-page .admin-interface-container .admin-interface-content .delete_course_form input,
+.settings-page .admin-interface-container .admin-interface-content .delete_course_form select {
+    width: 40rem;
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+    background: white;
+    margin-bottom: 2rem;
+    padding: 15px;
+    border-radius: 16px;
+    border-style: none;
+    border-bottom: 1px solid #E07BE0;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .add_course_form input:focus,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form input:focus,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form select:focus,
+.settings-page .admin-interface-container .admin-interface-content .delete_course_form input:focus,
+.settings-page .admin-interface-container .admin-interface-content .delete_course_form select:focus {
+    outline: none;
+    border-bottom: 2px solid rgba(147, 47, 109, 0.7);
+}
+
+/* -------- Admin Interface - Select Option Styles -------- */
+
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_picker,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_editer {
+    text-align: center;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_editer .update_pdf_container {
+    text-align: left;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_picker p,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_editer p {
+    font-size: 1.3rem;
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 0.6rem;
+    margin-bottom: 2.4rem;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_picker p .line-right,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_picker p .line-left,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_editer p .line-right,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_editer p .line-left {
+    display: inline-block;
+    width: 29rem;
+    height: 0.1rem;
+    background-color: #6B1853;
+    margin: 0.2rem 1rem;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_picker p .line-left,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_editer p .line-left {
+    width: 1.8rem;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_picker .update_course_category,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_picker .update_course_name,
+.settings-page .admin-interface-container .admin-interface-content .delete_course_form .delete_course_category,
+.settings-page .admin-interface-container .admin-interface-content .delete_course_form .delete_course_name {
+    color: rgba(0, 18, 25, 0.6);
+}
+
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_picker .update_course_category .category_option,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_picker .update_course_name .course_option,
+.settings-page .admin-interface-container .admin-interface-content .delete_course_form .delete_course_category .category_option,
+.settings-page .admin-interface-container .admin-interface-content .delete_course_form .delete_course_name .course_option {
+    color: black;
+    font-weight: 600;
+}
+
+/* -------- Admin Interface - Upload Image Styles -------- */
+
+.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_image_container,
+.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_pdf_container,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_image_container,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_pdf_container {
+    color: rgba(0, 18, 25, 0.6);
+    cursor: default;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_image_container input,
+.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_pdf_container input,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_image_container input,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_pdf_container input {
+    width: fit-content;
+    background: rgba(222, 164, 240, 0.4);
+    color: rgba(0, 18, 25, 0.8);
+    margin: 0;
+    padding: 15px;
+    border-radius: 16px;
+    border: 1px solid rgba(222, 164, 240, 0.5);
+    cursor: pointer;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_image_container input:hover,
+.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_pdf_container input:hover,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_image_container input:hover,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_pdf_container input:hover {
+    background-color: rgba(147, 47, 109, 0.5);
+    color: #420039;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_image_container .new_course_image_upload:disabled,
+.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_pdf_container .new_course_pdf_upload:disabled,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_image_container .update_course_image_upload:disabled,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_pdf_container .update_course_pdf_upload:disabled {
+    background: rgba(222, 164, 240, 0.4);
+    color: rgba(0, 18, 25, 0.8);
+    cursor: not-allowed;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_image_container label,
+.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_pdf_container label,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_image_container label,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_pdf_container label {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .add_course_form .show-pdf,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .show-pdf {
+    width: fit-content;
+    margin-left: 1rem;
+    margin-right: 1.3rem;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .add_course_form .show-pdf-container,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .show-pdf-container {
+    width: fit-content;
+}
+
+/* -------- Admin Interface - Form Button Styles -------- */
+
+.settings-page .admin-interface-container .admin-interface-content .add_course_form .add_course_buttons,
+.settings-page .admin-interface-container .admin-interface-content .delete_course_form .delete_course_button {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 2.6rem 0;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_button {
+    text-align: center;
+    width: 40rem;
+    margin: 2.6rem auto;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .add_course_form .add_course_buttons input,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_button input,
+.settings-page .admin-interface-container .admin-interface-content .delete_course_form .delete_course_button input {
+    width: 12rem;
+    background-color: #DEA4F0;
+    color: white;
+    margin: 0 auto;
+    border: 1px solid rgba(222, 164, 240, 0.4);
+    cursor: pointer;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .add_course_form .add_course_buttons input:hover {
+    background-color: #E07BE0;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .add_course_form .add_course_buttons input:last-of-type,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_button input,
+.settings-page .admin-interface-container .admin-interface-content .delete_course_form .delete_course_button input {
+    background-color: #932F6D;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .add_course_form .add_course_buttons input:last-of-type:hover,
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_button input:hover,
+.settings-page .admin-interface-container .admin-interface-content .delete_course_form .delete_course_button input:hover {
+    background-color: #6B1853;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_button input:disabled,
+.settings-page .admin-interface-container .admin-interface-content .delete_course_form .delete_course_button input:disabled {
+    background-color: #932F6D;
+    cursor: default;
+}
+
+/* -------- Admin Interface - Popup Error Styles -------- */
+
+.settings-page .admin-interface-container .admin-interface-content .popup-message.hide {
+    display: none;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .popup-message {
+    transition: 800ms;
+    text-align: right;
+    color: rgba(252, 25, 25, 0.8);
+    margin-right: 5rem;
+}
+
+.settings-page .admin-interface-container .admin-interface-content .popup-message.delete {
+    width: 35rem;
+}
