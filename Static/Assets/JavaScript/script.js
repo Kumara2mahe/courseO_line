@@ -15,6 +15,29 @@ navlinks.forEach((link) => {
 // ---------------------------------------------------------------------------------- //
 
 
+// -------- Course Topics - Activator Script ------------------------------------------- //
+
+// ---- Function to check the current page is Course-Page ---- //
+const isThisPath = (path) => {
+    let currenturl = window.location.origin + path
+    return window.location.href.includes(currenturl)
+}
+const topics = document.querySelectorAll("section .topic-link")
+topics.forEach((topic) => {
+    topic.addEventListener("click", () => {
+
+        let name = encodeURIComponent(topic.innerText.replace(" ", ""))
+        if (isThisPath("/courses")) {
+            navigateToTopic(name)
+        }
+        else {
+            window.location.assign(`/courses?topic=${name}`)
+        }
+    })
+})
+// -------------------------------------------------------------------------------- //
+
+
 // -------- SmallScreen Hamburger Menu - Toggle Script ---------------------------------------- //
 
 // ---- Function for showing Hamburger Menu ---- //

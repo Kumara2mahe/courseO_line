@@ -28,30 +28,6 @@ if (coursesPage) {
 
 
 
-// -------- Course Topics - Activator Script ------------------------------------------- //
-
-// ---- Function to check the current page is Course-Page ---- //
-const isThisPath = (path) => {
-    let currenturl = window.location.origin + path
-    return window.location.href.includes(currenturl)
-}
-const topics = document.querySelectorAll("section .topic-link")
-topics.forEach((topic) => {
-    topic.addEventListener("click", () => {
-
-        let name = encodeURIComponent(topic.innerText.replace(" ", ""))
-        if (isThisPath("/courses")) {
-            navigateToTopic(name)
-        }
-        else {
-            window.location.assign(`/courses?topic=${name}`)
-        }
-    })
-})
-// -------------------------------------------------------------------------------- //
-
-
-
 // -------- Horizontal Text - Scrolling Script ------------------------------------------- //
 
 // ---- Function to get the element width ---- //
