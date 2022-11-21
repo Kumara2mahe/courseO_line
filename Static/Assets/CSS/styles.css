@@ -1,10 +1,6 @@
-/* Stylesheet for courseO_line online courses*/
+/* ----------------------------------------- Global | Styles ------------------------------------------
+---------------------------------------------------------------------------------------------------- */
 
-
-
-/* -------------------------------------------
-        Global Styles & Typography
-------------------------------------------- */
 @font-face {
     font-family: "Poppins";
     src: url("../Fonts/Poppins/Poppins-Regular.ttf") format("truetype"),
@@ -21,10 +17,35 @@
     src: url("../Fonts/Josefin_Sans/JosefinSans-VariableFont_wght.ttf") format("truetype");
 }
 
+:root {
+    --aliceblue: #F0F8FF;
+    --amaranthmp: #932F6D;
+    --auburn: #A52A2A;
+    --black: #000000;
+    --byzantium: #6B1853;
+    --cadmiumgreen: #16642b;
+    --darkpurple: #420039;
+    --mauve: #DEA4F0;
+    --mediumchampagne: #FCEFB4;
+    --orangeweb: #FFA500;
+    --orchid: #E07BE0;
+    --popstar: #B6465F;
+    --redryb: #FC1919;
+    --richblackfogra29: #001219;
+    --safetyblazeorange: #FF6700;
+    --wheat: #F5DEB3;
+    --white: #FFFFFF;
+    --yellowgreencrayola: #BCE784;
+}
+
 *,
 ::after,
 ::before {
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -35,1267 +56,374 @@ body {
 
 a {
     text-decoration: none;
-    color: black;
+    color: var(--black);
+    cursor: pointer;
 }
 
+/* --------------- Scroll to Top - Button | Styles
+------------------------------------------------------------------- */
 
-/* -------------------------------------------
-                Header Styles
-------------------------------------------- */
+.scroll-to-top {
+    position: fixed;
+    bottom: 5%;
+    right: 2.5%;
+    font-size: 1.4rem;
+    background-color: rgba(222, 164, 240, 0.8);
+    color: var(--darkpurple);
+    padding: 0.5rem 1rem;
+    border-radius: 2.5rem;
+    z-index: 10;
+    transition: 300ms;
+}
+
+.scroll-to-top:hover {
+    background-color: var(--orchid);
+    transition: 250ms;
+}
+
+.scroll-to-top:active {
+    color: var(--orangeweb);
+}
+
+/* ----------------------------------------- Header | Styles ------------------------------------------
+---------------------------------------------------------------------------------------------------- */
 
 header {
     font-size: 1.05rem;
 }
 
-/*      Navigation Bar Styles
-------------------------------------------- */
+/* --------------- Navigation Bar | Styles
+------------------------------------------------------------------- */
 
 .navigation-bar {
     display: grid;
-    padding: 10px 20px 0;
+    padding: 0.65rem 1.25rem 0;
 }
 
 .navigation-bar .nav-wrapper {
-    display: grid;
+    display: inherit;
     grid-template-columns: 1fr 6fr;
-    padding: 4px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid rgba(240, 248, 255, 0.4);
+    padding: 0.25rem 0.25rem 0.5rem;
+    border-bottom: 0.1rem solid rgba(240, 248, 255, 0.4);
     z-index: 10;
 }
 
-/* -------- Navigation Bar - Logo Styles -------- */
-
-.navigation-bar .nav-wrapper .site-logo {
-    margin-left: 30px;
+.navigation-bar .nav-wrapper a.nav-logo,
+.navigation-bar .nav-wrapper nav {
+    display: flex;
+    align-items: center;
     z-index: 5;
 }
 
-.navigation-bar .nav-wrapper .site-logo a {
-    height: fit-content;
-    display: inline-block;
+/* -------- Navigation Bar - Logo | Styles -------- */
+
+.navigation-bar .nav-wrapper .nav-logo {
+    margin-left: 1.9rem;
 }
 
-.navigation-bar .nav-wrapper .site-logo a img {
+.navigation-bar .nav-wrapper .nav-logo img {
     width: 11rem;
 }
 
-/* -------- NavigationBar - Link Styles -------- */
+.navigation-bar .nav-wrapper .ham-icon {
+    display: none;
+    width: 1.8rem;
+}
 
-.navigation-bar .nav-wrapper .page-options {
-    display: flex;
-    align-items: center;
+/* -------- Navigation Bar - Link | Styles -------- */
+
+.navigation-bar .nav-wrapper .nav-links {
+    position: relative;
     justify-content: right;
-    margin-right: 30px;
-    height: fit-content;
-    z-index: 5;
+    margin-right: 1.9rem;
 }
 
-.navigation-bar .nav-wrapper .page-options a {
-    margin: 0 1px;
-    padding: 15px;
-    color: white;
-    cursor: pointer;
+.navigation-bar .nav-wrapper .nav-links a {
+    color: var(--white);
+    margin: 0 0.1rem;
+    padding: 1rem;
 }
 
-/* NavigationBar - Link Hovering Styles */
-.navigation-bar .nav-wrapper .page-options a .show {
-    padding-bottom: 10px;
-    border-bottom: 0.4vh solid rgba(255, 103, 0, 0.6);
+.navigation-bar .nav-wrapper .nav-links a span {
+    padding-bottom: 0.75rem;
+    border-bottom: 0.1rem solid rgba(0, 18, 25, 0.15);
+    transition: 300ms;
 }
 
-.navigation-bar .nav-wrapper .page-options a .showborder {
-    border-bottom: 0.4vh solid #FF6700;
-    transition: 600ms;
-    padding-bottom: 4px;
+.navigation-bar .nav-wrapper .nav-links a:not(.activepage):hover span,
+.navigation-bar .nav-wrapper .nav-links a.activepage span {
+    padding-bottom: 0.25rem;
+    border-bottom-color: var(--safetyblazeorange);
+    transition: 400ms;
 }
 
-/*      Admin Tools Styles
-------------------------------------------- */
-.navigation-bar .nav-wrapper .page-options .admin-tools.hide,
-.navigation-bar .nav-wrapper .page-options .admin-tools li.hide {
+.navigation-bar .nav-wrapper .nav-links a:not(.activepage):active {
+    text-decoration: solid line-through var(--safetyblazeorange);
+}
+
+.navigation-bar .nav-wrapper .nav-links a:not(.activepage):active span {
+    padding-bottom: 0.25rem;
+    border-bottom-color: transparent;
+}
+
+.navigation-bar .nav-wrapper .nav-links a.activepage {
+    cursor: default;
+}
+
+/* -------- Navigation Bar - (AdminTools) Dropdown | Styles -------- */
+
+.navigation-bar .nav-wrapper .nav-links .admin-tools {
     display: none;
 }
 
-.navigation-bar .nav-wrapper .page-options .admin-tools {
-    animation: show-drop-tools 0.8s both;
-    list-style-type: none;
-    height: fit-content;
-    background: #F0F8FF;
+.navigation-bar .nav-wrapper .nav-links .admin-tools.show {
     position: absolute;
-    margin-top: 16.4rem;
-    padding: 1rem;
-    border-top: 1px solid #FF6700;
-    border-bottom-left-radius: 2rem;
-    border-bottom-right-radius: 2rem;
+    right: 0;
+    top: 4rem;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(240, 248, 255, 0.85);
+    margin: 0 1rem 0 0;
+    padding: 0.5rem;
+    box-shadow: 0 0 0.8rem rgba(0, 18, 25, 0.2);
+    border-top: 0.1rem solid var(--safetyblazeorange);
+    border-radius: 0 0 2rem 2rem;
+    z-index: 10;
 }
 
-@keyframes show-drop-tools {
+@keyframes pop-nav-menu {
     0% {
-        opacity: 0.4;
+        transform: rotateX(90deg);
     }
 
     100% {
-        opacity: 1;
+        transform: rotateX(0deg);
     }
 }
 
-.navigation-bar .nav-wrapper .page-options .admin-tools li {
-    transition: 600ms;
+.navigation-bar .nav-wrapper .nav-links .admin-tools.show a {
     font-weight: 500;
-    color: #420039;
+    color: var(--darkpurple);
     margin: 0.2rem 0;
     padding: 0.5rem 1rem;
-    cursor: pointer;
+    animation: pop-nav-menu 0.5s both;
 }
 
-.navigation-bar .nav-wrapper .page-options .admin-tools li:hover {
-    color: #B6465F;
+.navigation-bar .nav-wrapper .nav-links .admin-tools.show a.activepage {
+    color: rgba(0, 18, 25, 0.4);
+    cursor: not-allowed;
 }
 
-.navigation-bar .nav-wrapper .page-options .admin-tools li:last-of-type {
-    color: #A52A2A;
-    padding-top: 0.6rem;
-    padding-bottom: 0.4rem;
-    border-top: 1px solid #932F6D;
+.navigation-bar .nav-wrapper .nav-links .admin-tools.show a:not(.activepage):hover {
+    color: var(--popstar);
 }
 
-.navigation-bar .nav-wrapper .page-options .admin-tools li:last-of-type:hover {
-    font-weight: 500;
-    color: #FF6700;
-    text-shadow: 1px 1px #A52A2A;
+.navigation-bar .nav-wrapper .nav-links .admin-tools.show a:last-of-type {
+    color: var(--auburn);
+    padding: 0.6rem 1rem;
+    border-top: 0.1rem solid var(--amaranthmp);
 }
 
-/* -------------------------------------------
-                HomePage Styles
-------------------------------------------- */
+.navigation-bar .nav-wrapper .nav-links .admin-tools.show a:last-of-type:hover {
+    color: var(--safetyblazeorange);
+    text-shadow: 0 0 0.1rem var(--auburn);
+}
 
+/* ----------------------------------------- Main Title | Styles ------------------------------------------
+---------------------------------------------------------------------------------------------------- */
 
-/*      Top Content Styles
-------------------------------------------- */
-
-.home-page .top-content-container {
-    height: 36rem;
-    background-image: url("../Images/background_00.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
+article .title-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    background: url("../Images/background_00.jpg") no-repeat center/cover fixed;
+    color: var(--white);
     margin-top: -5.15rem;
 }
 
-.home-page .top-content-container .top-content {
-    background-image: linear-gradient(to bottom, rgba(0, 18, 25, 0.6) 0%, rgba(55, 64, 80, 0.3) 50%, rgba(234, 234, 234, 0.5) 100%);
-    /* opacity: 0.7; */
-    height: 100%;
-    color: white;
-    padding: 28px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
+article .title-container .title-content {
+    padding: 10rem 5rem 4rem;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    z-index: 5;
 }
 
-/* -------- Top Content - Wrapper Styles -------- */
-
-.home-page .top-content-container .top-content .top-content-wrapper {
-    padding: 50px 50px 0;
-    padding-left: 50px;
-    padding-right: 50px;
-}
-
-.home-page .top-content-container .top-content .top-content-wrapper h2 {
+article .title-container .title-content h2 {
     font-family: "Josefin Sans", sans-serif;
     font-size: 2.8rem;
     line-height: 1.3;
-    margin: 20px 0;
+    margin: 1.25rem 0;
 }
 
-.home-page .top-content-container .top-content .top-content-wrapper p {
-    font-size: 1.1rem;
-    color: #F0F8FF;
-    font-weight: 500;
-    margin-top: 0;
-}
+/* -------- Main Title - (Navigation) | Styles -------- */
 
-.home-page .top-content-container .top-content .top-content-wrapper a {
-    font-family: "Josefin Sans", sans-serif;
-    font-size: 0.95rem;
-    transition: 600ms;
-    color: #F0F8FF;
-    background-color: #6B1853;
-    display: inline-block;
-    margin-top: 20px;
-    padding: 13px 26px;
-    padding-right: 14px;
-    border: 1px solid #6B1853;
-    border-radius: 20px;
-    cursor: pointer;
-}
-
-/* Top Content - WatchButton Hover Styles */
-.home-page .top-content-container .top-content .top-content-wrapper a:hover {
-    color: #E07BE0;
-}
-
-.home-page .top-content-container .top-content .top-content-wrapper a .button-1 {
-    transition: 400ms;
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: white;
-    margin-left: 0;
-    padding: 0;
-    border-radius: 20px;
-}
-
-.home-page .top-content-container .top-content .top-content-wrapper a .button-1.show {
-    transition: 500ms;
-    margin-left: -26px;
-    padding: 10px 20px;
-    border-left: 1px solid #E07BE0;
-    border-right: 1px solid #E07BE0;
-}
-
-/*      Second Content Styles for HomePage, AboutPage
-------------------------------------------- */
-
-.home-page .second-content-container {
-    margin-top: -4rem;
-}
-
-.home-page .second-content-container .second-content,
-.about-page .middle-content-container .middle-content,
-.courses-page .middle-content-container .middle-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-/* -------- Second Content - Container Styles -------- */
-
-.home-page .second-content-container .second-content .left-section,
-.home-page .second-content-container .second-content .middle-section,
-.home-page .second-content-container .second-content .right-section,
-.about-page .middle-content-container .middle-content .left-section,
-.about-page .middle-content-container .middle-content .middle-section,
-.about-page .middle-content-container .middle-content .right-section,
-.courses-page .middle-content-container .middle-content .left-section,
-.courses-page .middle-content-container .middle-content .middle-section,
-.courses-page .middle-content-container .middle-content .right-section {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    width: 20rem;
-    background-color: white;
-    padding: 15px;
-    box-shadow: 1px 1px 10px rgba(0, 18, 25, 0.2);
-    border-radius: 2rem;
-}
-
-/* Second Content - Image Styles */
-.home-page .second-content-container .second-content .left-section .left-section-image,
-.home-page .second-content-container .second-content .middle-section .middle-section-image,
-.home-page .second-content-container .second-content .right-section .right-section-image,
-.about-page .middle-content-container .middle-content .left-section .left-section-image,
-.about-page .middle-content-container .middle-content .middle-section .middle-section-image,
-.about-page .middle-content-container .middle-content .right-section .right-section-image,
-.courses-page .middle-content-container .middle-content .left-section .left-section-image,
-.courses-page .middle-content-container .middle-content .middle-section .middle-section-image,
-.courses-page .middle-content-container .middle-content .right-section .right-section-image {
-    display: flex;
-    justify-content: center;
-}
-
-.home-page .second-content-container .second-content img,
-.about-page .middle-content-container .middle-content img,
-.courses-page .middle-content-container .middle-content img {
-    width: 3.6rem;
-}
-
-/* Second Content - Content Styles */
-.home-page .second-content-container .second-content .left-section .left-section-contents,
-.home-page .second-content-container .second-content .middle-section .middle-section-contents,
-.home-page .second-content-container .second-content .right-section .right-section-contents,
-.about-page .middle-content-container .middle-content .left-section .left-section-contents,
-.about-page .middle-content-container .middle-content .middle-section .middle-section-contents,
-.about-page .middle-content-container .middle-content .right-section .right-section-contents,
-.courses-page .middle-content-container .middle-content .left-section .left-section-contents,
-.courses-page .middle-content-container .middle-content .middle-section .middle-section-contents,
-.courses-page .middle-content-container .middle-content .right-section .right-section-contents {
-    padding-left: 15px;
-}
-
-.home-page .second-content-container .second-content .left-section h3,
-.home-page .second-content-container .second-content .middle-section h3,
-.home-page .second-content-container .second-content .right-section h3,
-.about-page .middle-content-container .middle-content .left-section h3,
-.about-page .middle-content-container .middle-content .middle-section h3,
-.about-page .middle-content-container .middle-content .right-section h3,
-.courses-page .middle-content-container .middle-content .left-section h3,
-.courses-page .middle-content-container .middle-content .middle-section h3,
-.courses-page .middle-content-container .middle-content .right-section h3 {
-    font-size: 1.1rem;
-    color: #420039;
-}
-
-.home-page .second-content-container .second-content .left-section p,
-.home-page .second-content-container .second-content .middle-section p,
-.home-page .second-content-container .second-content .right-section p,
-.about-page .middle-content-container .middle-content .left-section p,
-.about-page .middle-content-container .middle-content .middle-section p,
-.about-page .middle-content-container .middle-content .right-section p,
-.courses-page .middle-content-container .middle-content .left-section p,
-.courses-page .middle-content-container .middle-content .middle-section p,
-.courses-page .middle-content-container .middle-content .right-section p {
-    font-size: 0.85rem;
-    font-weight: 400;
-}
-
-/*      Third Content Styles
-------------------------------------------- */
-
-.home-page .third-content-container {
-    margin-top: 8rem;
-    text-align: center;
-    margin-bottom: 4rem;
-}
-
-/* -------- Third Content - Heading Styles -------- */
-
-.home-page .third-content-container .third-content .content-heading h2 {
-    font-family: "Josefin Sans", sans-serif;
-    font-size: 2rem;
-    color: #420039;
-    font-weight: 600;
-    margin-bottom: 3rem;
-}
-
-/* -------- Third Content - Playlist Styles -------- */
-
-.home-page .third-content-container .third-content .playlist {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    width: 75rem;
-    margin: 0 auto;
-}
-
-.home-page .third-content-container .third-content .playlist .course {
-    transition: 400ms;
-    width: 26rem;
-    margin: 2rem auto;
-    text-align: left;
-    box-shadow: 1px 1px 10px rgba(0, 18, 25, 0.3);
-    border-radius: 20px;
-}
-
-.home-page .third-content-container .third-content .playlist .course:hover {
-    transition: 450ms;
-    box-shadow: 2px 2px 15px rgba(66, 0, 57, 0.6);
-    transform: scale(1.05);
-}
-
-.home-page .third-content-container .third-content .playlist .course img,
-.home-page .third-content-container .third-content .playlist .course iframe {
-    width: 100%;
-    height: 16rem;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-}
-
-.home-page .third-content-container .third-content .playlist .course p,
-.home-page .third-content-container .third-content .playlist .course h3 {
-    font-size: 0.85rem;
-    padding: 15px;
+article .title-container .title-content .navigation {
     margin: 0;
-    opacity: 0.8;
+    padding-top: 0.65rem;
 }
 
-.home-page .third-content-container .third-content .playlist .course .course-category-link {
-    display: inline-block;
-    font-size: 0.85rem;
-    padding: 2px;
-    margin: 12px;
-    margin-left: 16px;
-    opacity: 0.8;
-}
-
-.home-page .third-content-container .third-content .playlist .course .course-category-link:hover {
-    color: #6B1853;
-}
-
-.home-page .third-content-container .third-content .playlist .course h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    width: fit-content;
-    color: #420039;
-    padding-top: 5px;
-    padding-bottom: 25px;
-}
-
-.home-page .third-content-container .third-content .playlist .course h3:hover {
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.home-page .third-content-container .third-content .playlist .course .pdf-material,
-.courses-page .bottom-content-container .bottom-content .playlist-content .course .pdf-material {
-    display: flex;
-    justify-content: space-between;
-    border-top: 1px solid #DEA4F0;
-}
-
-.home-page .third-content-container .third-content .playlist .course .pdf-material p,
-.home-page .third-content-container .third-content .playlist .course .pdf-material a,
-.courses-page .bottom-content-container .bottom-content .playlist-content .course .pdf-material p,
-.courses-page .bottom-content-container .bottom-content .playlist-content .course .pdf-material a {
-    display: inline-block;
-    font-size: 0.9rem;
-    padding: 10px 15px;
-}
-
-.home-page .third-content-container .third-content .playlist .course .pdf-material .not-available,
-.courses-page .bottom-content-container .bottom-content .playlist-content .course .pdf-material .not-available {
-    color: #A52A2A;
-}
-
-.home-page .third-content-container .third-content .playlist .course .pdf-material .available,
-.courses-page .bottom-content-container .bottom-content .playlist-content .course .pdf-material .available {
-    color: rgb(22, 100, 43);
-}
-
-.home-page .third-content-container .third-content .playlist .course .pdf-material .available:hover,
-.courses-page .bottom-content-container .bottom-content .playlist-content .course .pdf-material .available:hover {
-    cursor: pointer;
-}
-
-/* -------- Third Content - More Courses-Button Styles -------- */
-
-.home-page .third-content-container .third-content .more-courses a {
-    transition: 450ms;
-    background-color: #932F6D;
-    color: #F0F8FF;
-    display: inline-block;
-    margin: 20px 0;
-    padding: 10px 40px;
-    border-radius: 20px;
-    cursor: pointer;
-}
-
-.home-page .third-content-container .third-content .more-courses a:hover {
-    transition: 500ms;
-    background-color: #E07BE0;
-    color: black;
-    transform: scale(1.04);
-}
-
-/*      Fourth Content Styles
-------------------------------------------- */
-
-.home-page .fourth-content-container {
-    background-image: url("../Images/background_01.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-}
-
-.home-page .fourth-content-container .fourth-content {
-    background-image: linear-gradient(to bottom, rgba(0, 18, 25, 0.6) 0%, rgba(55, 64, 80, 0.4) 50%, rgba(234, 234, 234, 0.6) 100%);
-    height: 100%;
-    color: white;
-    padding: 28px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-}
-
-/* -------- Fourth Content - Wrapper Styles -------- */
-
-.home-page .fourth-content-container .fourth-content .fourth-content-wrapper {
-    padding: 50px;
-    background-color: rgba(240, 248, 255, 0.2);
-    border-radius: 1.6rem;
-    border-top-left-radius: 10rem;
-    border-bottom-right-radius: 10rem;
-}
-
-.home-page .fourth-content-container .fourth-content .fourth-content-wrapper h2 {
-    font-family: "Josefin Sans", sans-serif;
-    font-size: 1.85rem;
-    line-height: 1.3;
-    margin: 20px 0;
-}
-
-.home-page .fourth-content-container .fourth-content .fourth-content-wrapper p {
+article .title-container .title-content .navigation a {
     font-size: 0.95rem;
-    color: #F0F8FF;
-    font-weight: 500;
-    margin-top: 0;
-}
-
-.home-page .fourth-content-container .fourth-content .fourth-content-wrapper p .tick-mark,
-.about-page .bottom-content-container .bottom-content .bottom-content-wrapper p .tick-mark {
-    color: #FFA500;
-}
-
-/* Fourth Content - Learn_Button Styles */
-.home-page .fourth-content-container .fourth-content .fourth-content-wrapper a {
-    font-family: "Josefin Sans", sans-serif;
-    font-size: 0.95rem;
-    transition: 450ms;
-    color: #F0F8FF;
-    background-color: #6B1853;
     display: inline-block;
-    margin-top: 20px;
-    padding: 15px 26px;
-    border: 1px solid #6B1853;
-    border-bottom-left-radius: 20px;
-    border-top-right-radius: 20px;
-    cursor: pointer;
+    color: rgba(240, 248, 255, 0.6);
+    padding: 0 0.3rem;
+    transition: 300ms;
 }
 
-.home-page .fourth-content-container .fourth-content .fourth-content-wrapper a.spin {
-    transition: 450ms;
-    color: #DEA4F0;
-    font-weight: 500;
-    transform: rotate(-360deg);
-    border-bottom-right-radius: 20px;
-    border-top-left-radius: 20px;
-}
-
-/*      Bottom Content Styles
-------------------------------------------- */
-
-.home-page .bottom-content-container {
-    margin-top: 8rem;
-    text-align: center;
-    margin-bottom: 6rem;
-}
-
-/* -------- Bottom Content - Heading Styles -------- */
-
-.home-page .bottom-content-container .bottom-content .content-heading h2 {
-    font-family: "Josefin Sans", sans-serif;
-    font-size: 2rem;
-    color: #420039;
-    font-weight: 600;
-    margin-bottom: 3rem;
-}
-
-/* -------- Bottom Content - Topics Styles -------- */
-
-.home-page .bottom-content-container .bottom-content .topics {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    width: 73rem;
-    margin: 0 auto;
-}
-
-
-.home-page .bottom-content-container .bottom-content .topics .topic {
-    transition: 400ms;
-    display: block;
-    width: 16rem;
-    margin: 1rem auto;
-    box-shadow: 1px 1px 10px rgba(0, 18, 25, 0.3);
-    border-radius: 20px;
-    cursor: pointer;
-    height: 12rem;
-}
-
-.home-page .bottom-content-container .bottom-content .topics .topic:hover {
-    transition: 200ms;
-    transform: scale(1.1);
-    box-shadow: 2px 2px 15px rgba(0, 18, 25, 0.4);
-}
-
-.home-page .bottom-content-container .bottom-content .topics .topic img {
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-}
-
-.home-page .bottom-content-container .bottom-content .topics .topic .topic-holder {
-    margin-top: -50%;
-    color: white;
-}
-
-.home-page .bottom-content-container .bottom-content .topics .topic h3 {
-    margin-top: 5%;
-}
-
-/* -------------------------------------------
-                AboutPage Styles
-------------------------------------------- */
-
-
-/*      Top Content Styles
-------------------------------------------- */
-
-.about-page .top-content-container,
-.courses-page .top-content-container,
-.contact-page .top-content-container {
-    height: 28rem;
-    background-image: url("../Images/background_00.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-    margin-top: -5.15rem;
-}
-
-.about-page .top-content-container .top-content,
-.courses-page .top-content-container .top-content,
-.contact-page .top-content-container .top-content {
-    background-image: linear-gradient(to bottom, rgba(0, 18, 25, 0.6) 0%, rgba(55, 64, 80, 0.3) 50%, rgba(234, 234, 234, 0.5) 100%);
-    height: 100%;
-    color: white;
-    padding: 4rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-}
-
-/* -------- Top Content - Wrapper Styles -------- */
-
-.about-page .top-content-container .top-content .top-content-wrapper,
-.courses-page .top-content-container .top-content .top-content-wrapper,
-.contact-page .top-content-container .top-content .top-content-wrapper {
-    padding: 4rem;
-    padding-bottom: 0;
-}
-
-.about-page .top-content-container .top-content .top-content-wrapper h2,
-.courses-page .top-content-container .top-content .top-content-wrapper h2,
-.contact-page .top-content-container .top-content .top-content-wrapper h2 {
-    font-family: "Josefin Sans", sans-serif;
-    font-size: 3rem;
-    line-height: 1.3;
-    margin: 20px 0;
-}
-
-.about-page .top-content-container .top-content .top-content-wrapper .nav-links,
-.courses-page .top-content-container .top-content .top-content-wrapper .nav-links,
-.contact-page .top-content-container .top-content .top-content-wrapper .nav-links {
-    padding: 10px;
-    padding-left: 0;
-}
-
-.about-page .top-content-container .top-content .top-content-wrapper a,
-.courses-page .top-content-container .top-content .top-content-wrapper a,
-.contact-page .top-content-container .top-content .top-content-wrapper a {
-    font-size: 0.95rem;
-    transition: 600ms;
-    color: rgba(240, 248, 255, 0.7);
-    display: inline-block;
-    padding: 5px;
-    cursor: pointer;
-}
-
-.about-page .top-content-container .top-content .top-content-wrapper a:last-of-type,
-.courses-page .top-content-container .top-content .top-content-wrapper a:last-of-type,
-.contact-page .top-content-container .top-content .top-content-wrapper a:last-of-type {
-    color: white;
+article .title-container .title-content .navigation a:last-of-type {
+    color: var(--white);
+    text-decoration: solid line-through var(--wheat);
     cursor: default;
-    text-decoration: line-through;
-    text-decoration-color: wheat;
 }
 
-.about-page .top-content-container .top-content .top-content-wrapper a:hover,
-.courses-page .top-content-container .top-content .top-content-wrapper a:hover,
-.contact-page .top-content-container .top-content .top-content-wrapper a:hover {
-    color: white;
+article .title-container .title-content .navigation a:hover {
+    color: var(--white);
 }
 
-/*      Middle Content Styles
-------------------------------------------- */
-
-.about-page .middle-content-container,
-.courses-page .middle-content-container {
-    margin: 6.5rem 0;
-    margin-bottom: 8.5rem;
+article .title-container .title-content .navigation a:hover~a {
+    color: rgba(240, 248, 255, 0.6);
 }
 
-.about-page .middle-content-container .middle-content-heading h2 {
-    font-family: "Josefin Sans", sans-serif;
-    font-size: 2rem;
-    color: #420039;
-    font-weight: 600;
-    text-align: center;
-    margin-bottom: 3rem;
+article .title-container .title-content .navigation a:active {
+    text-decoration: solid line-through var(--wheat);
 }
 
-/*      Bottom Content Styles
-------------------------------------------- */
-
-.about-page .bottom-content-container .bottom-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    margin: 8rem 0;
-    height: 30rem;
-}
-
-/* -------- Bottom Content - Left Wrapper Styles -------- */
-
-.about-page .bottom-content-container .bottom-content .bottom-content-left {
-    background-image: url("../Images/about.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.96;
-    width: 30rem;
-    height: 25rem;
-    margin: 0 auto;
-    border-radius: 5rem;
-    border-top-right-radius: 10rem;
-    border-bottom-right-radius: 10rem;
-    border-top-left-radius: 25rem;
-}
-
-/* -------- Bottom Content - Wrapper Styles -------- */
-
-.about-page .bottom-content-container .bottom-content .bottom-content-wrapper {
-    padding: 50px;
-}
-
-.about-page .bottom-content-container .bottom-content .bottom-content-wrapper h2 {
-    font-family: "Josefin Sans", sans-serif;
-    font-size: 1.85rem;
-    line-height: 1.3;
-    margin: 20px 0;
-}
-
-.about-page .bottom-content-container .bottom-content .bottom-content-wrapper p {
-    font-size: 0.95rem;
-    font-weight: 500;
-    margin-top: 0;
-}
-
-/* -------------------------------------------
-                CoursesPage Styles
-------------------------------------------- */
-
-
-/*      Topics Content Styles
-------------------------------------------- */
-
-.courses-page .topics-content-container {
-    margin-top: 8rem;
-    text-align: center;
-    margin-bottom: 6rem;
-}
-
-/* -------- Topics Content - Heading Styles -------- */
-
-.courses-page .topics-content-container .topics-content .content-heading h2 {
-    font-family: "Josefin Sans", sans-serif;
-    font-size: 2rem;
-    color: #420039;
-    font-weight: 600;
-    margin-bottom: 3rem;
-}
-
-/* -------- Topics Content - Topics Styles -------- */
-
-.courses-page .topics-content-container .topics-content .topics {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    width: 73rem;
-    margin: 0 auto;
-}
-
-
-.courses-page .topics-content-container .topics-content .topics .topic {
-    transition: 400ms;
-    display: block;
-    width: 16rem;
-    margin: 1rem auto;
-    box-shadow: 1px 1px 10px rgba(0, 18, 25, 0.3);
-    border-radius: 20px;
-    cursor: pointer;
-    height: 12rem;
-}
-
-.courses-page .topics-content-container .topics-content .topics .topic:hover {
-    transition: 200ms;
-    transform: scale(1.1);
-    box-shadow: 2px 2px 15px rgba(0, 18, 25, 0.4);
-}
-
-.courses-page .topics-content-container .topics-content .topics .topic img {
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-}
-
-.courses-page .topics-content-container .topics-content .topics .topic .topic-holder {
-    margin-top: -50%;
-    color: white;
-}
-
-.courses-page .topics-content-container .topics-content .topics .topic h3 {
-    margin-top: 5%;
-}
-
-/*      Bottom Content Styles
-------------------------------------------- */
-
-.courses-page .bottom-content-container {
-    margin-top: 8rem;
-    text-align: center;
-    margin-bottom: 4rem;
-}
-
-/* -------- Bottom Content - Heading Styles -------- */
-
-.courses-page .bottom-content-container .bottom-content .content-heading h2 {
-    font-family: "Josefin Sans", sans-serif;
-    font-size: 2rem;
-    color: #420039;
-    font-weight: 600;
-    margin-bottom: 4rem;
-}
-
-/* -------- Bottom Content - Playlist Styles -------- */
-
-.courses-page .bottom-content-container .bottom-content .playlist {
-    margin-bottom: 4rem;
-}
-
-.courses-page .bottom-content-container .bottom-content .playlist-heading {
-    text-align: right;
-    width: 65rem;
-    margin: 0 auto;
-    background-color: rgba(0, 18, 25, 0.03);
-    margin-bottom: 1rem;
-    border-left: 2px solid #DEA4F0;
-    border-top-right-radius: 4rem;
-    border-bottom-right-radius: 4rem;
-}
-
-.courses-page .bottom-content-container .bottom-content .playlist-heading h4 {
-    font-size: 1.5rem;
-    width: fit-content;
-    background-color: white;
-    color: rgba(0, 18, 25, 0.6);
-    margin: 0;
-    padding: 0 1rem;
-    border: 1px solid rgba(0, 18, 25, 0.04);
-    border-top-right-radius: 4rem;
-    border-bottom-right-radius: 4rem;
-}
-
-.courses-page .bottom-content-container .bottom-content .playlist-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    width: 75rem;
-    margin: 0 auto;
-}
-
-.courses-page .bottom-content-container .bottom-content .playlist-content .course {
-    transition: 400ms;
-    width: 23rem;
-    margin: 2rem auto;
-    text-align: left;
-    box-shadow: 1px 1px 10px rgba(0, 18, 25, 0.3);
-    border-radius: 20px;
-    /* cursor: pointer; */
-}
-
-.courses-page .bottom-content-container .bottom-content .playlist-content .course:hover {
-    transition: 450ms;
-    box-shadow: 2px 2px 15px rgba(66, 0, 57, 0.6);
-    transform: scale(1.05);
-}
-
-.courses-page .bottom-content-container .bottom-content .playlist-content .course img,
-.courses-page .bottom-content-container .bottom-content .playlist-content .course iframe {
-    width: 100%;
-    height: 13rem;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-}
-
-.courses-page .bottom-content-container .bottom-content .playlist-content .course p,
-.courses-page .bottom-content-container .bottom-content .playlist-content .course h3 {
-    font-size: 0.85rem;
-    padding: 15px;
-    margin: 0;
-    opacity: 0.8;
-}
-
-.courses-page .bottom-content-container .bottom-content .playlist-content .course h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #420039;
-    padding-top: 5px;
-    padding-bottom: 25px;
-}
-
-/*      Contact Link Styles
-------------------------------------------- */
-
-.courses-page .contact-link {
-    text-align: right;
-    font-size: 1.2rem;
-    margin: 2.5rem 6rem;
-}
-
-.courses-page .contact-link a {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #420039;
-    border-bottom: 1px solid #6B1853;
-}
-
-.courses-page .contact-link a:hover {
-    color: #932F6D;
+article .title-container .title-content .navigation a:active~a {
     text-decoration: none;
-    border: none;
 }
 
-/* -------------------------------------------
-                ContactPage Styles
-------------------------------------------- */
+/* -------- Transparent-Screen | Styles -------- */
 
-.contact-page .contact-form-container {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    margin: 5rem 6rem;
-    margin-bottom: 0.5rem;
-}
-
-/*      Contact Form Styles
-------------------------------------------- */
-
-.contact-page .contact-form-container .contact-form {
-    padding: 2rem;
-    text-align: center;
-}
-
-.contact-page .contact-form-container .contact-form h3 {
-    font-family: "Josefin Sans", sans-serif;
-    font-size: 2rem;
-    color: #420039;
-    font-weight: 600;
-}
-
-.contact-page .contact-form-container .contact-form textarea {
-    font-size: 1.1rem;
-    font-weight: 300;
-    background: white;
-    width: 42rem;
-    height: 15rem;
-    margin-bottom: 2rem;
-    padding: 10px;
-    box-shadow: 0.8px 0.8px 8px rgba(0, 18, 25, 0.3);
-    border-style: solid;
-    border-radius: 10px;
-    resize: vertical;
-    outline: none;
-}
-
-.contact-page .contact-form-container .contact-form .user_details {
-    text-align: center;
-    width: 42rem;
-    margin: 0 auto;
-    margin-bottom: 2rem;
-}
-
-.contact-page .contact-form-container .contact-form .user_details input,
-.contact-page .contact-form-container .contact-form input {
-    font-size: 1.1rem;
-    font-weight: 300;
-    background: white;
-    width: 48%;
-    padding: 10px;
-    box-shadow: 0.8px 0.8px 8px rgba(0, 18, 25, 0.3);
-    border-style: solid;
-    border-radius: 10px;
-    outline: none;
-}
-
-.contact-page .contact-form-container .contact-form .user_details input:first-of-type {
-    margin-right: 0.65rem;
-}
-
-.contact-page .contact-form-container .contact-form .user_details input:last-of-type {
-    margin-left: 0.65rem;
-}
-
-.contact-page .contact-form-container .contact-form .query_subject {
-    width: 42rem;
-    margin: 0 auto;
-    margin-bottom: 2rem;
-}
-
-.contact-page .contact-form-container .contact-form input:focus,
-.contact-page .contact-form-container .contact-form textarea:focus {
-    border-color: rgba(148, 46, 109, 0.3);
-}
-
-.contact-page .contact-form-container .contact-form .send_button {
-    display: block;
-    font-size: 1.2rem;
-    width: 8rem;
-    margin: 0 auto;
-    box-shadow: none;
-    background-color: #6B1853;
-    color: white;
-    border: 1px solid #6B1853;
-    border-radius: 5rem;
-}
-
-.contact-page .contact-form-container .contact-form .send_button:hover {
-    background-color: rgba(107, 24, 83, 0.8);
-    border-color: rgba(107, 24, 83, 0.8);
-}
-
-.contact-page .contact-form-container .contact-form .send_button:active {
-    border: 1px inset white;
-}
-
-/*      Contact Details Styles
-------------------------------------------- */
-
-.contact-page .contact-form-container .contact-details {
-    background-image: url("../Images/feedback.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.8;
-    display: flex;
-    align-items: center;
-    width: 25rem;
-    margin: 8rem 5rem;
-    margin-bottom: 18rem;
-    border-radius: 3rem;
-}
-
-.contact-page .contact-form-container .contact-details .contacts {
-    background-image: linear-gradient(to bottom, rgba(0, 18, 25, 0.7) 0%, rgba(55, 64, 80, 0.4) 50%, rgba(234, 234, 234, 0.4) 100%);
-    height: 100%;
+article .back-image-screen {
+    position: absolute;
+    background-image: linear-gradient(to bottom, rgba(0, 18, 25, 0.6) 0%, rgba(55, 64, 80, 0.3) 50%, rgba(234, 234, 234, 0.5) 100%);
     width: 100%;
-    color: white;
-    padding: 4rem 5rem;
-    padding-bottom: 2rem;
-    border-radius: 3rem;
-    list-style-type: none;
+    height: 100%;
 }
 
-.contact-page .contact-form-container .contact-details .contacts li {
-    margin: 1.5rem 0;
-}
-
-.contact-page .contact-form-container .contact-details .contacts li img {
-    width: 1rem;
-}
-
-/* -------------------------------------------
-        Scroll to Top Button Styles
-------------------------------------------- */
-
-html {
-    scroll-behavior: smooth;
-}
-
-.scroll-top-button.hide {
-    display: none;
-}
-
-.scroll-top-button {
-    position: fixed;
-    bottom: 0%;
-    right: 0%;
-    margin-right: 1.6rem;
-    margin-bottom: 2rem;
-    font-size: 1.4rem;
-    transition: 500ms;
-    background-color: rgba(222, 164, 240, 0.5);
-    color: #420039;
-    padding: 0.5rem 1rem;
-    border-radius: 40px;
-    cursor: pointer;
-}
-
-.scroll-top-button:hover {
-    transition: 400ms;
-    background-color: #E07BE0;
-}
-
-/* -------------------------------------------
-                Footer Styles
-------------------------------------------- */
+/* ----------------------------------------- Footer | Styles ------------------------------------------
+---------------------------------------------------------------------------------------------------- */
 
 footer {
-    background-color: #932F6D;
-}
-
-/*      Bottom-Info Styles
-------------------------------------------- */
-
-.bottom-info {
     display: grid;
-    grid-template-columns: 2.4fr 1fr 1fr 1fr;
-    padding: 1rem 2rem;
-    color: white;
+    grid-template-columns: 2.5fr 1fr 1fr 1fr;
+    background-color: var(--amaranthmp);
+    color: var(--white);
+    padding: 1.25rem 2rem;
 }
 
-.bottom-info li a {
+/* --------------- Bottom-Info | Styles
+------------------------------------------------------------------- */
+
+footer .bottom-info {
+    padding: 2rem 1rem;
+}
+
+footer .bottom-info h3 {
+    margin: 1rem 0;
+}
+
+footer .bottom-info ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+footer .bottom-info li {
+    padding: 0.35rem 0;
+}
+
+footer .bottom-info li a {
+    color: rgba(240, 248, 255, 0.85);
+    padding-bottom: 0.3rem;
+    border-color: var(--orchid);
+    transition: 300ms;
+}
+
+footer .bottom-info li a:hover,
+footer .bottom-info li a:active {
+    color: var(--aliceblue);
+    padding-bottom: 0.1rem;
+    border-bottom: 0.1rem solid var(--white);
     transition: 400ms;
-    color: white;
-    padding-bottom: 4px;
-    border-color: #E07BE0;
-    cursor: pointer;
 }
 
-.bottom-info li a:hover {
-    transition: 450ms;
-    border-bottom: 1px solid white;
-    padding-bottom: 1px;
+footer .bottom-info li a:active {
+    border-bottom-color: transparent;
+    text-decoration: solid line-through var(--white);
 }
 
-/* -------- Bottom-Info - LogoSection Styles -------- */
+/* -------- Bottom-Info - Social-Links | Styles -------- */
 
-.bottom-info .bottom-logo-section {
-    padding: 3rem;
-    margin-right: 2rem;
-}
-
-.bottom-info .bottom-logo-section a {
+footer .bottom-info.logo-section a {
     display: inline-block;
 }
 
-.bottom-info .bottom-logo-section .bottom-logo img {
+footer .bottom-info.logo-section .bottom-logo img {
     width: 11rem;
 }
 
-.bottom-info .bottom-logo-section .bottom-text {
+footer .bottom-info.logo-section .bottom-text {
     font-size: 1rem;
     margin: 0.8rem 0.6rem;
 }
 
-.bottom-info .bottom-logo-section .social-icon {
+footer .bottom-info.logo-section .social-icon {
     margin: 1.6rem 0 0 0.6rem;
 }
 
-.bottom-info .bottom-logo-section .social-icon a img {
-    width: 2.2rem;
+footer .bottom-info.logo-section .social-icon a img {
     background-color: rgba(224, 123, 224, 0.2);
-    margin: 3px;
-    padding: 10px;
-    border-radius: 20px;
+    width: 2.25rem;
+    margin: 0.19rem;
+    padding: 0.65rem;
+    border-radius: 1.25rem;
+    transition: 200ms;
 }
 
-.bottom-info .bottom-logo-section .social-icon a img:hover {
+footer .bottom-info.logo-section .social-icon a img:hover {
     background-color: rgba(224, 123, 224, 0.7);
+    transition: 300ms;
 }
 
-/* -------- Bottom-Info - TopicsSection Styles -------- */
+/* -------- Bottom-Info - Contact | Styles -------- */
 
-.bottom-info .bottom-topics-section {
-    padding: 2rem;
+footer .bottom-info.contact-section {
+    padding: 2rem 0;
 }
 
-.bottom-info .bottom-topics-section h3 {
-    margin: 15px 0;
-}
-
-.bottom-info .bottom-topics-section .topics {
-    list-style-type: none;
-    padding: 0;
-}
-
-.bottom-info .bottom-topics-section .topics li {
-    padding: 5px 0;
-}
-
-/* -------- Bottom-Info - SupportSection Styles -------- */
-
-.bottom-info .bottom-support-section {
-    padding: 2rem;
-}
-
-.bottom-info .bottom-support-section h3 {
-    margin: 15px 0;
-}
-
-.bottom-info .bottom-support-section .support {
-    list-style-type: none;
-    padding: 0;
-}
-
-.bottom-info .bottom-support-section .support li {
-    padding: 5px 0;
-}
-
-/* -------- Bottom-Info - ContactSection Styles -------- */
-
-.bottom-info .bottom-contact-section {
-    padding: 2.4rem 0;
-
-}
-
-.bottom-info .bottom-contact-section h3 {
-    margin: 15px 0;
-}
-
-.bottom-info .bottom-contact-section .contact {
-    list-style-type: none;
-    padding: 0;
-}
-
-.bottom-info .bottom-contact-section .contact li {
-    padding: 5px 0;
-}
-
-.bottom-info .bottom-contact-section .contact li a img {
+footer .bottom-info.contact-section .contact li a img {
     width: 1rem;
     height: 1rem;
 }
 
-/*      Copyrights Styles
-------------------------------------------- */
+/* --------------- Copyrights | Styles
+------------------------------------------------------------------- */
 
 .copyrights {
     text-align: center;
-    padding: 20px;
+    grid-column: 1/5;
 }
 
 .copyrights p {
-    font-size: 0.86rem;
-    color: white;
+    font-size: 0.75rem;
+    color: rgba(240, 248, 255, 0.75);
     margin: 0;
+    padding-top: 1rem;
+    border-top: 0.1rem solid rgba(240, 248, 255, 0.25);
 }
 
 .copyrights p a {
-    color: #FFA500;
-    border-bottom: 1px solid #DEA4F0;
-    cursor: pointer;
+    color: var(--orangeweb);
+    border-bottom: 1px solid var(--mauve);
 }
 
-.copyrights p a:hover {
+.copyrights p a:not(:active):hover {
     font-weight: 500;
-    color: #FF6700;
+    color: var(--safetyblazeorange);
 }
 
-/*  --------- Colors Used ----------------  
-    --------------------------------------
-        Alice Blue - #F0F8FF, rgb(240, 248, 255)
-        Safety Orange Blaze Orange - #FF6700, rgb(255, 103, 0)
-        Rich Black FOGRA 29 - #001219,  rgb(0, 18, 25)
-        Charcoal - #374050, rgb(55, 64, 80)
-        Platinum - #EAEAEA,  rgb(234, 234, 234)
-        Byzantium - #6B1853, rgb(107, 24, 83)
-        Orchid - #E07BE0, rgb(224, 123, 224)
-        Dark Purple - #420039, rgb(66, 0, 57)
-        Amaranth M P - #932F6D, rgb(147, 47, 109)
-        Mauve - #DEA4F0, rgb(222, 164, 240),
-        Auburn - #A52A2A, rgb(165, 42, 42),
-        Red RYB - #FC1919, rgb(252, 25, 25),
-        Forest Green Traditional - #10451D, rgb(16, 69, 29)
-        Popstar - #B6465F, rgb(182, 70, 95)
-
-    --------------------------------------- */
+.copyrights p a:active {
+    text-decoration: solid line-through var(--mauve);
+    border-bottom: none;
+}

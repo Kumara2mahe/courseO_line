@@ -1,124 +1,75 @@
-// ------------------------------------------- JavaScript for CourseO_line - online courses project ---------------------------------------- //
 
+// -------- Navigation Link - Highlight & Deactivate Script ------------------------------------------------- //
 
-// Function for Showing and Removing Navbar Hover Effect ---------------------------------------- //
-const navBarOptionsAddHover = (active) => {
+const pathname = window.location.pathname.slice(1)
+const navlinks = document.querySelectorAll(".navigation-bar .nav-links a")
+navlinks.forEach((link) => {
 
-    let option = active.target
-
-    // Showing the border
-    option.childNodes[0].classList.add("show")
-
-    // Moving the border
-    setTimeout(() => {
-        option.childNodes[0].classList.add("showborder")
-
-    }, 100)
-}
-
-const navBarOptionsRemoveHover = (active) => {
-
-    let option = active.target
-
-    // Removing the border
-    option.childNodes[0].classList.remove("show")
-    setTimeout(() => {
-        option.childNodes[0].classList.remove("showborder")
-
-    }, 100)
-}
-
-// Getting the navigation bar 'a' tags
-const navBarOptions = document.querySelectorAll(".navigation-bar .nav-wrapper .page-options a")
-//
-navBarOptions.forEach((link) => {
-    link.addEventListener("mouseenter", navBarOptionsAddHover)
-    link.addEventListener("mouseleave", navBarOptionsRemoveHover)
+    // Converting the link name to lowercase
+    let linkname = link.innerText.toLowerCase()
+    if (pathname == linkname || pathname == "" && linkname == "home" || pathname.includes(linkname)) {
+        link.classList.add("activepage")
+        link.removeAttribute("href")
+    }
 })
-// -------------------------------------------------------------------------------- //
+// ---------------------------------------------------------------------------------- //
 
 
+// -------- SmallScreen Hamburger Menu - Toggle Script ---------------------------------------- //
 
-// Function for Showing and Removing Navbar Hover Effect ---------------------------------------- //
-const watchButtonAddHover = (active) => {
-
-    let button = active.target
-
+// ---- Function for showing Hamburger Menu ---- //
+const showHamMenu = () => {
+    hamIcon.classList.add("active")
+    hamIcon.nextElementSibling.classList.add("float")
     setTimeout(() => {
-        button.childNodes[1].classList.add("show")
-    }, 200)
+        hamIcon.removeEventListener("click", showHamMenu)
+        window.addEventListener("click", closeHamMenu)
+    }, 100)
 }
+// ---- Function for closing Hamburger Menu ---- //
+const closeHamMenu = (event) => {
+    let element = event.target
+    let isElementActive = (element.tagName == "SPAN" && element.parentElement.tagName == "A" && element.parentElement.parentElement.classList[0] == "nav-links")
+        || (element.tagName == "A" && element.parentElement.classList[0] == "nav-links")
+        || (element.classList[0] == "nav-links" && element.parentElement.tagName == "DIV")
+        || (element.tagName == "A" && element.parentElement.classList[0] == "admin-tools")
+        || (element.classList[0] == "admin-tools" && element.parentElement.classList[0] == "nav-links")
 
-const watchButtonRemoveHover = (active) => {
-
-    let button = active.target
-
-    setTimeout(() => {
-        button.childNodes[1].classList.remove("show")
-    }, 200)
-}
-
-// Getting the Watch Button from the homepage top-content
-const watchButtonTopContent = document.querySelector(".home-page .top-content-container .top-content .top-content-wrapper a")
-//
-if (watchButtonTopContent != null) {
-    watchButtonTopContent.addEventListener("mouseenter", watchButtonAddHover)
-    watchButtonTopContent.addEventListener("mouseleave", watchButtonRemoveHover)
-}
-// -------------------------------------------------------------------------------- //
-
-
-
-// Function for Showing and Removing Learn-Button Hover Effect ---------------------------------------- //
-const learnButtonAddHover = (active) => {
-
-    let button = active.target
-    button.classList.add("spin")
-
-    setTimeout(() => {
-        button.removeEventListener("mouseenter", learnButtonAddHover)
-        button.addEventListener("mouseleave", learnButtonRemoveHover)
-    }, 200)
-}
-
-const learnButtonRemoveHover = (active) => {
-
-    let button = active.target
-    button.classList.remove("spin")
-
-    setTimeout(() => {
-        button.removeEventListener("mouseleave", learnButtonRemoveHover)
-        button.addEventListener("mouseenter", learnButtonAddHover)
-    }, 200)
-}
-
-// Getting the Learn-Button from the homepage fourth-content
-const learnButtonFourthContent = document.querySelector(".home-page .fourth-content-container .fourth-content .fourth-content-wrapper a")
-//
-if (learnButtonFourthContent != null) {
-    learnButtonFourthContent.addEventListener("mouseenter", learnButtonAddHover)
-}
-// -------------------------------------------------------------------------------- //
-
-
-
-// Function for Showing and Removing Scroll to Top Button ---------------------------------------- //
-const scrollToTopButtonShow = () => {
-
-    if (window.scrollY > 0) {
-
-        // Showing the scrollButton
-        scrollToTopButton.classList.remove("hide")
-    }
-    if (window.scrollY == 0) {
-
-        // Removing the scrollButton
-        scrollToTopButton.classList.add("hide")
+    if (!isElementActive) {
+        hamIcon.classList.remove("active")
+        hamIcon.nextElementSibling.classList.remove("float")
+        window.removeEventListener("click", closeHamMenu)
+        hamIcon.addEventListener("click", showHamMenu)
     }
 }
+const hamIcon = document.querySelector(".navigation-bar .ham-icon")
+hamIcon.addEventListener("click", showHamMenu)
+// ---------------------------------------------------------------------------------- //
 
-// Getting the scrolltoTop Button
-const scrollToTopButton = document.querySelector(".scroll-top-button")
-//
-window.addEventListener("scroll", scrollToTopButtonShow)
-// -------------------------------------------------------------------------------- //
+
+
+// -------- Scroll to Top - Button Script ---------------------------------------------- //
+
+// ---- Function for creating Scroll to Top Button ---- //
+const toggleScrolltoTop = () => {
+
+    let scrollTopBtn = document.querySelector(".scroll-to-top")
+    if (scrollTopBtn) {
+        scrollTopBtn.hidden = window.scrollY < scrollPos
+    }
+    else if (window.scrollY > scrollPos) {
+
+        // Creating Scroll-to-Top button
+        scrollTopBtn = document.createElement("a")
+        scrollTopBtn.classList.add("scroll-to-top")
+        scrollTopBtn.innerHTML = `&#11165;`
+        scrollTopBtn.addEventListener("click", () => {
+            document.documentElement.scrollTop = 0
+        })
+        // Showing on screen
+        document.querySelector("footer").before(scrollTopBtn)
+    }
+}
+const scrollPos = 400
+window.addEventListener("scroll", toggleScrolltoTop)
+// ---------------------------------------------------------------------------------- //

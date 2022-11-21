@@ -1,66 +1,66 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block meta_description %}courseO_line - contact us for more support or else you have any queries{% endblock%}
+
 {% block content %}
 
 <article class="contact-page">
 
-    <section class="top-content-container">
+    <!-- Title | Container -->
+    <section class="title-container">
 
-        <div class="top-content">
+        <!-- Bg-image-Screen -->
+        <div class="back-image-screen"></div>
 
-            <div class="top-content-wrapper">
-                <h2>Contact Us</h2>
-
-                <div class="nav-links">
-                    <a href="/">Home</a>
-                    <span>|</span>
-                    <a>Contact</a>
-                </div>
-            </div>
-
+        <!-- contents -->
+        <div class="title-content">
+            <h2>{% block page_title %}Contact{% endblock %} Us</h2>
+            <p class="navigation"><a href="{% url 'home' %}">Home</a><span>|</span><a>Contact</a></p>
         </div>
 
     </section>
 
-    <section class="contact-form-container">
+    <!-- Feedback | container -->
+    <section class="feedback-container">
 
-        <form class="contact-form" method="POST" autocomplete="off">
+        <!-- Contact | Form -->
+        <form class="contact-form" method="POST" autocomplete="on">
 
             {% csrf_token %}
             <h3 class="form-heading">Get In Touch</h3>
-            <textarea class="customer_query" name="customerquery" type="text"
-                placeholder="Enter your Message"></textarea>
-
-            <div class="user_details">
-                <input class="user_name" name="username" type="text" placeholder="Your Name">
-                <input class="user_email" name="useremail" type="text" placeholder="Your Email">
+            <textarea class="visiter_query" name="visiterquery" type="text" placeholder="Enter your Message"></textarea>
+            
+            <!-- Visiter Details -->
+            <div class="visiter-details">
+                <input class="visiter_name" name="visitername" type="text" placeholder="Your Name" autocomplete="name">
+                <input class="visiter_email" name="visiteremail" type="text" placeholder="Your Email" autocomplete="email">
             </div>
-
             <input class="query_subject" name="querysubject" type="text" placeholder="Subject">
-
             <input class="send_button" type="submit" value="Send">
 
         </form>
 
-        <div class="contact-details">
-            <ul class="contacts">
+        <div class="contacts-wrapper">
+
+            <!-- Contact details | Container -->
+            <ul class="contact-details">
+
+                <!-- Bg-image-Screen -->
+                <div class="back-image-screen"></div>
 
                 <li>
                     <img src="{% static 'Assets/Images/contact_03.png' %}">
-                    &nbsp;<span>+91 983 432 8823</span>
+                    &nbsp;<span>+91 983-432-8823</span>
                 </li>
-
                 <li>
                     <img src="{% static 'Assets/Images/contact_02.png' %}">
                     &nbsp;<span>info@courseoline.com</span>
                 </li>
-
                 <li>
                     <img src="{% static 'Assets/Images/contact_01.png' %}">
-                    &nbsp;<span>137, liquor street,<br>Chennai - 600008</span>
+                    &nbsp;<span>123, ABC street,<br>City - 600008</span>
                 </li>
-
             </ul>
         </div>
 

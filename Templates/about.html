@@ -1,91 +1,72 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block meta_description %}courseO_line - We have a lot of free tutorials with clear explanation,
+and Immediate solutions give by our top instructors to the problems{% endblock%}
+
 {% block content %}
 
 <article class="about-page">
 
-    <section class="top-content-container">
+    <!-- Title | Container -->
+    <section class="title-container">
 
-        <div class="top-content">
+        <!-- Bg-image-Screen -->
+        <div class="back-image-screen"></div>
 
-            <div class="top-content-wrapper">
-                <h2>About Us</h2>
-
-                <div class="nav-links">
-                    <a href="/">Home</a>
-                    <span>|</span>
-                    <a>About</a>
-                </div>
-            </div>
-
+        <!-- contents -->
+        <div class="title-content">
+            <h2>{% block page_title %}About{% endblock %} Us</h2>
+            <p class="navigation"><a href="{% url 'home' %}">Home</a><span>|</span><a>About</a></p>
         </div>
 
     </section>
 
-    <section class="middle-content-container">
+    <h2 class="badge-heading">What makes us an Benchmark?</h2>
 
-        <div class="middle-content-heading">
-            <h2>What makes us an Benchmark?</h2>
+    <!-- Badge | Container -->
+    <section class="badge-container">
+
+        <!-- Left Badge -->
+        <div class="badge">
+            <div class="badge-image"><img src="{% static 'Assets/Images/Svgs/books.svg' %}"></div>
+            <div class="badge-contents">
+                <h3>Best Courses</h3>
+                <p>We have a lot of free tutorials with clear explanation.</p>
+            </div>
         </div>
 
-        <div class="middle-content">
-
-            <div class="left-section">
-
-                <div class="left-section-image"><img src="{% static 'Assets/Images/Svgs/top_icon1.svg' %}"></div>
-                <div class="left-section-contents">
-                    <h3>Best Courses</h3>
-                    <p>We have a lot of free tutorials with clear explanation.</p>
-                </div>
-
+        <!-- Middle Badge -->
+        <div class="badge middle">
+            <div class="badge-image"><img src="{% static 'Assets/Images/Svgs/person.svg' %}"></div>
+            <div class="badge-contents">
+                <h3>Expert Instructors</h3>
+                <p>Immediate solutions give by our top instructors to the problems.</p>
             </div>
+        </div>
 
-            <div class="middle-section">
-
-                <div class="middle-section-image"><img src="{% static 'Assets/Images/Svgs/top_icon2.svg' %}"></div>
-                <div class="middle-section-contents">
-                    <h3>Expert Instructors</h3>
-                    <p>Immediate solutions give by our top instructors to the problems.</p>
-                </div>
-
+        <!-- Right Badge -->
+        <div class="badge">
+            <div class="badge-image"><img src="{% static 'Assets/Images/Svgs/clock.svg' %}"></div>
+            <div class="badge-contents">
+                <h3>Life Time Access</h3>
+                <p>Everything in website is 100% free, it doesn't cost a penny.</p>
             </div>
-
-            <div class="right-section">
-
-                <div class="right-section-image"><img src="{% static 'Assets/Images/Svgs/top_icon3.svg' %}"></div>
-                <div class="right-section-contents">
-                    <h3>Life Time Access</h3>
-                    <p>Every thing in website is 100% free, it doesn't cost a penny.</p>
-                </div>
-
-            </div>
-
         </div>
 
     </section>
 
-    <section class="bottom-content-container">
+    <!-- Brief | Container -->
+    <section class="brief-container">
 
-        <div class="bottom-content">
-
-            <div class="bottom-content-left">
-
-            </div>
-
-            <div class="bottom-content-wrapper">
-                <h2>Learner outcomes on courses you will take</h2>
-                <p><span class="tick-mark">&#10004;&ensp;</span>Techniques to engage effectively with vulnerable
-                    children and young
-                    people.</p>
-                <p><span class="tick-mark">&#10004;&ensp;</span>Join millions of people from around the world learning
-                    together.</p>
-                <p><span class="tick-mark">&#10004;&ensp;</span>Join millions of people from around the world learning
-                    together. Online
-                    learning is as
-                    easy and natural.</p>
-            </div>
-
+        <div class="brief-image"></div>
+        <div class="brief-content">
+            <h2>Learner outcomes on courses you will take</h2>
+            <p><span class="tick-mark">&#10004;&ensp;</span>Techniques to engage effectively with vulnerable
+                children and young people.</p>
+            <p><span class="tick-mark">&#10004;&ensp;</span>Join millions of people from around the world learning
+                together.</p>
+            <p><span class="tick-mark">&#10004;&ensp;</span>Online learning is as easy and natural.</p>
         </div>
 
     </section>

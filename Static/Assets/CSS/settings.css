@@ -1,373 +1,612 @@
-/* ---------------- Stylesheet for Settings page ---------------- */
+@import url("./status.css");
 
+/* ----------------------------------------- Settings Page | Styles ------------------------------------------
+---------------------------------------------------------------------------------------------------- */
 
-
-/* -------------------------------------------
-            Admin Settings Styles
-------------------------------------------- */
-
-.settings-page .top-content-container {
-    height: 28rem;
-    background-image: url(../Images/background_00.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-    margin-top: -5.15rem;
-}
-
-.settings-page .top-content-container .top-content {
-    background-image: linear-gradient(to bottom, rgba(0, 18, 25, 0.6) 0%, rgba(55, 64, 80, 0.3) 50%, rgba(234, 234, 234, 0.5) 100%);
-    height: 100%;
-    color: white;
-    padding: 4rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-}
-
-/* -------- Top Content - Wrapper Styles -------- */
-
-.settings-page .top-content-container .top-content .top-content-wrapper {
-    padding: 4rem;
-    padding-bottom: 0;
-}
-
-.settings-page .top-content-container .top-content .top-content-wrapper h2 {
-    font-family: "Josefin Sans", sans-serif;
-    font-size: 3rem;
-    line-height: 1.3;
-    margin: 20px 0;
-}
-
-.settings-page .top-content-container .top-content .top-content-wrapper .nav-links {
-    padding: 10px;
-    padding-left: 0;
-}
-
-.settings-page .top-content-container .top-content .top-content-wrapper a {
-    font-size: 0.95rem;
-    transition: 600ms;
-    color: rgba(240, 248, 255, 0.7);
-    display: inline-block;
-    padding: 5px;
-    cursor: pointer;
-}
-
-.settings-page .top-content-container .top-content .top-content-wrapper a:last-of-type {
-    color: white;
-    cursor: default;
-    text-decoration: line-through;
-    text-decoration-color: wheat;
-}
-
-.settings-page .top-content-container .top-content .top-content-wrapper a:hover {
-    color: white;
-}
-
-/*      Admin Interface Styles
-------------------------------------------- */
-
-.settings-page .admin-interface-container {
-    padding: 4rem 0;
+.settings-page .settings-container {
     display: grid;
     grid-template-columns: 1fr 3fr;
-    background-color: rgba(222, 164, 240, 0.1);
+    padding: 0;
 }
 
-.settings-page .admin-interface-container .admin-interface,
-.settings-page .admin-interface-container .admin-interface-content {
-    margin: 1rem;
+/* ---------------- Navigation - Container | Styles
+------------------------------------------------------------------- */
+
+.settings-page .settings-container .navigation-panel {
+    position: relative;
+    margin-left: 2rem;
+    padding: 2rem 0;
 }
 
-.settings-page .admin-interface-container .admin-interface .admin-interface-wrapper {
-    margin: 0 2rem;
-    margin-right: 0;
+.settings-page .settings-container .navigation-panel .navigation {
+    position: sticky;
+    top: 2rem;
 }
 
-/* -------- Admin Interface - Link Styles -------- */
+/* ----------- Settings Navigation - Link | Styles ------------ */
 
-.settings-page .admin-interface-container .admin-interface .admin-interface-wrapper a {
-    transition: 250ms;
-    display: block;
+.settings-page .settings-container .navigation-panel .navigation a {
     font-size: 1.1rem;
     font-weight: 500;
-    background-color: rgba(222, 164, 240, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: rgba(222, 164, 240, 0.15);
     color: rgba(0, 18, 25, 0.5);
     margin-bottom: 0.5rem;
-    padding: 1rem;
-    border-radius: 2rem;
-    cursor: pointer;
-}
-
-.settings-page .admin-interface-container .admin-interface .admin-interface-wrapper a:hover {
-    transition: 300ms;
-    background-color: rgba(222, 164, 240, 0.1);
-    color: #6B1853;
-}
-
-/* -------- Admin Interface - ActiveLink Styles -------- */
-
-.settings-page .admin-interface-container .admin-interface .admin-interface-wrapper a.active {
+    padding: 1rem 1.5rem;
+    border-right: 0.3rem solid rgba(222, 164, 240, 0.2);
+    border-radius: 2rem 0 0 2rem;
     transition: 250ms;
-    background-color: #DEA4F0;
-    color: #420039;
-    box-shadow: 1px 1px 10px #DEA4F0;
-    cursor: default;
 }
 
-.settings-page .admin-interface-container .admin-interface .admin-interface-wrapper a.active:hover {
+.settings-page .settings-container .navigation-panel .navigation a:not(.preview):hover {
+    background-color: rgba(222, 164, 240, 0.3);
+    color: var(--byzantium);
     transition: 300ms;
-    background-color: #DEA4F0;
-    color: #420039;
 }
 
-/*      Admin Interface Content Styles
-------------------------------------------- */
+.settings-page .settings-container .navigation-panel .navigation a:not(.preview):active img {
+    scale: 0.9;
+}
 
-.settings-page .admin-interface-container .admin-interface-content {
+.settings-page .settings-container .navigation-panel .navigation a img {
+    width: 2rem;
+    margin-right: 1rem;
+    opacity: 0.7;
+}
+
+/* ----------- Settings Navigation - (Active) Link | Styles ---------- */
+
+.settings-page .settings-container .navigation-panel .navigation a.preview {
+    background-color: var(--mauve);
+    color: var(--darkpurple);
+    border-right-color: var(--byzantium);
+    box-shadow: 0 0 0.7rem var(--mauve);
+    cursor: not-allowed;
+    transition: 250ms;
+}
+
+.settings-page .settings-container .navigation-panel .navigation a.preview img {
+    opacity: 1;
+}
+
+/* ------------- Detailed Settings - Container | Styles
+------------------------------------------------------------------- */
+
+.settings-page .settings-container .setting-details {
     background-color: rgba(222, 164, 240, 0.2);
-    margin: 1rem 2rem;
-    box-shadow: 1px 1px 10px #DEA4F0;
-    border-radius: 2rem;
+    border-left: 0.1rem solid rgba(222, 164, 240, 0.5);
+    box-shadow: 0 0 0.625rem var(--mauve);
 }
 
-/* -------- Admin Interface - Form Styles -------- */
+/* ----------- Detailed Settings - Form | Styles ---------- */
 
-.settings-page .admin-interface-container .admin-interface-content .add_course_form,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form,
-.settings-page .admin-interface-container .admin-interface-content .delete_course_form {
+.settings-page .settings-container .setting-details form,
+.settings-page .settings-container .setting-details form.add .file-container.pdf {
     display: none;
 }
 
-.settings-page .admin-interface-container .admin-interface-content .add_course_form.active,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form.active,
-.settings-page .admin-interface-container .admin-interface-content .delete_course_form.active {
+.settings-page .settings-container .setting-details form.preview {
+    text-align: center;
     display: grid;
-    padding: 4rem;
-    width: fit-content;
+    padding: 4rem 2rem;
+    width: 70%;
     margin: 0 auto;
 }
 
-.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_course_head,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_head,
-.settings-page .admin-interface-container .admin-interface-content .delete_course_form .delete_course_head {
+.settings-page .settings-container form h2 {
     text-align: center;
     font-size: 1.8rem;
-    color: #420039;
+    color: var(--darkpurple);
     margin-bottom: 3rem;
     margin-top: 0;
 }
 
-.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_pdf_container.hide {
-    display: none;
-}
-
-.settings-page .admin-interface-container .admin-interface-content .add_course_form input,
-.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_image_container,
-.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_pdf_container,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form input,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form select,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_image_container,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_pdf_container,
-.settings-page .admin-interface-container .admin-interface-content .delete_course_form input,
-.settings-page .admin-interface-container .admin-interface-content .delete_course_form select {
-    width: 40rem;
+.settings-page .settings-container form input,
+.settings-page .settings-container form .file-container,
+.settings-page .settings-container form select {
     font-family: "Montserrat", sans-serif;
-    font-size: 15px;
+    font-size: 0.9375rem;
     letter-spacing: 1px;
-    background: white;
+    background: var(--white);
+    width: 100%;
     margin-bottom: 2rem;
-    padding: 15px;
-    border-radius: 16px;
+    padding: 1rem;
     border-style: none;
-    border-bottom: 1px solid #E07BE0;
+    border-bottom: 0.1rem solid var(--orchid);
+    border-radius: 1rem;
 }
 
-.settings-page .admin-interface-container .admin-interface-content .add_course_form input:focus,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form input:focus,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form select:focus,
-.settings-page .admin-interface-container .admin-interface-content .delete_course_form input:focus,
-.settings-page .admin-interface-container .admin-interface-content .delete_course_form select:focus {
-    outline: none;
-    border-bottom: 2px solid rgba(147, 47, 109, 0.7);
+.settings-page .settings-container form input:focus-visible {
+    outline: rgba(148, 46, 109, 0.6) solid 0.15rem;
 }
 
-/* -------- Admin Interface - Select Option Styles -------- */
-
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_picker,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_editer {
-    text-align: center;
+.settings-page .settings-container form input[type="text"]:focus,
+.settings-page .settings-container form select:focus {
+    border-color: transparent;
+    outline: rgba(148, 46, 109, 0.6) solid 0.15rem;
 }
 
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_editer .update_pdf_container {
+/* -------- Form - (Upload) File | Styles ---- */
+
+.settings-page .settings-container form .file-container {
     text-align: left;
-    margin: 0 auto;
-    margin-bottom: 2rem;
-}
-
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_picker p,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_editer p {
-    font-size: 1.3rem;
-    width: fit-content;
-    margin: 0 auto;
-    margin-top: 0.6rem;
-    margin-bottom: 2.4rem;
-}
-
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_picker p .line-right,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_picker p .line-left,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_editer p .line-right,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_editer p .line-left {
-    display: inline-block;
-    width: 29rem;
-    height: 0.1rem;
-    background-color: #6B1853;
-    margin: 0.2rem 1rem;
-}
-
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_picker p .line-left,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_editer p .line-left {
-    width: 1.8rem;
-}
-
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_picker .update_course_category,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_picker .update_course_name,
-.settings-page .admin-interface-container .admin-interface-content .delete_course_form .delete_course_category,
-.settings-page .admin-interface-container .admin-interface-content .delete_course_form .delete_course_name {
-    color: rgba(0, 18, 25, 0.6);
-}
-
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_picker .update_course_category .category_option,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_picker .update_course_name .course_option,
-.settings-page .admin-interface-container .admin-interface-content .delete_course_form .delete_course_category .category_option,
-.settings-page .admin-interface-container .admin-interface-content .delete_course_form .delete_course_name .course_option {
-    color: black;
-    font-weight: 600;
-}
-
-/* -------- Admin Interface - Upload Image Styles -------- */
-
-.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_image_container,
-.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_pdf_container,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_image_container,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_pdf_container {
     color: rgba(0, 18, 25, 0.6);
     cursor: default;
 }
 
-.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_image_container input,
-.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_pdf_container input,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_image_container input,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_pdf_container input {
-    width: fit-content;
+.settings-page .settings-container .setting-details form.add .file-container.pdf.show {
+    display: block;
+}
+
+.settings-page .settings-container form .file-container input {
     background: rgba(222, 164, 240, 0.4);
     color: rgba(0, 18, 25, 0.8);
+    width: fit-content;
     margin: 0;
-    padding: 15px;
-    border-radius: 16px;
-    border: 1px solid rgba(222, 164, 240, 0.5);
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 0.1rem solid rgba(222, 164, 240, 0.5);
     cursor: pointer;
 }
 
-.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_image_container input:hover,
-.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_pdf_container input:hover,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_image_container input:hover,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_pdf_container input:hover {
+.settings-page .settings-container form .file-container input:not(:disabled):hover {
     background-color: rgba(147, 47, 109, 0.5);
-    color: #420039;
+    color: var(--darkpurple);
 }
 
-.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_image_container .new_course_image_upload:disabled,
-.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_pdf_container .new_course_pdf_upload:disabled,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_image_container .update_course_image_upload:disabled,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_pdf_container .update_course_pdf_upload:disabled {
-    background: rgba(222, 164, 240, 0.4);
-    color: rgba(0, 18, 25, 0.8);
+.settings-page .settings-container form .file-container input:not(:disabled):active,
+.settings-page .settings-container form .form-buttons input:not(:disabled):active {
+    scale: 0.95;
+}
+
+.settings-page .settings-container form .file-container input:disabled {
     cursor: not-allowed;
 }
 
-.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_image_container label,
-.settings-page .admin-interface-container .admin-interface-content .add_course_form .new_pdf_container label,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_image_container label,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_pdf_container label {
+.settings-page .settings-container form .file-container label {
     font-family: "Poppins", sans-serif;
     font-weight: 600;
 }
 
-.settings-page .admin-interface-container .admin-interface-content .add_course_form .show-pdf,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .show-pdf {
-    width: fit-content;
-    margin-left: 1rem;
-    margin-right: 1.3rem;
-}
+/* -------- Form - (Pdf) Checkbox | Styles ---- */
 
-.settings-page .admin-interface-container .admin-interface-content .add_course_form .show-pdf-container,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .show-pdf-container {
+.settings-page .settings-container form .show-pdf-wrapper {
     width: fit-content;
 }
 
-/* -------- Admin Interface - Form Button Styles -------- */
+.settings-page .settings-container form .show-pdf-wrapper .show_pdf {
+    width: inherit;
+    margin: 0 1.2rem 2rem 1rem;
+}
 
-.settings-page .admin-interface-container .admin-interface-content .add_course_form .add_course_buttons,
-.settings-page .admin-interface-container .admin-interface-content .delete_course_form .delete_course_button {
+/* -------------- Form - Button | Styles ------ */
+
+.settings-page .settings-container form .form-buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin: 2.6rem 0;
+    margin: 2.5rem 0;
 }
 
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_button {
-    text-align: center;
-    width: 40rem;
-    margin: 2.6rem auto;
-}
-
-.settings-page .admin-interface-container .admin-interface-content .add_course_form .add_course_buttons input,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_button input,
-.settings-page .admin-interface-container .admin-interface-content .delete_course_form .delete_course_button input {
+.settings-page .settings-container form .form-buttons input {
+    font-size: 0.92rem;
+    background-color: var(--mauve);
+    color: var(--white);
     width: 12rem;
-    background-color: #DEA4F0;
-    color: white;
     margin: 0 auto;
-    border: 1px solid rgba(222, 164, 240, 0.4);
+    border: 0.1rem solid rgba(222, 164, 240, 0.4);
     cursor: pointer;
 }
 
-.settings-page .admin-interface-container .admin-interface-content .add_course_form .add_course_buttons input:hover {
-    background-color: #E07BE0;
+.settings-page .settings-container form .form-buttons input:hover {
+    background-color: var(--orchid);
 }
 
-.settings-page .admin-interface-container .admin-interface-content .add_course_form .add_course_buttons input:last-of-type,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_button input,
-.settings-page .admin-interface-container .admin-interface-content .delete_course_form .delete_course_button input {
-    background-color: #932F6D;
+.settings-page .settings-container form .form-buttons input[type="submit"] {
+    background-color: var(--amaranthmp);
 }
 
-.settings-page .admin-interface-container .admin-interface-content .add_course_form .add_course_buttons input:last-of-type:hover,
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_button input:hover,
-.settings-page .admin-interface-container .admin-interface-content .delete_course_form .delete_course_button input:hover {
-    background-color: #6B1853;
+.settings-page .settings-container form .form-buttons input:disabled {
+    text-decoration: line-through var(--amaranthmp) 0.125rem;
+    cursor: not-allowed;
 }
 
-.settings-page .admin-interface-container .admin-interface-content .update_course_form .update_course_button input:disabled,
-.settings-page .admin-interface-container .admin-interface-content .delete_course_form .delete_course_button input:disabled {
-    background-color: #932F6D;
-    cursor: default;
+.settings-page .settings-container form:not(.delete) .form-buttons input[type="submit"]:not(:disabled):hover {
+    background-color: var(--byzantium);
 }
 
-/* -------- Admin Interface - Popup Error Styles -------- */
-
-.settings-page .admin-interface-container .admin-interface-content .popup-message.hide {
-    display: none;
+.settings-page .settings-container form.update .form-buttons input {
+    grid-column: 1/3;
 }
 
-.settings-page .admin-interface-container .admin-interface-content .popup-message {
-    transition: 800ms;
-    text-align: right;
-    color: rgba(252, 25, 25, 0.8);
-    margin-right: 5rem;
+.settings-page .settings-container form.delete .form-buttons input {
+    grid-column: 2/3;
 }
 
-.settings-page .admin-interface-container .admin-interface-content .popup-message.delete {
-    width: 35rem;
+.settings-page .settings-container form.delete .form-buttons input {
+    background-color: var(--auburn);
+}
+
+.settings-page .settings-container form.delete .form-buttons input:disabled {
+    text-decoration-color: var(--auburn);
+}
+
+.settings-page .settings-container form.delete .form-buttons input:not(:disabled):hover {
+    background-color: var(--redryb);
+}
+
+/* -------------- Form - Line Separator | Styles ------ */
+
+.settings-page .settings-container form .line-separator {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: var(--byzantium);
+    height: 0.13rem;
+    margin: 1rem 1rem 3rem 1rem;
+}
+
+.settings-page .settings-container form .line-separator .title {
+    position: absolute;
+    left: 5%;
+    font-size: 1.3rem;
+    background-color: var(--white);
+    margin: 0;
+}
+
+.settings-page .settings-container form .line-separator .title span {
+    display: inline-block;
+    background-color: rgba(222, 164, 240, 0.2);
+    padding: 0 1rem;
+}
+
+/* -------------- Form - Select Option | Styles ------ */
+
+.settings-page .settings-container form select {
+    appearance: none;
+    color: rgba(0, 18, 25, 0.5);
+    background-image: url("../Images/logo_min2.png");
+    background-image: url("../Images/logo_min3.png");
+    background-size: 5%;
+    background-repeat: no-repeat;
+    background-position-x: 98%;
+    background-position-y: 50%;
+}
+
+.settings-page .settings-container form select.choosen {
+    color: inherit;
+    background-image: url("../Images/logo_min2.png");
+}
+
+.settings-page .settings-container form select:not(:disabled):not(:focus):hover {
+    cursor: pointer;
+}
+
+.settings-page .settings-container form select:disabled {
+    color: rgba(0, 18, 25, 0.35);
+}
+
+.settings-page .settings-container form select:focus {
+    background-image: url("../Images/logo_min2.png");
+    background-size: 20%;
+}
+
+.settings-page .settings-container form select option:not(.placeholder) {
+    color: var(--black);
+    font-weight: 600;
+}
+
+/* ----------------------------------------- (Responsive) Settings Page | Styles ------------------------------------------
+----------------------------------------------------------------------------------------------------------------- */
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+    /*  Responsive Styles for
+            - Tablets and
+            - Small Tablets
+    */
+
+    /* ---------------- Navigation - Container | Styles
+    ------------------------------------------------------------------- */
+
+    .settings-page .settings-container .navigation-panel {
+        margin-left: 1.8rem;
+        padding: 1.8rem 0;
+    }
+
+    .settings-page .settings-container .navigation-panel .navigation {
+        top: 1.8rem;
+    }
+
+    /* ----------- Settings Navigation - Link | Styles ------------ */
+
+    .settings-page .settings-container .navigation-panel .navigation a {
+        font-size: 1.08rem;
+        padding: 0.9rem 1.4rem;
+    }
+
+    .settings-page .settings-container .navigation-panel .navigation a img {
+        width: 1.8rem;
+        margin-right: 0.8rem;
+    }
+
+    /* ----------- Detailed Settings - Form | Styles ---------- */
+
+    .settings-page .settings-container .setting-details form.preview {
+        padding: 3.8rem 1.8rem;
+        width: 80%;
+    }
+
+    .settings-page .settings-container form h2 {
+        font-size: 1.65rem;
+        margin-bottom: 2.8rem;
+    }
+
+    .settings-page .settings-container form input,
+    .settings-page .settings-container form .file-container,
+    .settings-page .settings-container form select {
+        font-size: 0.92rem;
+        margin-bottom: 1.9rem;
+        padding: 0.9rem;
+    }
+
+    /* -------- Form - (Upload) File | Styles ---- */
+
+    .settings-page .settings-container form .file-container input {
+        padding: 0.9rem;
+    }
+
+    /* -------- Form - (Pdf) Checkbox | Styles ---- */
+
+    .settings-page .settings-container form .show-pdf-wrapper .show_pdf {
+        margin: 0 1.1rem 1.9rem 0.9rem;
+    }
+
+    /* -------------- Form - Button | Styles ------ */
+
+    .settings-page .settings-container form .form-buttons {
+        margin: 2rem 0;
+    }
+
+    .settings-page .settings-container form .form-buttons input {
+        font-size: 0.9025rem;
+        width: 10rem;
+    }
+
+    /* -------------- Form - Line Separator | Styles ------ */
+
+    .settings-page .settings-container form .line-separator {
+        margin: 0.9rem 0.9rem 2.9rem 0.9rem;
+    }
+
+    .settings-page .settings-container form .line-separator .title {
+        font-size: 1.2rem;
+    }
+
+    .settings-page .settings-container form .line-separator .title span {
+        padding: 0 0.9rem;
+    }
+
+    /* -------------- Form - Select Option | Styles ------ */
+
+    .settings-page .settings-container form select {
+        background-size: 10%;
+    }
+
+    .settings-page .settings-container form select:focus {
+        background-size: 25%;
+    }
+}
+
+@media (max-width: 767px) {
+
+    /*  Responsive Styles for
+            - Small Tablets only
+    */
+
+    /* ---------------- Navigation - Container | Styles
+------------------------------------------------------------------- */
+
+    .settings-page .settings-container .navigation-panel {
+        margin-left: 1.6rem;
+        padding: 1.6rem 0;
+    }
+
+    .settings-page .settings-container .navigation-panel .navigation {
+        top: 1.6rem;
+    }
+
+    /* ----------- Settings Navigation - Link | Styles ------------ */
+
+    .settings-page .settings-container .navigation-panel .navigation a {
+        font-size: 1.06rem;
+        padding: 0.8rem 1.3rem;
+    }
+
+    .settings-page .settings-container .navigation-panel .navigation a img {
+        width: 1.6rem;
+        margin-right: 0.6rem;
+    }
+
+    /* ----------- Detailed Settings - Form | Styles ---------- */
+
+    .settings-page .settings-container .setting-details form.preview {
+        padding: 3.6rem 1.6rem;
+        width: 90%;
+    }
+
+    .settings-page .settings-container form h2 {
+        font-size: 1.5rem;
+        margin-bottom: 2.6rem;
+    }
+
+    .settings-page .settings-container form input,
+    .settings-page .settings-container form .file-container,
+    .settings-page .settings-container form select {
+        font-size: 0.9025rem;
+        margin-bottom: 1.8rem;
+        padding: 0.8rem;
+    }
+
+    /* -------- Form - (Upload) File | Styles ---- */
+
+    .settings-page .settings-container form .file-container input {
+        padding: 0.8rem;
+    }
+
+    /* -------- Form - (Pdf) Checkbox | Styles ---- */
+
+    .settings-page .settings-container form .show-pdf-wrapper .show_pdf {
+        margin: 0 1rem 1.8rem 0.8rem;
+    }
+
+    /* -------------- Form - Button | Styles ------ */
+
+    .settings-page .settings-container form .form-buttons {
+        margin: 1.5rem 0;
+    }
+
+    .settings-page .settings-container form .form-buttons input {
+        font-size: 0.885rem;
+        width: 8rem;
+    }
+
+    /* -------------- Form - Line Separator | Styles ------ */
+
+    .settings-page .settings-container form .line-separator {
+        margin: 0.8rem 0.8rem 2.8rem 0.8rem;
+    }
+
+    .settings-page .settings-container form .line-separator .title {
+        font-size: 1.1rem;
+    }
+
+    .settings-page .settings-container form .line-separator .title span {
+        padding: 0 0.8rem;
+    }
+
+    /* -------------- Form - Select Option | Styles ------ */
+
+    .settings-page .settings-container form select {
+        background-size: 15%;
+    }
+
+    .settings-page .settings-container form select:focus {
+        background-size: 25%;
+    }
+}
+
+@media (max-width: 677px) {
+
+    /*  Responsive Styles for
+            - Small Tablets and
+            - Mobiles
+    */
+
+    .settings-page .settings-container {
+        grid-template-columns: 0.4fr 3fr;
+    }
+
+    /* ---------------- Navigation - Container | Styles
+------------------------------------------------------------------- */
+
+    .settings-page .settings-container .navigation-panel {
+        margin-left: 1.4rem;
+        padding: 1.4rem 0;
+    }
+
+    .settings-page .settings-container .navigation-panel .navigation {
+        top: 1.4rem;
+    }
+
+    /* ----------- Settings Navigation - Link | Styles ------------ */
+
+    .settings-page .settings-container .navigation-panel .navigation a {
+        font-size: 1.04rem;
+        padding: 0.7rem 1.2rem;
+    }
+
+    .settings-page .settings-container .navigation-panel .navigation a img {
+        width: 1.4rem;
+        margin-right: 0;
+    }
+
+    .settings-page .settings-container .navigation-panel .navigation a span {
+        display: none;
+    }
+
+    /* ----------- Detailed Settings - Form | Styles ---------- */
+
+    .settings-page .settings-container .setting-details form.preview {
+        padding: 3.4rem 1.5rem;
+        width: 97.5%;
+    }
+
+    .settings-page .settings-container form h2 {
+        font-size: 1.35rem;
+        margin-bottom: 2.4rem;
+    }
+
+    .settings-page .settings-container form input,
+    .settings-page .settings-container form .file-container,
+    .settings-page .settings-container form select {
+        font-size: 0.885rem;
+        margin-bottom: 1.7rem;
+        padding: 0.7rem;
+    }
+
+    /* -------- Form - (Upload) File | Styles ---- */
+
+    .settings-page .settings-container form .file-container input {
+        padding: 0.7rem;
+    }
+
+    /* -------- Form - (Pdf) Checkbox | Styles ---- */
+
+    .settings-page .settings-container form .show-pdf-wrapper .show_pdf {
+        margin: 0 0.9rem 1.7rem 0.7rem;
+    }
+
+    /* -------------- Form - Button | Styles ------ */
+
+    .settings-page .settings-container form .form-buttons {
+        margin: 1rem 0;
+    }
+
+    .settings-page .settings-container form .form-buttons input {
+        font-size: 0.8675rem;
+        width: 6rem;
+    }
+
+    /* -------------- Form - Line Separator | Styles ------ */
+
+    .settings-page .settings-container form .line-separator {
+        margin: 0.7rem 0.7rem 2.7rem 0.7rem;
+    }
+
+    .settings-page .settings-container form .line-separator .title {
+        font-size: 1rem;
+    }
+
+    .settings-page .settings-container form .line-separator .title span {
+        padding: 0 0.7rem;
+    }
+
+    @media (max-width: 450px) {
+
+        .settings-page .settings-container form label span {
+            display: none;
+        }
+    }
+
+    @media (max-width: 350px) {
+
+        .settings-page .settings-container form .form-buttons {
+            grid-template-columns: 1fr;
+            grid-auto-rows: 1fr;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+        }
+    }
 }

@@ -28,7 +28,7 @@ import requests
 def home(request):
 
     # Selecting random names for placeholder Images
-    image_names = ["course_1", "course_2", "course_3", "course_4"]
+    image_names = ["vid_01", "vid_02", "vid_03", "vid_04"]
     random.shuffle(image_names)
     image_name = random.choice(image_names)
 
@@ -104,7 +104,7 @@ def courses(request):
     footerTOpics()
 
     # Selecting random names for placeholder Images
-    image_names = ["course_1", "course_2", "course_3", "course_4"]
+    image_names = ["vid_01", "vid_02", "vid_03", "vid_04"]
     random.shuffle(image_names)
     image_name = random.choice(image_names)
 
@@ -121,7 +121,7 @@ def contact(request):
     # Calling the function for getting some random courses for Footer's Topics Section and also for HomePage
     footerTOpics()
 
-    return render(request, "contact_01.html", {"footer_topics": footer_topics})
+    return render(request, "contact.html", {"footer_topics": footer_topics})
 
 
 # Function for loading Admin-Login page
@@ -479,7 +479,7 @@ def resetingInterface():
     global interfaces
     # Reseting values for activating Admin Inteface
     interfaces = {
-        "addinterface": "active",
+        "addinterface": "preview",
         "updateinterface": "",
         "deleteinterface": ""
     }
@@ -847,7 +847,7 @@ def interfaceChanger(request):
     if which_form == "Add":
 
         interfaces = {
-            "addinterface": "active",
+            "addinterface": "preview",
             "updateinterface": "",
             "deleteinterface": ""
         }
@@ -858,7 +858,7 @@ def interfaceChanger(request):
 
         interfaces = {
             "addinterface": "",
-            "updateinterface": "active",
+            "updateinterface": "preview",
             "deleteinterface": ""
         }
         successMessage = ("Success", 0)
@@ -869,7 +869,7 @@ def interfaceChanger(request):
         interfaces = {
             "addinterface": "",
             "updateinterface": "",
-            "deleteinterface": "active"
+            "deleteinterface": "preview"
         }
         successMessage = ("Success", 0)
 
@@ -965,7 +965,7 @@ pass_word = ""
 
 # Default values for activating Admin Inteface
 interfaces = {
-    "addinterface": "active",
+    "addinterface": "preview",
     "updateinterface": "",
     "deleteinterface": ""
 }

@@ -1,0 +1,241 @@
+@import url("./badge.css");
+@import url("./coursepreview.css");
+
+/* ----------------------------------------- Courses Page | Styles ------------------------------------------
+---------------------------------------------------------------------------------------------------- */
+
+/* -------- All-Category - Category | Styles -------- */
+
+.courses-page .course-container .category {
+    margin-bottom: 4rem;
+}
+
+.courses-page .course-container .category-heading {
+    text-align: left;
+    background-color: rgba(0, 18, 25, 0.03);
+    width: 80%;
+    margin: 0 auto 1rem;
+    border-left: 0.15rem solid var(--mauve);
+    border-radius: 0 4rem 4rem 0;
+}
+
+.courses-page .course-container .category-heading span {
+    font-size: 1.3rem;
+    display: inline-block;
+    background-color: var(--white);
+    color: rgba(0, 18, 25, 0.6);
+    padding: 0 1rem;
+    border: 0.1rem solid rgba(0, 18, 25, 0.04);
+    border-radius: inherit;
+}
+
+/* -------- All-Category - Playlist | Styles -------- */
+
+.courses-page .course-container .playlist {
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 75rem;
+}
+
+.courses-page .course-container .playlist .course {
+    width: 23rem;
+}
+
+/* -------- All-Category - Playlist (Preview) | Styles -------- */
+
+.courses-page .course-container .playlist .course .preview {
+    height: 15rem;
+}
+
+.courses-page .course-container .playlist .course .title {
+    padding-top: 0.8rem;
+}
+
+/* -------- All-Category - (Contact) link | Styles -------- */
+
+.courses-page .course-container .contact-link {
+    text-align: right;
+    font-size: 1.2rem;
+    margin: 2.5rem 6rem;
+}
+
+.courses-page .course-container .contact-link a {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--darkpurple);
+    border-bottom: 0.1rem solid var(--byzantium);
+}
+
+.courses-page .course-container .contact-link a:hover {
+    color: var(--amaranthmp);
+    border: none;
+}
+
+.courses-page .course-container .contact-link a:active {
+    text-decoration: line-through;
+}
+
+/* ---------------------------------- (Responsive) Course page | Styles ------------------------------------
+------------------------------------------------------------------------------------------------------- */
+
+@media (min-width: 992px) and (max-width: 1210px) {
+
+    /* -------- All-Category - Category | Styles -------- */
+
+    .courses-page .course-container .category {
+        margin-bottom: 3.75rem;
+    }
+
+    .courses-page .course-container .category-heading span {
+        font-size: 1.25rem;
+    }
+
+    /* -------- All-Category - Playlist | Styles -------- */
+
+    .courses-page .course-container .playlist {
+        grid-template-columns: 1fr 1fr;
+        width: 55rem;
+    }
+
+    /* -------- All-Category - (Contact) link | Styles -------- */
+
+    .courses-page .course-container .contact-link {
+        font-size: 1.15rem;
+        margin: 2.25rem 5.5rem;
+    }
+
+    .courses-page .course-container .contact-link a {
+        font-size: 1.2rem;
+    }
+}
+
+@media (min-width: 820px) and (max-width: 991px) {
+
+    /*  Responsive Styles for
+            - Tablets and
+            - Small Tablets
+    */
+
+    /* -------- All-Category - Category | Styles -------- */
+
+    .courses-page .course-container .category {
+        margin-bottom: 3.5rem;
+    }
+
+    .courses-page .course-container .category-heading span {
+        font-size: 1.2rem;
+    }
+
+    /* -------- All-Category - Playlist | Styles -------- */
+
+    .courses-page .course-container .playlist {
+        grid-template-columns: 1fr 1fr;
+        width: 50rem;
+    }
+
+    .courses-page .course-container .playlist .course {
+        width: 21rem;
+    }
+
+    /* -------- All-Category - Playlist (Preview) | Styles -------- */
+
+    .courses-page .course-container .playlist .course .preview {
+        height: 13rem;
+    }
+
+    /* -------- All-Category - (Contact) link | Styles -------- */
+
+    .courses-page .course-container .contact-link {
+        font-size: 1.1rem;
+        margin: 2rem 5rem;
+    }
+
+    .courses-page .course-container .contact-link a {
+        font-size: 1.15rem;
+    }
+}
+
+@media (max-width: 819px) {
+
+    /*  Responsive Styles for
+            - Small Tablets and
+            - Mobiles
+    */
+
+    /* -------- All-Category - Category | Styles -------- */
+
+    .courses-page .course-container .category {
+        margin-bottom: 3.25rem;
+    }
+
+    .courses-page .course-container .category-heading span {
+        font-size: 1.15rem;
+    }
+
+    /* -------- All-Category - Playlist | Styles -------- */
+
+    .courses-page .course-container .playlist {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    .courses-page .course-container .playlist .course {
+        width: 22rem;
+    }
+
+    /* -------- All-Category - Playlist (Preview) | Styles -------- */
+
+    .courses-page .course-container .playlist .course .preview {
+        height: 14rem;
+    }
+
+    /* -------- All-Category - (Contact) link | Styles -------- */
+
+    .courses-page .course-container .contact-link {
+        font-size: 1.05rem;
+        margin: 1.75rem 4.5rem;
+    }
+
+    .courses-page .course-container .contact-link a {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 520px) {
+
+    /*  Responsive Styles for
+            - Mobiles
+    */
+
+    /* -------- All-Category - Category | Styles -------- */
+
+    .courses-page .course-container .category {
+        margin-bottom: 3.5rem;
+    }
+
+    .courses-page .course-container .category-heading span {
+        font-size: 1.1rem;
+    }
+
+    /* -------- All-Category - Playlist | Styles -------- */
+
+    .courses-page .course-container .playlist .course {
+        width: 19rem;
+    }
+
+    /* -------- All-Category - Playlist (Preview) | Styles -------- */
+
+    .courses-page .course-container .playlist .course .preview {
+        height: 11rem;
+    }
+
+    /* -------- All-Category - (Contact) link | Styles -------- */
+
+    .courses-page .course-container .contact-link {
+        font-size: 1rem;
+        margin: 1.5rem 4rem;
+    }
+
+    .courses-page .course-container .contact-link a {
+        font-size: 1.05rem;
+    }
+}

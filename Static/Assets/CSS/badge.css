@@ -1,0 +1,338 @@
+/* ----------------------------------------- Badge Content | Styles ------------------------------------------
+---------------------------------------------------------------------------------------------------- */
+
+.badge-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- Badge (HomePage) | Styles ---------- */
+
+.home-page .badge-container {
+    margin-top: -4rem;
+}
+
+/* -------------------- Badge | Styles
+------------------------------------------------------------------- */
+
+.badge-container .badge {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    background-color: var(--white);
+    width: 20rem;
+    padding: 0.95rem;
+    box-shadow: 1px 1px 10px rgba(0, 18, 25, 0.2);
+    border-radius: 2rem;
+}
+
+/* ---------- Badge - Image | Styles ---------- */
+
+.badge-container .badge .badge-image {
+    display: flex;
+    justify-content: center;
+    padding: 0.45rem;
+}
+
+.badge-container img {
+    width: 100%;
+}
+
+/* ---------- Badge - Contents | Styles ---------- */
+
+.badge-container .badge .badge-contents {
+    padding-left: 0.95rem;
+}
+
+.badge-container .badge h3 {
+    font-size: 1.1rem;
+    color: var(--darkpurple);
+}
+
+.badge-container .badge p {
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+/* --------------- Brief Container | Styles
+------------------------------------------------------------------- */
+
+.brief-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+/* -------- Brief Container - (Content) | Styles -------- */
+
+.brief-container .brief-content {
+    padding: 3rem;
+}
+
+.brief-container .brief-content h2 {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1.85rem;
+    line-height: 1.3;
+    margin: 1.25rem 0;
+}
+
+.brief-container .brief-content p {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-top: 0;
+}
+
+.brief-container .brief-content p .tick-mark {
+    color: var(--orangeweb);
+}
+
+/* ----------------------------------------- (Responsive) Badge Content | Styles ------------------------------------------
+----------------------------------------------------------------------------------------------------------------- */
+
+@media (min-width: 992px) and (max-width: 1190px) {
+
+    /*  Responsive Styles for
+            - Small Desktops and 
+            - Tablets
+    */
+
+    /* ---------- Badge (HomePage) | Styles ---------- */
+
+    .home-page .badge-container {
+        margin-top: -3.5rem;
+    }
+
+    /* -------------------- Badge | Styles
+------------------------------------------------------------------- */
+
+    .badge-container .badge {
+        grid-template-columns: 1fr 2.8fr;
+        width: 17.5rem;
+        padding: 0.75rem;
+        border-radius: 1.8rem;
+    }
+
+    /* ---------- Badge - Image | Styles ---------- */
+
+    .badge-container .badge .badge-image {
+        padding: 0.4rem;
+    }
+
+    /* ---------- Badge - Contents | Styles ---------- */
+
+    .badge-container .badge .badge-contents {
+        padding-left: 0.9rem;
+    }
+
+    .badge-container .badge h3 {
+        font-size: 1.08rem;
+    }
+
+    .badge-container .badge p {
+        font-size: 0.8rem;
+    }
+
+    /* -------- Brief Container - (Content) | Styles -------- */
+
+    .brief-container .brief-content {
+        padding: 2.75rem;
+    }
+
+    .brief-container .brief-content h2 {
+        font-size: 1.7rem;
+        line-height: 1.25;
+        margin: 1.2rem 0;
+    }
+
+    .brief-container .brief-content p {
+        font-size: 0.85rem;
+    }
+}
+
+@media (min-width: 678px) and (max-width: 991px) {
+
+    /*  Responsive Styles for
+            - Tablets and
+            - Small Tablets
+    */
+
+    /* ---------- Badge (HomePage) | Styles ---------- */
+
+    .home-page .badge-container {
+        margin-top: -3rem;
+    }
+
+    .badge-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+
+    /* -------------------- Badge | Styles
+------------------------------------------------------------------- */
+
+    .badge-container .badge {
+        grid-template-columns: 1fr 2.6fr;
+        margin: 1rem auto;
+        padding: 0.65rem;
+        border-bottom: 2px solid var(--orchid);
+        border-radius: 1.6rem;
+    }
+
+    .badge-container .badge:first-of-type {
+        grid-column: 2/3;
+    }
+
+    .badge-container .badge.middle {
+        grid-column: 1/3;
+    }
+
+    /* ---------- Badge - Image | Styles ---------- */
+
+    .badge-container .badge .badge-image {
+        padding: 0.35rem;
+    }
+
+    /* ---------- Badge - Contents | Styles ---------- */
+
+    .badge-container .badge .badge-contents {
+        padding-left: 0.85rem;
+    }
+
+    .badge-container .badge h3 {
+        font-size: 1.06rem;
+    }
+
+    .badge-container .badge p {
+        font-size: 0.75rem;
+    }
+
+    /* -------- Brief Container - (Content) | Styles -------- */
+
+    .brief-container .brief-content {
+        padding: 2.25rem;
+    }
+
+    .brief-container .brief-content h2 {
+        font-size: 1.55rem;
+        line-height: 1.2;
+        margin: 1.15rem 0;
+    }
+
+    .brief-container .brief-content p {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 677px) {
+
+    /*  Responsive Styles for
+            - Small Tablets and
+            - Mobiles
+    */
+
+    /* ---------- Badge (HomePage) | Styles ---------- */
+
+    .home-page .badge-container {
+        margin-top: -2.5rem;
+    }
+
+    .badge-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+
+    /* -------------------- Badge | Styles
+------------------------------------------------------------------- */
+
+    .badge-container .badge {
+        grid-template-columns: 1fr 2.4fr;
+        width: 16rem;
+        margin: 1rem auto;
+        padding: 0.55rem;
+        border-bottom: 2px solid var(--orchid);
+        border-radius: 1.4rem;
+    }
+
+    /* ---------- Badge - Image | Styles ---------- */
+
+    .badge-container .badge .badge-image {
+        padding: 0.3rem;
+    }
+
+    /* ---------- Badge - Contents | Styles ---------- */
+
+    .badge-container .badge .badge-contents {
+        padding-left: 0.8rem;
+    }
+
+    .badge-container .badge h3 {
+        font-size: 1.04rem;
+    }
+
+    .badge-container .badge p {
+        font-size: 0.7rem;
+    }
+
+    /* --------------- Brief Container | Styles
+------------------------------------------------------------------- */
+
+    .brief-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        align-items: center;
+    }
+
+    /* -------- Brief Container - (Content) | Styles -------- */
+
+    .brief-container .brief-content {
+        padding: 0 1.25rem;
+    }
+
+    .brief-container .brief-content h2 {
+        font-size: 1.4rem;
+        line-height: 1.15;
+        margin: 1.1rem 0;
+    }
+
+    .brief-container .brief-content p {
+        font-size: 0.65rem;
+    }
+}
+
+@media (min-width: 520px) {
+
+    /*  Responsive Styles for
+            - Mobiles only
+    */
+
+    .badge-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .badge-container .badge:first-of-type {
+        grid-column: 2/3;
+    }
+
+    .badge-container .badge.middle {
+        grid-column: 1/3;
+    }
+
+    /* --------------- Brief Container | Styles
+------------------------------------------------------------------- */
+
+    .brief-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        align-items: center;
+    }
+
+    .brief-container .brief-content {
+        padding: 1.5rem;
+    }
+}

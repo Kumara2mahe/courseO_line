@@ -1,340 +1,243 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block meta_description %}courseO_line - We have lots of courses, tutorials, articles and
+everything in website is 100% free, it doesn't cost a penny{% endblock %}
+
 {% block content %}
 
 <article class="courses-page">
 
-    <section class="top-content-container">
+    <!-- Title | Container -->
+    <section class="title-container">
 
-        <div class="top-content">
+        <!-- Bg-image-Screen -->
+        <div class="back-image-screen"></div>
 
-            <div class="top-content-wrapper">
-                <h2>Courses</h2>
-
-                <div class="nav-links">
-                    <a href="/">Home</a>
-                    <span>|</span>
-                    <a>Courses</a>
-                </div>
-            </div>
-
+        <!-- contents -->
+        <div class="title-content">
+            <h2>{% block page_title %}Courses{% endblock %}</h2>
+            <p class="navigation"><a href="{% url 'home' %}">Home</a><span>|</span><a>Courses</a></p>
         </div>
 
     </section>
 
-    <section class="topics-content-container">
+    <!-- All-Topics | Container -->
+    <section class="topics-container">
 
-        <div class="topics-content">
+        <!-- Sub-Heading -->
+        <h2 class="sub-heading">Our Topics</h2>
 
-            <div class="content-heading">
-                <h2>Our Topics</h2>
-            </div>
+        <!-- Category | Container -->
+        <div class="categories">
 
-            <div class="topics">
+            {% if categories %}
+            {% for category in categories %}
 
-                {% if categories %}
-
-                {% for category in categories %}
-
-                <div class="topic-wrapper">
-
-                    <a class="topic content" href="#topic-{{category.category_name}}">
-                        <img src="{{category.category_image}}">
-
-                        <div class="topic-holder">
-                            <h3>{{category.category_name}}</h3>
-                        </div>
-
-                    </a>
-
-                </div>
-
-                {% endfor %}
-
-                {% else %}
-
-                <div class="topic-wrapper2">
-
-                    <a class="topic content-2" href="#topic-webdevelopment">
-                        <img src="{% static 'Assets/Images/topic_2.jpg' %}">
-
-                        <div class="topic-holder">
-                            <h3>Web Development</h3>
-                        </div>
-
-                    </a>
-
-                </div>
-
-                <div class="topic-wrapper4">
-
-                    <a class="topic content-4">
-                        <img src="{% static 'Assets/Images/topic_4.jpg' %}">
-
-                        <div class="topic-holder">
-                            <h3>Photoshop</h3>
-                        </div>
-
-                    </a>
-
-                </div>
-
-                <div class="topic-wrapper1">
-
-                    <a class="topic content-1" href="#topic-business">
-                        <img src="{% static 'Assets/Images/topic_1.jpg' %}">
-
-                        <div class="topic-holder">
-                            <h3>Business</h3>
-                        </div>
-
-                    </a>
-
-                </div>
-
-                <div class="topic-wrapper3">
-
-                    <a class="topic content-3">
-                        <img src="{% static 'Assets/Images/topic_3.jpg' %}">
-
-                        <div class="topic-holder">
-                            <h3>Drawing</h3>
-                        </div>
-
-                    </a>
-
-                </div>
-
-                {% endif %}
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <section class="middle-content-container">
-
-        <div class="middle-content">
-
-            <div class="left-section">
-
-                <div class="left-section-image"><img src="{% static 'Assets/Images/Svgs/top_icon1.svg' %}"></div>
-                <div class="left-section-contents">
-                    <h3>Best Courses</h3>
-                    <p>We have a lot of free tutorials with clear explanation.</p>
-                </div>
-
-            </div>
-
-            <div class="middle-section">
-
-                <div class="middle-section-image"><img src="{% static 'Assets/Images/Svgs/top_icon2.svg' %}"></div>
-                <div class="middle-section-contents">
-                    <h3>Expert Instructors</h3>
-                    <p>Immediate solutions give by our top instructors to the problems.</p>
-                </div>
-
-            </div>
-
-            <div class="right-section">
-
-                <div class="right-section-image"><img src="{% static 'Assets/Images/Svgs/top_icon3.svg' %}"></div>
-                <div class="right-section-contents">
-                    <h3>Life Time Access</h3>
-                    <p>Every thing in website is 100% free, it doesn't cost a penny.</p>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <section class="bottom-content-container">
-
-        <div class="bottom-content">
-
-            <div class="content-heading">
-                <h2>Courses We Offer</h2>
-            </div>
-
-            {% if courses %}
-
-            {% for course, category in courses %}
-
-            <div class="playlist" id="topic-{{category.category_name}}">
-
-                <div class="playlist-heading">
-                    <h4>{{category.category_name}}</h4>
-                </div>
-
-                <div class="playlist-content">
-
-                    {% for detail in course %}
-
-                    <div class="course-wrapper">
-
-                        <div class="course content">
-
-                            <!-- Video or Placeholder Image -->
-                            {% if detail.course_link %}
-
-                            <iframe src="{{detail.course_link}}" title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-
-                            {% else %}
-                            <img src="Static/Assets/Images/{{image_name}}.jpg">
-                            {% endif %}
-
-                            <!-- Course Name -->
-                            {% if detail.course_title %}
-
-                            <h3>{{detail.course_title}}</h3>
-
-                            {% else %}
-                            <h3>Sample Course Title</h3>
-                            {% endif %}
-
-                            <!-- Course Pdf Material -->
-                            <div class="pdf-material">
-                                <p>PDF material</p>
-
-                                {% if detail.course_pdf %}
-                                <a class="available" href="{{detail.course_pdf}}">download</a>
-                                {% else %}
-                                <a class="not-available">not available</a>
-                                {% endif %}
-
-                            </div>
-
-                        </div>
-                    </div>
-
-                    {% endfor %}
-
-                </div>
-
-            </div>
+            <a class="topic-link">
+                <img src="{{ category.category_image }}">
+                <h3>{{ category.category_name }}</h3>
+            </a>
 
             {% endfor %}
-
             {% else %}
-
-            <div class="playlist" id="topic-business">
-
-                <div class="playlist-heading">
-                    <h4>Business</h4>
-                </div>
-
-                <div class="playlist-content">
-
-                    <div class="course-wrapper1">
-
-                        <div class="course content-1">
-
-                            <img src="{% static 'Assets/Images/course_1.jpg' %}">
-
-                            <h3>Beginner to Pro in Excel</h3>
-                            <div class="pdf-material">
-                                <p>PDF material</p>
-                                <a class="available">download</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="course-wrapper2">
-
-                        <div class="course content-2">
-                            <img src="{% static 'Assets/Images/course_2.jpg' %}">
-
-                            <h3>Introduction to Web APIs</h3>
-                            <div class="pdf-material">
-                                <p>PDF material</p>
-                                <a class="not-available">not available</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="course-wrapper3">
-
-                        <div class="course content-3">
-                            <img src="{% static 'Assets/Images/course_3.jpg' %}">
-
-                            <h3>Sketching for UX Designers</h3>
-                            <div class="pdf-material">
-                                <p>PDF material</p>
-                                <a class="not-available">not available</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="playlist" id="topic-business">
-
-                <div class="playlist-heading">
-                    <h4>Web Development</h4>
-                </div>
-
-                <div class="playlist-content">
-
-                    <div class="course-wrapper1">
-
-                        <div class="course content-1">
-
-                            <img src="{% static 'Assets/Images/course_1.jpg' %}">
-
-                            <h3>Beginner to Pro in Excel</h3>
-                            <div class="pdf-material">
-                                <p>PDF material</p>
-                                <a class="not-available">not available</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="course-wrapper2">
-
-                        <div class="course content-2">
-                            <img src="{% static 'Assets/Images/course_2.jpg' %}">
-
-                            <h3>Introduction to Web APIs</h3>
-                            <div class="pdf-material">
-                                <p>PDF material</p>
-                                <a class="available">download</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="course-wrapper3">
-
-                        <div class="course content-3">
-                            <img src="{% static 'Assets/Images/course_3.jpg' %}">
-
-                            <h3>Sketching for UX Designers</h3>
-                            <div class="pdf-material">
-                                <p>PDF material</p>
-                                <a class="not-available">not available</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
+            <a class="topic-link">
+                <img src="{% static 'Assets/Images/topic_2.jpg' %}">
+                <h3>Web Development</h3>
+            </a>
+            <a class="topic-link">
+                <img src="{% static 'Assets/Images/topic_4.jpg' %}">
+                <h3>Photoshop</h3>
+            </a>
+            <a class="topic-link">
+                <img src="{% static 'Assets/Images/topic_1.jpg' %}">
+                <h3>Business</h3>
+            </a>
+            <a class="topic-link">
+                <img src="{% static 'Assets/Images/topic_3.jpg' %}">
+                <h3>Drawing</h3>
+            </a>
             {% endif %}
 
         </div>
 
     </section>
 
-    <section class="contact-link">
-        <p>For more courses <a href="/contact">contact</a> us!</p>
+    <!-- Badge | Container -->
+    <section class="badge-container">
+
+        <!-- Left Badge -->
+        <div class="badge">
+
+            <div class="badge-image"><img src="{% static 'Assets/Images/Svgs/books.svg' %}"></div>
+            <div class="badge-contents">
+                <h3>Best Courses</h3>
+                <p>We have a lot of free tutorials with clear explanation.</p>
+            </div>
+
+        </div>
+
+        <!-- Middle Badge -->
+        <div class="badge middle">
+
+            <div class="badge-image"><img src="{% static 'Assets/Images/Svgs/person.svg' %}"></div>
+            <div class="badge-contents">
+                <h3>Expert Instructors</h3>
+                <p>Immediate solutions give by our top instructors to the problems.</p>
+            </div>
+
+        </div>
+
+        <!-- Right Badge -->
+        <div class="badge">
+
+            <div class="badge-image"><img src="{% static 'Assets/Images/Svgs/clock.svg' %}"></div>
+            <div class="badge-contents">
+                <h3>Life Time Access</h3>
+                <p>Everything in website is 100% free, it doesn't cost a penny.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- All-Courses | Container -->
+    <section class="course-container">
+
+        <!-- Sub-Heading -->
+        <h2 class="sub-heading">Course We Offer</h2>
+
+        {% if courses %}
+        {% for course, category in courses %}
+        <div class="category">
+
+            <!-- Category Name -->
+            <h4 class="category-heading">
+                <span>{{ category.category_name }}</span>
+            </h4>
+
+            <!-- Category Playlist | Container -->
+            <div class="playlist">
+
+                {% for detail in course %}
+                <div class="course">
+
+                    <!-- Video or Placeholder Image -->
+                    {% if detail.course_link %}
+                    <iframe src="{{ detail.course_link }}" class="preview" title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                    {% else %}
+                    <img src="Static/Assets/Images/{{ image_name }}.jpg" class="preview">
+                    {% endif %}
+
+                    <!-- Course Name -->
+                    {% if detail.course_title %}
+                    <h3 class="title"><span>{{ detail.course_title }}</span></h3>
+                    {% else %}
+                    <h3 class="title"><span>Sample Course Title</span></h3>
+                    {% endif %}
+
+                    <!-- Course Pdf Material -->
+                    <div class="pdf-material">
+                        <p>PDF material</p>
+                        {% if detail.course_pdf %}
+                        <a class="available" href="{{ detail.course_pdf }}">Download</a>
+                        {% else %}
+                        <a class="not-available">not available</a>
+                        {% endif %}
+                    </div>
+
+                </div>
+                {% endfor %}
+
+            </div>
+
+        </div>
+        {% endfor %}
+
+        {% else %}
+        <div class="category">
+
+            <!-- Category Name -->
+            <h4 class="category-heading">
+                <span>Business</span>
+            </h4>
+
+            <!-- Category Playlist | Container -->
+            <div class="playlist">
+
+                <div class="course">
+                    <img src="{% static 'Assets/Images/vid_01.jpg' %}" class="preview">
+                    <h3 class="title"><span>Beginner to Pro in Excel</span></h3>
+                    <div class="pdf-material">
+                        <p>PDF material</p>
+                        <a class="not-available">not available</a>
+                    </div>
+                </div>
+                <div class="course">
+                    <img src="{% static 'Assets/Images/vid_02.jpg' %}" class="preview">
+                    <h3 class="title"><span>Introduction to Web APIs</span></h3>
+                    <div class="pdf-material">
+                        <p>PDF material</p>
+                        <a class="available">download</a>
+                    </div>
+                </div>
+                <div class="course">
+                    <img src="{% static 'Assets/Images/vid_03.jpg' %}" class="preview">
+                    <h3 class="title"><span>Sketching for UX Designers</span></h3>
+                    <div class="pdf-material">
+                        <p>PDF material</p>
+                        <a class="not-available">not available</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="category">
+
+            <!-- Category Name -->
+            <h4 class="category-heading">
+                <span>Web Development</span>
+            </h4>
+
+            <!-- Category Playlist | Container -->
+            <div class="playlist">
+
+                <div class="course">
+                    <img src="{% static 'Assets/Images/vid_01.jpg' %}" class="preview">
+                    <h3 class="title"><span>Photoshop Compositing Tips, Tricks, & Techniques</span></h3>
+                    <div class="pdf-material">
+                        <p>PDF material</p>
+                        <a class="not-available">not available</a>
+                    </div>
+                </div>
+                <div class="course">
+                    <img src="{% static 'Assets/Images/vid_02.jpg' %}" class="preview">
+                    <h3 class="title"><span>Introduction to Web APIs</span></h3>
+                    <div class="pdf-material">
+                        <p>PDF material</p>
+                        <a class="available">download</a>
+                    </div>
+                </div>
+                <div class="course">
+                    <img src="{% static 'Assets/Images/vid_03.jpg' %}" class="preview">
+                    <h3 class="title"><span>Sketching for UX Designers</span></h3>
+                    <div class="pdf-material">
+                        <p>PDF material</p>
+                        <a class="not-available">not available</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        {% endif %}
+
+        <!-- Contact Link -->
+        <p class="contact-link">For more courses <a href="{% url 'contact' %}">contact</a>&nbsp;us!</p>
+
     </section>
 
 </article>

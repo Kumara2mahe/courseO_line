@@ -1,0 +1,61 @@
+/* ---------------- Status Message - Container | Styles
+------------------------------------------------------------------- */
+
+.statuscontainer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--mediumchampagne);
+    color: var(--redryb);
+    margin: 0.2rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    z-index: 10;
+    animation: pop-in 0.5s both;
+}
+
+@keyframes pop-in {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    90% {
+        transform: translateY(15%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.statuscontainer.success {
+    background-color: var(--yellowgreencrayola);
+    color: var(--richblackfogra29);
+}
+
+/* ------------- Status Message - (Close) Button | Styles -------- */
+
+.statuscontainer .close {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--black);
+    margin: 0 1rem;
+    border-radius: 3rem;
+    cursor: pointer;
+}
+
+.statuscontainer .close:hover {
+    color: var(--auburn);
+}
+
+.statuscontainer .close:active {
+    color: var(--redryb);
+}

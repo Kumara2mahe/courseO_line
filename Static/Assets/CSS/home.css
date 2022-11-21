@@ -1,0 +1,321 @@
+@import url("./badge.css");
+@import url("./coursepreview.css");
+
+/* ----------------------------------------- Home Page | Styles ------------------------------------------
+---------------------------------------------------------------------------------------------------- */
+
+.home-page .title-container .title-content {
+    padding-bottom: 8rem;
+    overflow: hidden;
+}
+
+.home-page .title-container .title-content h2 {
+    overflow: hidden;
+}
+
+.home-page .title-container .title-content p {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--aliceblue);
+    width: 55%;
+    margin: 0 0 2.5rem;
+}
+
+/* -------- Main Title - (Watch) Button | Styles -------- */
+
+.home-page .title-container .title-content a {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    display: inline-flex;
+    background-color: var(--byzantium);
+    color: var(--aliceblue);
+    padding: 0.8rem 0.9rem 0.8rem 1.6rem;
+    border: 0.1rem solid var(--byzantium);
+    border-radius: 1.25rem;
+    box-shadow: 0 0 0.2em var(--richblackfogra29);
+    transition: 250ms;
+}
+
+.home-page .title-container .title-content a span {
+    font-size: 0.9rem;
+    color: var(--orchid);
+}
+
+.home-page .title-container .title-content a img {
+    width: 1.2rem;
+    opacity: 0;
+    scale: 0;
+}
+
+/* -------- (Watch) Button - Hover | Styles -------- */
+
+.home-page .title-container .title-content a:hover small::before {
+    content: "";
+    border-left: 0.1rem solid var(--orchid);
+}
+
+.home-page .title-container .title-content a:hover img {
+    margin-left: 0.75rem;
+    opacity: 1;
+    scale: 1.5;
+}
+
+.home-page .title-container .title-content a:hover span {
+    margin-left: -0.5rem;
+    opacity: 0;
+    scale: 0;
+}
+
+.home-page .title-container .title-content a:hover img,
+.home-page .title-container .title-content a span {
+    transition: 300ms;
+}
+
+.home-page .title-container .title-content a img,
+.home-page .title-container .title-content a:hover span {
+    transition: 250ms;
+}
+
+/* -------- Explore Course - Button | Styles -------- */
+
+.home-page .course-container .more-courses a {
+    display: inline-block;
+    background-color: var(--byzantium);
+    color: var(--aliceblue);
+    margin: 1.25rem 0 4rem 0;
+    padding: 0.625rem 2.5rem;
+    border-radius: 1.25rem;
+    box-shadow: 0 0 0.2em var(--richblackfogra29);
+    transition: 250ms;
+}
+
+.home-page .course-container .more-courses a:hover {
+    background-color: var(--amaranthmp);
+    transform: scale(1.04);
+    transition: 300ms;
+}
+
+/* --------------- Brief Container | Styles
+------------------------------------------------------------------- */
+
+.home-page .brief-container {
+    background: url("../Images/background_01.jpg") no-repeat center/cover fixed;
+    position: relative;
+    padding: 1.5rem 2rem;
+}
+
+/* -------- Brief Container - (Content) | Styles -------- */
+
+.home-page .brief-container .brief-content {
+    grid-column: 2/3;
+    background-color: rgba(240, 248, 255, 0.3);
+    color: var(--aliceblue);
+    padding-left: 3rem;
+    padding-top: 3rem;
+    border-radius: 8rem 1.6rem;
+    z-index: 5;
+}
+
+/* -------- Brief Container - (Button) | Styles -------- */
+
+.home-page .brief-container .brief-content .learn-button {
+    width: fit-content;
+    padding: 1.5em;
+}
+
+.home-page .brief-container .brief-content a {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: inline-block;
+    background-color: var(--byzantium);
+    color: var(--aliceblue);
+    padding: 1rem 1.6rem;
+    border: 0.1rem solid var(--byzantium);
+    border-radius: 1.25rem 0;
+    box-shadow: 0 0 0.2em var(--richblackfogra29);
+    transition: 300ms;
+}
+
+.home-page .brief-container .brief-content .learn-button:hover a {
+    color: var(--white);
+    transform: rotate(-360deg);
+    border-radius: 1.25rem;
+    transition: 400ms;
+}
+
+/* ----------------------------------------- (Responsive) Home Page | Styles ------------------------------------------
+----------------------------------------------------------------------------------------------------------------- */
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+    /*  Responsive Styles for
+            - Tablets and
+            - Small Tablets
+    */
+
+    /* --------------- Main Title | Styles
+------------------------------------------------------------------- */
+
+    .home-page .title-container .title-content {
+        padding-bottom: 7rem;
+    }
+
+    .home-page .title-container .title-content p {
+        font-size: 1.05rem;
+        width: 65%;
+        margin: 0 0 2.25rem;
+    }
+
+    /* -------- Main Title - (Watch) Button | Styles -------- */
+
+    .home-page .title-container .title-content a {
+        font-size: 1.15rem;
+        padding: 0.75rem 0.8rem 0.75rem 1.5rem;
+        border-radius: 1.15rem;
+    }
+
+    .home-page .title-container .title-content a span {
+        font-size: 0.85rem;
+    }
+
+    .home-page .title-container .title-content a img {
+        width: 1.1rem;
+    }
+
+    /* -------- Brief Container - (Content) | Styles -------- */
+
+    .home-page .brief-container .brief-content {
+        padding-left: 2.5rem;
+        padding-top: 2.5rem;
+        border-radius: 7.5rem 1.3rem;
+    }
+
+    /* -------- Brief Container - (Button) | Styles -------- */
+
+    .home-page .brief-container .brief-content .learn-button {
+        padding: 1.25em;
+    }
+
+    .home-page .brief-container .brief-content a {
+        font-size: 0.9rem;
+        padding: 0.8rem 1.4rem;
+        border-radius: 1.15rem 0;
+    }
+
+    .home-page .brief-container .brief-content .learn-button:hover a {
+        border-radius: 1.15rem;
+    }
+}
+
+@media (max-width: 819px) {
+
+    /* --------------- Brief Container | Styles
+------------------------------------------------------------------- */
+    .home-page .brief-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+    }
+
+    .home-page .brief-container .brief-content {
+        grid-column: 1/3;
+    }
+
+    /* -------- Brief Container - (Content) | Styles -------- */
+
+    .home-page .brief-container .brief-content {
+        padding-left: 2.5rem;
+        padding-top: 2.5rem;
+        border-radius: 7.5rem 1.3rem;
+    }
+
+    /* -------- Brief Container - (Button) | Styles -------- */
+
+    .home-page .brief-container .brief-content .learn-button {
+        padding: 1.25em;
+    }
+
+    .home-page .brief-container .brief-content a {
+        font-size: 0.9rem;
+        padding: 0.8rem 1.4rem;
+        border-radius: 1.15rem 0;
+    }
+
+    .home-page .brief-container .brief-content .learn-button:hover a {
+        border-radius: 1.15rem;
+    }
+}
+
+@media (max-width: 767px) {
+
+    /*  Responsive Styles for
+            - Small Tablets only
+    */
+
+    /* --------------- Main Title | Styles
+------------------------------------------------------------------- */
+
+    .home-page .title-container .title-content {
+        padding-bottom: 6rem;
+    }
+
+    .home-page .title-container .title-content p {
+        font-size: 1rem;
+        width: 75%;
+        margin: 0 0 2rem;
+    }
+
+    /* -------- Main Title - (Watch) Button | Styles -------- */
+
+    .home-page .title-container .title-content a {
+        font-size: 1.1rem;
+        padding: 0.7rem 0.7rem 0.7rem 1.4rem;
+        border-radius: 1.05rem;
+    }
+
+    .home-page .title-container .title-content a span {
+        font-size: 0.8rem;
+    }
+
+    .home-page .title-container .title-content a img {
+        width: 1rem;
+    }
+}
+
+@media (max-width: 677px) {
+
+    /*  Responsive Styles for
+            - Small Tablets and
+            - Mobiles
+    */
+
+    /* --------------- Main Title | Styles
+------------------------------------------------------------------- */
+
+    .home-page .title-container .title-content {
+        padding-bottom: 5rem;
+    }
+
+    .home-page .title-container .title-content p {
+        font-size: 0.95rem;
+        width: 85%;
+        margin: 0 0 1.75rem;
+    }
+
+    /* -------- Main Title - (Watch) Button | Styles -------- */
+
+    .home-page .title-container .title-content a {
+        font-size: 1.05rem;
+        padding: 0.65rem 0.6rem 0.65rem 1.3rem;
+        border-radius: 0.95rem;
+    }
+
+    .home-page .title-container .title-content a span {
+        font-size: 0.75rem;
+    }
+
+    .home-page .title-container .title-content a img {
+        width: 0.9rem;
+    }
+}

@@ -1,0 +1,119 @@
+@import url("./badge.css");
+
+
+/* ----------------------------------------- About Page | Styles ------------------------------------------
+---------------------------------------------------------------------------------------------------- */
+
+.about-page .badge-heading {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--darkpurple);
+    margin: 6rem 0 2.5rem 0;
+}
+
+/* --------------- Brief Container | Styles
+------------------------------------------------------------------- */
+
+.about-page .brief-container {
+    margin: 8rem 0;
+}
+
+/* -------- Brief Container - (Image) | Styles -------- */
+
+.about-page .brief-container .brief-image {
+    background: url("../Images/about.jpg") no-repeat center/cover;
+    opacity: 0.96;
+    width: 30rem;
+    height: 25rem;
+    margin: 0 auto;
+    border-radius: 25rem 10rem 10rem 5rem;
+}
+
+/* ----------------------------------------- (Responsive) About Page | Styles ------------------------------------------
+----------------------------------------------------------------------------------------------------------------- */
+
+@media (min-width: 992px) and (max-width: 1190px) {
+
+    /*  Responsive Styles for
+            - Small Desktops and 
+            - Tablets
+    */
+
+    .about-page .badge-heading {
+        font-size: 1.8rem;
+        margin: 5.5rem 0 2rem 0;
+    }
+
+    /* --------------- Brief Container | Styles
+------------------------------------------------------------------- */
+
+    .about-page .brief-container {
+        margin: 7rem 0;
+    }
+
+    /* -------- Brief Container - (Image) | Styles -------- */
+
+    .about-page .brief-container .brief-image {
+        width: 27.5rem;
+        height: 22.5rem;
+        border-radius: 23.5rem 8.5rem 8.5rem 3.5rem;
+    }
+}
+
+@media (min-width: 678px) and (max-width: 991px) {
+
+    /*  Responsive Styles for
+            - Tablets and
+            - Small Tablets
+    */
+
+    .about-page .badge-heading {
+        font-size: 1.6rem;
+        margin: 5rem 0 1.5rem 0;
+    }
+
+    /* --------------- Brief Container | Styles
+------------------------------------------------------------------- */
+
+    .about-page .brief-container {
+        margin: 6rem 0;
+    }
+
+    /* -------- Brief Container - (Image) | Styles -------- */
+
+    .about-page .brief-container .brief-image {
+        width: 22.5rem;
+        height: 17.5rem;
+        border-radius: 22rem 7rem 7rem 2rem;
+    }
+}
+
+@media (max-width: 677px) {
+
+    /*  Responsive Styles for
+            - Small Tablets and
+            - Mobiles
+    */
+
+    .about-page .badge-heading {
+        font-size: 1.4rem;
+        margin: 4.5rem 0 1rem 0;
+    }
+
+    /* --------------- Brief Container | Styles
+------------------------------------------------------------------- */
+
+    .about-page .brief-container {
+        margin: 3rem 0;
+    }
+
+    /* -------- Brief Container - (Image) | Styles -------- */
+
+    .about-page .brief-container .brief-image {
+        width: 15.5rem;
+        height: 10rem;
+        border-radius: 22rem 7rem 7rem 2rem;
+    }
+}

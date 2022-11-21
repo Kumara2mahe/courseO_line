@@ -1,0 +1,300 @@
+/* ----------------------------------------- Contact Page | Styles ------------------------------------------
+---------------------------------------------------------------------------------------------------- */
+
+.contact-page .feedback-container {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    margin: 4rem auto 5rem;
+}
+
+/* --------------- Contact Form | Styles
+------------------------------------------------------------------- */
+
+.contact-page .feedback-container .contact-form {
+    font-family: "Josefin Sans", sans-serif;
+    text-align: center;
+}
+
+.contact-page .feedback-container .contact-form h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--darkpurple);
+}
+
+/* ------------- Contact Form - Field | Styles -------------- */
+
+.contact-page .feedback-container .contact-form input,
+.contact-page .feedback-container .contact-form textarea {
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: 500;
+    background-color: var(--white);
+    width: 84%;
+    margin-bottom: 2rem;
+    padding: 0.75rem;
+    border: none;
+    outline: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.8rem rgba(0, 18, 25, 0.2);
+}
+
+.contact-page .feedback-container .contact-form textarea {
+    height: 15rem;
+    resize: vertical;
+}
+
+.contact-page .feedback-container .contact-form .user-details {
+    display: flex;
+    justify-content: space-between;
+    width: 84%;
+    margin: 0 auto;
+}
+
+.contact-page .feedback-container .contact-form .user-details input {
+    width: 48%;
+}
+
+.contact-page .feedback-container .contact-form input:not(.send_button):focus,
+.contact-page .feedback-container .contact-form textarea:focus {
+    outline: rgba(148, 46, 109, 0.3) solid 0.15rem;
+}
+
+/* ------------- Contact Form - Field | Styles -------------- */
+
+.contact-page .feedback-container .contact-form .send_button {
+    display: block;
+    font-size: 1.2rem;
+    background-color: var(--byzantium);
+    color: var(--white);
+    width: 16%;
+    margin: 0 auto;
+    border-radius: 5rem;
+    transition: 250ms;
+}
+
+.contact-page .feedback-container .contact-form .send_button:hover {
+    background-color: var(--amaranthmp);
+    box-shadow: 0 0 0.2rem var(--richblackfogra29);
+    transform: scale(1.04);
+    transition: 300ms;
+}
+
+.contact-page .feedback-container .contact-form .send_button:active {
+    background-color: var(--orchid);
+    color: var(--richblackfogra29);
+    box-shadow: 0 0 0.2rem var(--richblackfogra29);
+}
+
+/* --------------- Contact Details | Styles
+------------------------------------------------------------------- */
+
+.contact-page .feedback-container .contacts-wrapper .contact-details {
+    position: relative;
+}
+
+.contact-page .feedback-container .contacts-wrapper .contact-details {
+    background: url("../Images/feedback.jpg") no-repeat center/cover;
+    opacity: 0.9;
+    color: var(--white);
+    width: 75%;
+    margin: 8rem auto;
+    padding: 3rem 1rem;
+    border-radius: 3rem;
+    list-style-type: none;
+}
+
+/* ------------- Contact details - Transparent-Screen | Styles -------------- */
+
+.contact-page .feedback-container .contacts-wrapper .contact-details .back-image-screen {
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to bottom, rgba(0, 18, 25, 0.7) 0%, rgba(55, 64, 80, 0.4) 50%, rgba(234, 234, 234, 0.4) 100%);
+    border-radius: inherit;
+}
+
+/* ------------- Contact details - content | Styles -------------- */
+
+.contact-page .feedback-container .contacts-wrapper .contact-details li {
+    margin: 1.5rem 20%;
+    position: inherit;
+    opacity: 1;
+    z-index: 5;
+}
+
+.contact-page .feedback-container .contacts-wrapper .contact-details li img {
+    width: 1rem;
+}
+
+
+/* ---------------------------------- (Responsive) Contact page | Styles ------------------------------------
+------------------------------------------------------------------------------------------------------- */
+
+@media (min-width: 1050px) and (max-width: 1235px) {
+
+    /* ------------- Contact details - content | Styles -------------- */
+
+    .contact-page .feedback-container .contacts-wrapper .contact-details li {
+        margin: 1.5rem 15%;
+    }
+}
+
+@media (max-width: 1049px) {
+
+
+    .contact-page .feedback-container {
+        grid-template-columns: 1.6fr 1fr;
+        margin: 3.5rem auto 4.5rem;
+    }
+
+    /* --------------- Contact Form | Styles
+    ------------------------------------------------------------------- */
+
+    .contact-page .feedback-container .contact-form h3 {
+        font-size: 1.8rem;
+    }
+
+    /* ------------- Contact Form - Field | Styles -------------- */
+
+    .contact-page .feedback-container .contact-form input,
+    .contact-page .feedback-container .contact-form textarea {
+        font-size: 1.05rem;
+        width: 86%;
+        margin-bottom: 1.75rem;
+        padding: 0.7rem;
+        border-radius: 0.45rem;
+    }
+
+    .contact-page .feedback-container .contact-form textarea {
+        height: 14.5rem;
+    }
+
+    .contact-page .feedback-container .contact-form .user-details {
+        width: 86%;
+    }
+
+    /* ------------- Contact Form - Field | Styles -------------- */
+
+    .contact-page .feedback-container .contact-form .send_button {
+        font-size: 1.15rem;
+        width: 18%;
+    }
+
+    /* --------------- Contact Details | Styles
+------------------------------------------------------------------- */
+
+    .contact-page .feedback-container .contacts-wrapper .contact-details {
+        width: 80%;
+        margin: 7.5rem auto;
+        padding: 2.8rem 0.8rem;
+        border-radius: 2.8rem;
+    }
+
+    /* ------------- Contact details - content | Styles -------------- */
+
+    .contact-page .feedback-container .contacts-wrapper .contact-details li {
+        margin: 1.25rem 5%;
+    }
+
+    .contact-page .feedback-container .contacts-wrapper .contact-details li img {
+        width: 0.8rem;
+    }
+}
+
+@media (max-width: 805px) {
+
+    .contact-page .feedback-container {
+        grid-template-columns: 1fr;
+        margin: 4rem auto 0;
+    }
+
+    /* --------------- Contact Form | Styles
+    ------------------------------------------------------------------- */
+
+    .contact-page .feedback-container .contact-form {
+        grid-column: 1/3;
+    }
+
+    /* ------------- Contact Form - Field | Styles -------------- */
+
+    .contact-page .feedback-container .contact-form input,
+    .contact-page .feedback-container .contact-form textarea,
+    .contact-page .feedback-container .contact-form .user-details {
+        width: 80%;
+    }
+
+    /* ------------- Contact Form - Field | Styles -------------- */
+
+    .contact-page .feedback-container .contact-form .send_button {
+        width: 20%;
+    }
+
+    /* --------------- Contact Details | Styles
+------------------------------------------------------------------- */
+
+    .contact-page .feedback-container .contacts-wrapper {
+        margin-top: 4rem;
+    }
+
+    .contact-page .feedback-container .contacts-wrapper .contact-details {
+        width: 100%;
+        margin: 0;
+        padding: 1rem 0.5rem;
+        border-radius: 0;
+    }
+
+    /* ------------- Contact details - content | Styles -------------- */
+
+    .contact-page .feedback-container .contacts-wrapper .contact-details li {
+        margin: 1.25rem 10%;
+    }
+}
+
+@media (max-width: 678px) {
+
+    .contact-page .feedback-container {
+        margin: 3.5rem auto 0;
+    }
+
+    /* --------------- Contact Form | Styles
+    ------------------------------------------------------------------- */
+
+    .contact-page .feedback-container .contact-form h3 {
+        font-size: 1.5rem;
+    }
+
+    /* ------------- Contact Form - Field | Styles -------------- */
+
+    .contact-page .feedback-container .contact-form input,
+    .contact-page .feedback-container .contact-form textarea {
+        font-size: 1rem;
+    }
+
+    .contact-page .feedback-container .contact-form textarea {
+        height: 13rem;
+    }
+
+    /* ------------- Contact Form - Field | Styles -------------- */
+
+    .contact-page .feedback-container .contact-form .send_button {
+        font-size: 1.1rem;
+        width: 25%;
+    }
+
+    /* --------------- Contact Details | Styles
+------------------------------------------------------------------- */
+
+    .contact-page .feedback-container .contacts-wrapper {
+        margin-top: 4rem;
+    }
+
+    /* ------------- Contact details - content | Styles -------------- */
+
+    .contact-page .feedback-container .contacts-wrapper .contact-details li {
+        font-size: 0.8rem;
+        margin: 1rem 10%;
+    }
+
+    .contact-page .feedback-container .contacts-wrapper .contact-details li img {
+        width: 0.7rem;
+    }
+}
