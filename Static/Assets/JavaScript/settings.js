@@ -3,8 +3,7 @@ import formActivator from "./settingsActivator.js"
 
 
 // Admin Settings Container
-const adminSettings = document.querySelector("article.settings-page .settings-container")
-const view = "preview"
+const adminSettings = document.querySelector("article.settings-page .settings-container"), view = "preview"
 
 
 // ------------- Admin Interface - Changer Script ------------------------- //
@@ -16,19 +15,19 @@ const adminInterfaceChanger = (active) => {
     if (option.tagName != "A") {
         option = option.parentElement
     }
-    let optName = option.innerText
+    let optName = option.innerText.toLowerCase()
     option.removeEventListener("click", adminInterfaceChanger)
 
     // Sending Interface name as request through AJAX
     $.ajax({
         type: "POST",
-        url: "/admin-settings/interface-changer",
+        url: "/administrator/settings/interface-changer",
         data: {
-            whichform: optName,
+            interface: optName,
             csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
         },
         success: (data) => {
-            if (data.message[0] == "Success") {
+            if (data.message == "Success") {
 
                 // Changing Focus to selected option
                 let previousoption = adminSettings.querySelector(`.navigation-panel a.${view}`)
@@ -41,19 +40,24 @@ const adminInterfaceChanger = (active) => {
                 previousForm.classList.remove(view)
                 formActivator(optName, previousoption.innerText.toLowerCase())
             }
+            else {
+                window.location.reload()
+            }
         },
         error: () => {
             window.location.reload()
         }
     })
 }
-const adminInterfaceOptions = adminSettings.querySelectorAll(".navigation-panel a")
+const whichInterface = adminSettings.querySelector(".navigation-panel input.whichI").value,
+    adminInterfaceOptions = adminSettings.querySelectorAll(".navigation-panel a")
 adminInterfaceOptions.forEach((option) => {
-    if (option.classList[1] != view) {
+    if (option.classList[0] != whichInterface) {
         option.addEventListener("click", adminInterfaceChanger)
     }
     else {
-        formActivator(option.innerText, null)
+        option.classList.add(view)
+        formActivator(option.innerText.toLowerCase(), null)
     }
 })
 // ------------------------------------------------------------------- //

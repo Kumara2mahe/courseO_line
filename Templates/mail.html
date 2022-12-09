@@ -1,0 +1,104 @@
+<!-- Template for structure the data send throw Mail -->
+
+
+<body style="background-color: #EAEAEA; padding: 2% 0;">
+    <article style="font-size: 0.85rem; background-color: #FFFFFF; width: 80%; margin: 2% auto; padding: 2%;">
+
+        {% if password %}
+        <table cellspacing="10" style="width:100%; margin-left: auto; font-size: 0.9rem;">
+            <tbody>
+                <tr>
+                    <td style="width: 70%;">
+                        <h2>Welcome! <span style="color: #6B1853;">Admin</span></h2>
+                    </td>
+                    <td style="text-align:right;"><a style="background-color: #6B1853;
+                        color: #F0F8FF;
+                        padding: 0.6rem 1.2rem 0.6rem 1.2rem;
+                        border-radius: 0.6rem;
+                        box-shadow: 0 0 0.4em #001219;
+                        text-decoration: none;
+                        cursor: pointer;" href="{{ loginlink }}" target="_blank">Login</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+        <section style="text-align: justify; margin: 1rem 1rem 0 1rem;">
+            <p style="color: #000000;"><b style="display: inline-block;">courseO_line</b> proudly welcomes to our
+                community, congrats on your journey as our new admin, which means you are now the most valuable and
+                responsive person.</p>
+            <table cellspacing="10" style="width:100%; margin-left: auto; font-size: 0.9rem;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="{{ sitelink }}" target="_blank" style="display: inline-block; width: 5em;">
+                                <img src="https://raw.githubusercontent.com/Kumara2mahe/courseO_line/main/Static/Assets/Images/favicon.png"
+                                    alt="courseO_line logo" style="width: 100%;">
+                            </a>
+                        </td>
+                        <td style="width: 40%;">
+                            <h4 style="margin-bottom: 0.8em;"><small style="color: #808080;">Username:</small>&nbsp;
+                                <span style="color: #800000;">{{ username }}</span>
+                            </h4>
+                            <h4 style="margin-top: 0.8em;"><small style="color: #808080;">Password:</small>&nbsp;
+                                <span style="color: #800000;">{{ password }}</span>
+                            </h4>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+            <small>Note: Password can be changed at anytime from this <a href="{{ resetlink }}"
+                    target="_blank">link</a>.</small>
+        </section>
+        {% elif otp %}
+        <table cellspacing="10" style="width:100%; margin-left: auto; font-size: 0.9rem;">
+            <tbody>
+                <tr>
+                    <td style="width: 70%;">
+                        <h2>Hey! <span style="color: #6B1853;">{{ username }}</span></h2>
+                    </td>
+                    <td style="text-align:right;"><a style="background-color: #6B1853;
+                        color: #F0F8FF;
+                        padding: 0.6rem 1.2rem 0.6rem 1.2rem;
+                        border-radius: 0.6rem;
+                        box-shadow: 0 0 0.4em #001219;
+                        text-decoration: none;
+                        cursor: pointer;" href="{{ resetlink }}?{{ email }}" target="_blank">Reset</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+        <section style="text-align: justify; margin: 1rem 1rem 0 1rem;">
+            <p style="color: #000000;">A reset password request received, for your admin account. And you have <span
+                    style="color: #FFA500;">30 minutes</span> to use it before it expires.</p>
+            <table cellspacing="10" style="width:100%; margin-left: auto; font-size: 0.9rem;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="{{ sitelink }}" target="_blank" style="display: inline-block; width: 5em;">
+                                <img src="https://raw.githubusercontent.com/Kumara2mahe/courseO_line/main/Static/Assets/Images/favicon.png"
+                                    alt="courseO_line logo" style="width: 100%;">
+                            </a>
+                        </td>
+                        <td style="width: 40%;">
+                            <h4 style="margin-bottom: 0.8em;">
+                                <small style="color: #808080;">Verification Code:</small>&nbsp;
+                                <span style="color: #800000;
+                                padding: 0.4em;
+                                background-color: #FAFAD2;
+                                border-radius: 0.6em;">{{ otp }}</span>
+                            </h4>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="color: #000000;">To use it, please copy it into your browser to continue with the password reset
+                process. If you didn’t request this code, you may safely ignore it.</p>
+            <hr>
+            <small>Note: Password can be changed at anytime from this <a href="{{ resetlink }}"
+                    target="_blank">link</a>.</small>
+        </section>
+        {% endif %}
+
+    </article>
+</body>

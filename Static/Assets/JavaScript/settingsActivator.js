@@ -4,10 +4,12 @@ import Status from "./status.js"
 
 // ------------- Admin-Settings Form - Activator Script ----------------------- //
 
-const defaultAddLabels = [], defaultUpdateLabels = [], defaultBoxValues = [], allowedFiles = ["png", "jpeg", "jpg"]
+const defaultAddLabels = [], defaultUpdateLabels = [], defaultBoxValues = [],
+    allowedFiles = ["png", "jpeg", "jpg"], parentPath = window.location.pathname
+
 const adminSettingsActivator = (settingname, preSetting) => {
 
-    let settingForm = document.querySelector(`.settings-container form.${settingname.toLowerCase()}`)
+    let settingForm = document.querySelector(`.settings-container form.${settingname}`)
     if (settingForm && (preSetting == null || deactivateSetting(preSetting))) {
         if (settingForm.classList[0] == "add") {
 
@@ -36,7 +38,7 @@ const adminSettingsActivator = (settingname, preSetting) => {
                 settingForm.querySelector("input[type=submit]").disabled = true
             }
             // Activating the Category SelectBox
-            settingForm.querySelector(".course_category").addEventListener("change", coursePicker)
+            settingForm.querySelector(".course_category").addEventListener("change", optionPopulator)
         }
         // Showing the concurrent form
         settingForm.classList.add("preview")
@@ -61,7 +63,7 @@ const deactivateSetting = (name) => {
             form.removeEventListener("submit", addNewCourse)
         }
         else {
-            form.querySelector(".course_category").removeEventListener("change", coursePicker)
+            form.querySelector(".course_category").removeEventListener("change", optionPopulator)
             form.querySelector(".course_name").removeEventListener("change", activateCourseModification)
             if (name == "update") {
                 form.querySelector(".pdf_upload_btn").removeEventListener("click", triggerFileUpload)
@@ -85,37 +87,27 @@ const addNewCourse = (event) => {
 
     // Disabling Submit button
     event.preventDefault()
-    let form = event.target
-    let button = form.querySelector("input[type=submit]")
+    let form = event.target,
+        button = form.querySelector("input[type=submit]")
     button.disabled = true
+    form.classList.add("processing")
 
-    // Creating Status Message
-    let status = new Status()
-
-    // Collecting the submmited form data
-    let formData = new FormData(form)
-
-    let uniqueKeys = ["csrfmiddlewaretoken", "newcoursetitle", "newcoursecategory", "newcoursecategoryimage", "newcourselink", "newcoursepdf"]
-    let newFormData = new FormData, count = 0
-    formData.forEach((value) => {
-        newFormData.set(uniqueKeys[count], value)
-        count++
-    })
-    newFormData.append("whichform", button.value)
+    // Creating Status Message and collecting formdata
+    let status = new Status(), formData = new FormData(form)
 
     // Sending the formdata as request through AJAX
     $.ajax({
         type: "POST",
-        url: "/admin-settings",
+        url: `${parentPath}add-course`,
         enctype: "multipart/form-data",
-        data: newFormData,
+        data: formData,
         contentType: false,
         processData: false,
         success: (data) => {
 
             // Populating status
-            status.message(data.message[0])
-            if (data.message[0] == "Course Added Successfully") {
+            status.message(data.message)
+            if (data.info == "added") {
 
                 // Clearing form & showing status
                 resetAddForm(null, form)
@@ -126,10 +118,10 @@ const addNewCourse = (event) => {
                 status.show("article")
 
                 let exceptions = []
-                if (data.message[0] == "Sorry! Course Already Available") {
+                if (data.info == "exists") {
                     exceptions.push(form.querySelector(".course_category"))
                 }
-                else if (data.message[0] == "You forgot to add Category Image") {
+                else if (data.info == "noimage") {
                     exceptions.push(form.querySelector(".course_title"), form.querySelector(".course_category"))
                 }
                 resetAddForm(null, form, ...exceptions)
@@ -137,6 +129,7 @@ const addNewCourse = (event) => {
             setTimeout(() => {
                 status.remove()
                 button.disabled = false
+                form.classList.remove("processing")
             }, 3000)
         },
         error: pageReload
@@ -148,42 +141,32 @@ const updateOldCourse = (event) => {
 
     // Preventing defaults
     event.preventDefault()
-    let form = event.target
-    let button = form.querySelector("input[type=submit]")
+    let form = event.target,
+        button = form.querySelector("input[type=submit]")
+    form.classList.add("processing")
 
-    // Creating Status Message
-    let status = new Status(), disablebtn = false
-
-    // Collecting the submmited form data
-    let formData = new FormData(form)
-
-    let uniqueKeys = ["csrfmiddlewaretoken", "updatecoursecategory", "updatecoursename", "updatecoursetitle", "updatecourselink", "updatecoursepdf"]
-    let newFormData = new FormData, count = 0
-    formData.forEach((value) => {
-        newFormData.set(uniqueKeys[count], value)
-        count++
-    })
-    newFormData.append("whichform", button.value)
+    // Creating Status Message and collecting formdata
+    let status = new Status(), formData = new FormData(form), disablebtn = false
 
     // Sending the formdata as request through AJAX
     $.ajax({
         type: "POST",
-        url: "/admin-settings",
+        url: `${parentPath}update-course`,
         enctype: "multipart/form-data",
-        data: newFormData,
+        data: formData,
         contentType: false,
         processData: false,
         success: (data) => {
 
             // Populating status
-            status.message(data.message[0])
-            if (data.message[0] == "Fields can't be empty") {
+            status.message(data.message)
+            if (data.info == "empty") {
 
                 // Clearing form edit section & showing status
                 resetUpdateForm(form, true, form.querySelector(".course_name"))
                 status.show("article")
             }
-            else if (data.message[0] == "Please, enter a valid Youtube Link") {
+            else if (data.info == "invalidlink") {
 
                 // Showing status
                 status.show("article")
@@ -191,7 +174,7 @@ const updateOldCourse = (event) => {
             }
             else {
                 // Clearing form & showing status
-                status.show("article", true)
+                status.show("article", data.info == "updated")
                 resetUpdateForm(form)
                 disablebtn = true
                 form.removeEventListener("submit", updateOldCourse)
@@ -200,6 +183,7 @@ const updateOldCourse = (event) => {
             setTimeout(() => {
                 status.remove()
                 button.disabled = disablebtn
+                form.classList.remove("processing")
             }, 3000)
         },
         error: pageReload
@@ -211,46 +195,36 @@ const deleteOldCourse = (event) => {
 
     // Preventing defaults
     event.preventDefault()
-    let form = event.target
-    let button = form.querySelector("input[type=submit]")
+    let form = event.target,
+        button = form.querySelector("input[type=submit]")
     button.disabled = true
+    form.classList.add("processing")
 
     // Creating Status Message
     let status = new Status()
 
-    // Collecting the submmited form data
-    let formData = new FormData(form)
-
-    let uniqueKeys = ["csrfmiddlewaretoken", "deletecoursecategory", "deletecoursename"]
-    let newFormData = new FormData, count = 0
-    formData.forEach((value) => {
-        newFormData.set(uniqueKeys[count], value)
-        count++
-    })
-    newFormData.append("whichform", button.value)
-
     // Sending the formdata as request through AJAX
     $.ajax({
         type: "POST",
-        url: "/admin-settings",
+        url: `${parentPath}delete-course`,
         enctype: "multipart/form-data",
         data: {
-            whichform: button.value,
-            deletecoursecategory: form.querySelector(".course_category").value,
-            deletecoursename: form.querySelector(".course_name").value,
+            coursecategory: form.querySelector(".course_category").value,
+            coursename: form.querySelector(".course_name").value,
             csrfmiddlewaretoken: form.querySelector("input[name=csrfmiddlewaretoken]").value,
         },
         success: (data) => {
 
             // Clearing form & showing status
             resetUpdateForm(form)
-            status.message(data.message[0])
-            status.show("article", true)
+            status.message(data.message)
+            status.show("article", data.info == "deleted")
 
             setTimeout(() => {
                 status.remove()
                 form.querySelector(".course_name").removeEventListener("change", activateCourseModification)
                 form.removeEventListener("submit", deleteOldCourse)
+                form.classList.remove("processing")
             }, 3000)
         },
         error: pageReload
@@ -271,64 +245,51 @@ const highlightSelected = (box, defaultBoxValue) => {
     }
 }
 
-// ----- Function to collect the course names under the picked Category ---- //
-const coursePicker = (event) => {
+// ----- Function to update the select box values ---- //
+const optionPopulator = (event, selectBox, fieldname = "course_name") => {
 
-    // Disabling & Highlighting selected value
-    let selectBox = event.target
-    selectBox.disabled = true
-    highlightSelected(selectBox, defaultBoxValues[0])
-
-    let formData, whichform = $(".navigation-panel a.preview span").text()
-    if (whichform == "Update") {
-        formData = {
-            whichform: whichform,
-            updatecoursecategory: selectBox.value,
-            csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
-        }
-    }
-    else {
-        formData = {
-            whichform: whichform,
-            deletecoursecategory: selectBox.value,
-            csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
-        }
+    let formData = { csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(), }
+    if (event) {
+        // Disabling & Highlighting selected value
+        selectBox = event.target
+        selectBox.disabled = true
+        highlightSelected(selectBox, defaultBoxValues[0])
+        formData["category"] = selectBox.value
     }
 
-    // Sending Category name as request through AJAX
+    // Sending request through AJAX
     $.ajax({
         type: "POST",
-        url: "/admin-settings/update-courses",
+        url: `${parentPath}collect-course`,
         data: formData,
         success: (data) => {
-            if (data.message[0] && data.message[1] && data.message[1].length > 0) {
+            if (data.titles && data.titles.length > 0) {
 
-                // Removing the old titles
-                let courseBox = selectBox.parentElement.querySelector(".course_name")
-                let courseTitles = courseBox.querySelectorAll("option:not(.placeholder)")
-                if (courseTitles.length > 0) {
-                    courseTitles.forEach((title) => {
-                        title.remove()
-                    })
+                // Removing the old options
+                let courseBox = selectBox.parentElement.querySelector(`.${fieldname}`),
+                    oldOptions = courseBox.querySelectorAll("option:not(.placeholder)")
+                if (oldOptions.length > 0) {
+                    oldOptions.forEach((title) => { title.remove() })
                 }
-                // Resetting Form except Category Selectbox
-                resetUpdateForm(selectBox.parentElement, true)
-
-                // Filling the Title Selectbox with new titles
-                data.message[1].forEach((title) => {
+                // Filling the new option in the Selectbox
+                data.titles.forEach((title) => {
                     let newoption = document.createElement("option")
                     newoption.value = newoption.innerHTML = title
                     courseBox.append(newoption)
                 })
+                if (event) {
+                    // Resetting Form except Category Selectbox
+                    resetUpdateForm(selectBox.parentElement, true)
 
-                // Enabling both Selectboxes
-                selectBox.disabled = false
-                courseBox.disabled = false
-                courseBox.addEventListener("change", activateCourseModification)
+                    // Enabling both Selectboxes
+                    selectBox.disabled = false
+                    courseBox.disabled = false
+                    courseBox.addEventListener("change", activateCourseModification)
+                }
             }
             else {
-                // Resetting the Selectbox value
-                highlightSelected(selectBox, selectBox.value = defaultBoxValues[0])
+                // Resetting the Selectbox
+                optionPopulator(null, selectBox, selectBox.classList[0])
 
                 // Creating Status Message
                 let status = new Status()
@@ -426,6 +387,9 @@ const resetSelectBox = (form, onlycourse = false) => {
             if (onlycourse == false && box.classList[0] == "course_name") {
                 box.disabled = true
             }
+            else if (onlycourse == false) {
+                optionPopulator(null, box, box.classList[0])
+            }
             // Resetting the Selectbox value
             highlightSelected(box, box.value = defaultBoxValues[index])
         }
@@ -457,7 +421,6 @@ const activateCourseModification = (event) => {
 
 // ------------------ Pdf Uploader - Show/Hide Script ------------------- //
 const togglePdfUpload = (event) => {
-
     let checkbox = event.target
     checkbox.disabled = true
 
@@ -482,9 +445,6 @@ const triggerFileUpload = (event) => {
         fileField.removeEventListener("change", fileUploader)
         let filetype = fileField.parentElement.classList[1].toLowerCase()
 
-        // Creating Status Message
-        let status = new Status()
-
         // Separating file name from path
         let filename = fileField.value.split("\\")
         filename = filename[filename.length - 1].toLowerCase()
@@ -497,12 +457,14 @@ const triggerFileUpload = (event) => {
             fileField.nextElementSibling.style.color = "#000000"
         }
         else {
-            // Showing the error status
+            // Creating & Showing Status Message
+            let status = new Status()
             status.message(`Only ${filetype} files are allowed`)
             status.show("article")
 
             // Disabling and Enabling the upload button
             fileField.previousElementSibling.disabled = true
+            fileField.value = ""
             setTimeout(() => {
                 status.remove()
                 fileField.previousElementSibling.disabled = false

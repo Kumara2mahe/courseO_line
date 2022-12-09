@@ -9,10 +9,10 @@
     <meta charset="UTF-8">
     <meta name="description"
         content="{% block meta_description %}courseO_line - a online courses website where you can watch our courses, tutorials, articles and more for completely free{% endblock %}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width = device-width, initial-scale = 1">
     <link rel="stylesheet" href="{% static 'Assets/CSS/styles.css' %}">
     <link rel="stylesheet" href="{% static 'Assets/CSS/responsive.css' %}">
-
     {% if request.path == "/" %}
     <link rel="stylesheet" href="{% static 'Assets/CSS/home.css' %}">
     {% elif request.path == "/about" %}
@@ -21,16 +21,17 @@
     <link rel="stylesheet" href="{% static 'Assets/CSS/courses.css' %}">
     {% elif request.path == "/contact" %}
     <link rel="stylesheet" href="{% static 'Assets/CSS/contact.css' %}">
-    {% elif request.path == "/admin-settings" %}
+    {% elif interface %}
     <link rel="stylesheet" href="{% static 'Assets/CSS/settings.css' %}">
     {% endif %}
     <link rel="icon" type="image/png" href="{% static 'Assets/Images/favicon.png' %}">
-
-    {% if not user.is_authenticated and request.path == "/admin-login" or user.is_authenticated and request.path == "/admin-signup" %}
+    {% if not user.is_authenticated and not footer_topics or user.is_authenticated and not footer_topics %}
     <link rel="stylesheet" href="{% static 'Assets/CSS/authenticate.css' %}">
+    {% if request.path != "/administrator/reset-password" %}
+    <script type="module" src="{% static 'Assets/JavaScript/admin.js' %}"></script>
     <script type="module" src="{% static 'Assets/JavaScript/authenticate.js' %}"></script>
-    {% if not user.is_authenticated and request.path == "/admin-login" %}
-    <script type="module" src="{% static 'Assets/JavaScript/login.js' %}"></script>
+    {% elif not user.is_authenticated and request.path == "/administrator/reset-password" %}
+    <script type="module" src="{% static 'Assets/JavaScript/resetpassword.js' %}"></script>
     {% endif %}
     {% else %}
     <script type="module" src="{% static 'Assets/JavaScript/script.js' %}"></script>
@@ -38,22 +39,21 @@
     <script type="module" src="{% static 'Assets/JavaScript/adminTools.js' %}"></script>
     {% endif %}
     {% endif %}
-
-    {% if request.path == "/" or request.path == "/courses" %}
-    <script type="module" src="{% static 'Assets/JavaScript/coursepreview.js' %}"></script>
-    {% elif request.path == "/admin-settings" %}
+    {% if interface %}
     <script type="module" src="{% static 'Assets/JavaScript/settings.js' %}"></script>
+    {% elif request.path == "/" or request.path == "/courses" %}
+    <script type="module" src="{% static 'Assets/JavaScript/coursepreview.js' %}"></script>
+    {% elif request.path == "/contact" %}
+    <script type="module" src="{% static 'Assets/JavaScript/feedback.js' %}"></script>
     {% endif %}
-
-    {% if "/admin" in request.path %}
+    {% if "/administrator/" in request.path or request.path == "/contact" %}
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
         integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     {% endif %}
 </head>
 
 <body>
-
-    {% if request.path == "/" or request.path == "/about" or request.path == "/courses" or request.path == "/contact" or request.path == "/admin-settings" %}
+    {% if footer_topics %}
     <header>
 
         <!-- Navigation-Bar -->
@@ -75,24 +75,20 @@
                 <nav class="nav-links">
 
                     <a href="{% url 'home' %}"><span>Home</span></a>
-
                     {% if not user.is_authenticated %}
                     <a href="{% url 'about' %}"><span>About</span></a>
                     {% endif %}
-
                     <a href="{% url 'courses' %}"><span>Courses</span></a>
                     <a href=""><span>Blog</span></a>
-
                     {% if user.is_authenticated %}
                     <a class="tools"><span>Tools</span></a>
 
                     <!-- Admin-Tools | Dropdown -->
                     <ul class="admin-tools">
-                        <a href="{% url 'admin-settings' %}">Settings</a>
-                        <a href="{% url 'admin-signup' %}">Create Admin</a>
-                        <a href="/admin-logout">log out</a>
+                        <a href="{% url 'settings' %}">Settings</a>
+                        <a href="{% url 'signup' %}">Create Admin</a>
+                        <a href="{% url 'logout' %}">log out</a>
                     </ul>
-
                     {% else %}
                     <a href="{% url 'contact' %}"><span>Contact</span></a>
                     {% endif %}
@@ -106,60 +102,38 @@
     {% endif %}
 
     {% block content %}
-
     {% endblock %}
 
-    {% if request.path == "/" or request.path == "/about" or request.path == "/courses" or request.path == "/contact" or request.path == "/admin-settings" %}
+    {% if footer_topics %}
     <footer>
 
         <!-- Bottom-Info | Social-Links -->
         <section class="bottom-info logo-section">
-
             <a class="bottom-logo" href="{% url 'home' %}">
                 <img src="{% static 'Assets/Images/logo.png' %}">
             </a>
             <p class="bottom-text">Build your skills with our courses, tutorials, articles and more for completely
                 free.</p>
             <figure class="social-icon">
-                <a href="https://www.facebook.com/facebook/" target="_blank">
-                    <img src="{% static 'Assets/Images/Svgs/facebook.svg' %}" alt="facebook icon">
-                </a>
-                <a href="https://www.instagram.com/" target="_blank">
-                    <img src="{% static 'Assets/Images/Svgs/instagram.svg' %}" alt="instagram icon">
-                </a>
-                <a href="https://www.linkedin.com/pulse/topics/home/" target="_blank">
-                    <img src="{% static 'Assets/Images/Svgs/linkedin.svg' %}" alt="linkedin icon">
-                </a>
+                <a href=""><img src="{% static 'Assets/Images/Svgs/facebook.svg' %}"></a>
+                <a href=""><img src="{% static 'Assets/Images/Svgs/instagram.svg' %}"></a>
+                <a href=""><img src="{% static 'Assets/Images/Svgs/linkedin.svg' %}"></a>
             </figure>
-
         </section>
 
         {% if request.path != "/contact" %}
-
         <!-- Bottom-Info | Course-Topics -->
         <section class="bottom-info topics-section">
-
             <h3>Our Topics</h3>
             <ul class="topics">
-                {% if footer_topics %}
-
                 {% for category in footer_topics %}
                 <li><a class="topic-link">{{category.category_name}}</a></li>
                 {% endfor %}
-
-                {% else %}
-                <li><a class="topic-link">Business2</a></li>
-                <li><a class="topic-link">Web Development</a></li>
-                <li><a class="topic-link">Photography</a></li>
-                <li><a class="topic-link">Technology</a></li>
-                {% endif %}
             </ul>
-
         </section>
 
         <!-- Bottom-Info | Support -->
         <section class="bottom-info support-section">
-
             <h3>Support</h3>
             <ul class="support">
                 <li><a href="{% url 'about' %}">About</a></li>
@@ -167,17 +141,15 @@
                 <li><a href="">Privacy Policy</a></li>
 
                 {% if not user.is_authenticated %}
-                <li><a href="/admin-login">Authenticate</a></li>
+                <li><a href="{% url 'login' %}">Authenticate</a></li>
                 {% endif %}
 
                 <li><a href="">Help</a></li>
             </ul>
-
         </section>
 
         <!-- Bottom-Info | Contact -->
         <section class="bottom-info contact-section">
-
             <h3>Contact Info</h3>
             <ul class="contact">
                 <li>
@@ -199,19 +171,16 @@
                     </a>
                 </li>
             </ul>
-
         </section>
-
         {% endif %}
 
         <!-- CopyRights -->
         <section class="copyrights">
-            <p>Copyright &copy; 2022 All rights reserved | This template is made by&nbsp;<a href="https://github.com/Kumara2mahe">Kumara</a></p>
+            <p>Copyright &copy; 2022 All rights reserved | This template is made by&nbsp;<a>Kumara</a></p>
         </section>
 
     </footer>
     {% endif %}
-
 </body>
 
 </html>

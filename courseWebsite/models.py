@@ -2,36 +2,27 @@ from django.db import models
 from django.core.validators import FileExtensionValidator
 
 
-# Class for storing only the course category
+# Class to store all Course Category
 class CourseCategory(models.Model):
-
-    category_name = models.CharField(max_length=50)
-    category_image = models.FileField(upload_to="Static/Uploads/Thumbnail", validators=[
-                                      FileExtensionValidator(["png", "jpg", "jpeg"])])
-
-    def __str__(self):
-
-        category = ((self.category_name).replace(" ", "")).capitalize()
-        return category
-
-
-# Class for storing the course and it details
-class OurCourse(models.Model):
-
-    course_title = models.CharField(max_length=100)
-    course_category = models.CharField(max_length=50)
-    course_link = models.CharField(max_length=10000, null=False, blank=True)
-    course_pdf = models.FileField(upload_to="Static/Uploads/Pdfs",
-                                  null=False, blank=True, validators=[FileExtensionValidator(["pdf"])])
+    category_name = models.CharField(max_length=50, unique=True)
+    category_image = models.FileField(upload_to="Thumbnails",
+                                      validators=[FileExtensionValidator(
+                                          ["png", "jpg", "jpeg"]
+                                      )])
 
     def __str__(self):
-
-        title = ((self.course_title).replace(" ", "")).capitalize()
-        return title
+        return self.category_name.replace(" ", "").capitalize()
 
 
-# Class which contains courseOline's emailId and Password for sending OTP as emails
-class AppCredential(models.Model):
+# Class to Course specific details
+class CourseDetail(models.Model):
+    course_title = models.CharField(max_length=150)
+    course_category = models.ForeignKey(to=CourseCategory,
+                                        on_delete=models.CASCADE,
+                                        to_field="category_name")
+    course_link = models.CharField(max_length=10000, blank=True)
+    course_pdf = models.FileField(upload_to="Pdfs", blank=True,
+                                  validators=[FileExtensionValidator(["pdf"])])
 
-    app_email = models.EmailField(max_length=100)
-    app_password = models.CharField(max_length=50, editable=False)
+    def __str__(self):
+        return self.course_title.replace(" ", "").capitalize()

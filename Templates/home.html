@@ -4,7 +4,6 @@
 {% block title %}courseO_line - online courses{% endblock %}
 
 {% block content %}
-
 <article class="home-page">
 
     <!-- Title | Container -->
@@ -65,17 +64,15 @@
         <!-- Playlist | Container -->
         <div class="playlist">
 
-            {% if home_courses %}
-            {% for course in home_courses %}
+            {% for course in top_courses %}
             <div class="course">
 
                 <!-- Video or Placeholder Image -->
                 {% if course.course_link %}
                 <iframe src="{{ course.course_link }}" class="preview" title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
                 {% else %}
-                <img src="Static/Assets/Images/{{ image_name }}.jpg" class="preview">
+                <img src="{{ placeholder_img }}" class="preview">
                 {% endif %}
 
                 <!-- Course Name & Category -->
@@ -91,7 +88,7 @@
                 <div class="pdf-material">
                     <p>PDF material</p>
                     {% if course.course_pdf %}
-                    <a class="available" href="{{ course.course_pdf }}">Download</a>
+                    <a class="available" href="{{ course.course_pdf.url }}" target="_blank">Download</a>
                     {% else %}
                     <a class="not-available">not available</a>
                     {% endif %}
@@ -99,45 +96,6 @@
 
             </div>
             {% endfor %}
-
-            {% else %}
-            <div class="course">
-                <img src="{% static 'Assets/Images/vid_01.jpg' %}" class="preview">
-                <a class="topic-link">Business</a>
-                <h3 class="title"><span>Beginner to Pro in Excel</span></h3>
-                <div class="pdf-material">
-                    <p>PDF material</p>
-                    <a class="available" href="{% static 'Assets/Updated_resume.pdf' %}">Download</a>
-                </div>
-            </div>
-            <div class="course">
-                <img src="{% static 'Assets/Images/vid_02.jpg' %}" class="preview">
-                <a class="topic-link">Web Development</a>
-                <h3 class="title"><span>Introduction to Web APIs</span></h3>
-                <div class="pdf-material">
-                    <p>PDF material</p>
-                    <a class="not-available">not available</a>
-                </div>
-            </div>
-            <div class="course">
-                <img src="{% static 'Assets/Images/vid_03.jpg' %}" class="preview">
-                <a class="topic-link">Drawing</a>
-                <h3 class="title"><span>Sketching for UX Designers</span></h3>
-                <div class="pdf-material">
-                    <p>PDF material</p>
-                    <a class="available">Download</a>
-                </div>
-            </div>
-            <div class="course">
-                <img src="{% static 'Assets/Images/vid_04.jpg' %}" class="preview">
-                <a class="topic-link">Photography</a>
-                <h3 class="title"><span>Photoshop Compositing Tips, Tricks, & Techniques</span></h3>
-                <div class="pdf-material">
-                    <p>PDF material</p>
-                    <a class="available">Download</a>
-                </div>
-            </div>
-            {% endif %}
 
         </div>
 
@@ -175,39 +133,15 @@
 
         <!-- Category | Container -->
         <div class="categories">
-
-            {% if categories %}
-
             {% for category in categories %}
             <a class="topic-link">
-                <img src="{{ category.category_image }}">
+                <img src="{{ category.category_image.url }}">
                 <h3>{{ category.category_name }}</h3>
             </a>
             {% endfor %}
-
-            {% else %}
-            <a class="topic-link">
-                <img src="{% static 'Assets/Images/topic_2.jpg' %}">
-                <h3>Web Development</h3>
-            </a>
-            <a class="topic-link">
-                <img src="{% static 'Assets/Images/topic_4.jpg' %}">
-                <h3>Photoshop</h3>
-            </a>
-            <a class="topic-link">
-                <img src="{% static 'Assets/Images/topic_1.jpg' %}">
-                <h3>Business</h3>
-            </a>
-            <a class="topic-link">
-                <img src="{% static 'Assets/Images/topic_3.jpg' %}">
-                <h3>Drawing</h3>
-            </a>
-            {% endif %}
-
         </div>
 
     </section>
 
 </article>
-
 {% endblock %}

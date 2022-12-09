@@ -1,7 +1,10 @@
+# Django
 from django.contrib import admin
-from courseWebsite.models import AppCredential, CourseCategory, OurCourse
 
-# Register your models here.
-admin.site.register(AppCredential)
+# local Django
+from .models import CourseCategory, CourseDetail
+
+
+# Registering App Models
 admin.site.register(CourseCategory)
-admin.site.register(OurCourse)
+admin.site.register(CourseDetail)

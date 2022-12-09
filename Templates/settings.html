@@ -4,7 +4,6 @@
 {% block meta_description %}courseO_line - Admin authentication to modify the site content, video tutorials and materials{% endblock %}
 
 {% block content %}
-
 <article class="settings-page">
 
     <!-- Title | Container -->
@@ -26,16 +25,17 @@
 
         <!-- Navigation | Container -->
         <div class="navigation-panel">
+            <input class="whichI" type="hidden" value="{{ interface }}">
             <div class="navigation">
-                <a class="addcourse {{ interfaces.addinterface }}">
+                <a class="addcourse">
                     <img src="{% static 'Assets/Images/settings_01.png' %}">
                     <span>Add</span>
                 </a>
-                <a class="updatecourse {{ interfaces.updateinterface }}">
+                <a class="updatecourse">
                     <img src="{% static 'Assets/Images/settings_02.png' %}">
                     <span>Update</span>
                 </a>
-                <a class="deletecourse {{ interfaces.deleteinterface }}">
+                <a class="deletecourse">
                     <img src="{% static 'Assets/Images/settings_03.png' %}">
                     <span>Delete</span>
                 </a>
@@ -47,9 +47,7 @@
 
             <!-- Add Course | Form -->
             <form class="add" method="POST" enctype="multipart/form-data" autocomplete="on">
-
                 {% csrf_token %}
-
                 <h2>Add New Course</h2>
                 <input class="course_title" name="coursetitle" type="text" placeholder="Course Title*">
                 <input class="course_category" name="coursecategory" type="text" placeholder="Course Category*">
@@ -79,15 +77,11 @@
                     <input class="clear-button" type="button" value="Clear">
                     <input class="add-button" type="submit" value="Add">
                 </div>
-
             </form>
-
 
             <!-- Update Course | Form -->
             <form class="update" method="POST" enctype="multipart/form-data" autocomplete="on">
-
                 {% csrf_token %}
-
                 <h2>Update Existing Course</h2>
 
                 <!-- Choose Separator | Heading -->
@@ -97,16 +91,7 @@
 
                 <!-- Category Picker -->
                 <select class="course_category" name="coursecategory">
-
                     <option class="placeholder" hidden>Category*</option>
-
-                    <option value="Business">Business</option>
-                    <option value="Web Development">Web Development</option>
-
-                    {% for category in categories_list %}
-                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
-                    {% endfor %}
-
                 </select>
 
                 <!-- Course Picker -->
@@ -134,29 +119,16 @@
                 <div class="form-buttons">
                     <input class="update-button" type="submit" value="Update">
                 </div>
-
             </form>
-
 
             <!-- Delete Course | Form -->
             <form class="delete" method="POST" enctype="multipart/form-data" autocomplete="on">
-
                 {% csrf_token %}
-
                 <h2>Delete Course</h2>
 
                 <!-- Category Picker -->
                 <select class="course_category" name="coursecategory">
-
                     <option class="placeholder" hidden>Category*</option>
-
-                    <option value="Business">Business</option>
-                    <option value="Web Development">Web Development</option>
-
-                    {% for category in categories_list %}
-                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
-                    {% endfor %}
-
                 </select>
 
                 <!-- Course Picker -->
@@ -168,7 +140,6 @@
                 <div class="form-buttons">
                     <input class="delete-button" type="submit" value="Delete">
                 </div>
-
             </form>
 
         </main>
@@ -176,5 +147,4 @@
     </section>
 
 </article>
-
 {% endblock %}

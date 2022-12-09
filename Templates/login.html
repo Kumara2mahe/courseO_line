@@ -4,15 +4,13 @@
 {% block meta_description %}courseO_line - Create new admin account to modify the site content{% endblock %}
 
 {% block content %}
-
 <article class="login-page">
 
     <!-- Admin Login | Container -->
-    <section class="auth-menu login-form-container">
+    <section class="auth-menu">
 
         <h2>{% block page_title %}Admin Authentication{% endblock %}</h2>
         <form class="login" method="POST" autocomplete="on">
-
             {% csrf_token %}
             <p>&ensp;User Id</p>
             <input class="admin_name" type="text" name="adminname" placeholder="eg: Phil Coulson"
@@ -20,51 +18,15 @@
             <p>&ensp;Password</p>
             <input class="pass_word" type="password" name="password" autocomplete="current-password">
             <input type="submit" class="login-button" value="Log In">
-
         </form>
 
         <!-- More Options | Container -->
         <div class="more-options">
-            <a class="abort-button" href="{% url 'close-admin-login' %}">&#129092;&nbsp;back</a>
-            <a class="forgot-password">Password</a>
-        </div>
-
-    </section>
-
-    <!-- Admin Forgot-Password | Container -->
-    <section class="auth-menu password-change-container hide">
-
-        <h2>Reset Your Password</h2>
-        <form class="email_otp" method="POST" autocomplete="on">
-
-            {% csrf_token %}
-            <p>&ensp;Email ID</p>
-            <input class="registered_email" type="email" name="registeredemail" placeholder="eg: info@courseOline.com"
-                autocomplete="email">
-            <input class="send-button" type="submit" value="Send OTP">
-
-        </form>
-
-        <!-- Change Password | Form -->
-        <form class="change_password hide" method="POST" autocomplete="on">
-
-            {% csrf_token %}
-            <input class="your_otp" type="text" name="yourotp" placeholder="enter your 6-digit otp">
-            <p>&ensp;New Password</p>
-            <input class="new_password" type="password" name="newpassword" autocomplete="new-password">
-            <p>&ensp;Confirm-New Password</p>
-            <input class="confirm_password" type="password" name="confirmpassword">
-            <input class="update-button" type="submit" value="Update">
-
-        </form>
-
-        <!-- More Options | Container -->
-        <div class="more-options">
-            <a class="abort-button" href="{% url 'admin-login' %}">&#129092;&nbsp;back</a>
+            <a class="abort-button" href="{% url 'close' %}">&#129092;&nbsp;back</a>
+            <a class="forgot-password" href="{% url 'reset-password' %}">Password</a>
         </div>
 
     </section>
 
 </article>
-
 {% endblock %}

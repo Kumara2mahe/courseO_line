@@ -2,14 +2,10 @@
 // -------- Course Topics - Navigator Script ------------------------------------------- //
 
 // ---- Function to navigate to the Topic
-const navigateToTopic = (topicName = null) => {
+const navigateToTopic = () => {
 
-    if (topicName == null) {
-        topicName = new URLSearchParams(window.location.search).get("topic")
-    }
-    // Navigating to the Topic
-    let topic = document.querySelector(`#topic-${topicName}`)
-    if (topic) {
+    let topic, topicName = new URLSearchParams(window.location.search).get("topic")
+    if (topic = document.querySelector(`#topic-${topicName}`)) {
         document.documentElement.scrollTop = topic.offsetTop
     }
 }
@@ -38,8 +34,8 @@ const getWidth = (element) => {
 // Getting the elements of all the courses
 const allCourses = document.querySelectorAll(".playlist .course")
 allCourses.forEach((course) => {
-    let title = course.querySelector(".title span")
-    let titleContainer = title.parentElement
+    let title = course.querySelector(".title span"),
+        titleContainer = title.parentElement
 
     // Adding the horizontal text-scrolling effect
     if (getWidth(title) > getWidth(titleContainer)) {
@@ -47,3 +43,5 @@ allCourses.forEach((course) => {
     }
 })
 // -------------------------------------------------------------------------------- //
+
+export default navigateToTopic

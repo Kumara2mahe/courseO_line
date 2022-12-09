@@ -1,8 +1,8 @@
 
 // -------- Navigation Link - Highlight & Deactivate Script ------------------------------------------------- //
 
-const pathname = window.location.pathname.slice(1)
-const navlinks = document.querySelectorAll(".navigation-bar .nav-links a")
+const pathname = window.location.pathname.slice(1),
+    navlinks = document.querySelectorAll(".navigation-bar .nav-links a")
 navlinks.forEach((link) => {
 
     // Converting the link name to lowercase
@@ -28,7 +28,12 @@ topics.forEach((topic) => {
 
         let name = encodeURIComponent(topic.innerText.replace(" ", ""))
         if (isThisPath("/courses")) {
-            navigateToTopic(name)
+
+            // Navigating to the Topic
+            let topic = document.querySelector(`#topic-${name}`)
+            if (topic) {
+                document.documentElement.scrollTop = topic.offsetTop
+            }
         }
         else {
             window.location.assign(`/courses?topic=${name}`)
@@ -51,12 +56,12 @@ const showHamMenu = () => {
 }
 // ---- Function for closing Hamburger Menu ---- //
 const closeHamMenu = (event) => {
-    let element = event.target
-    let isElementActive = (element.tagName == "SPAN" && element.parentElement.tagName == "A" && element.parentElement.parentElement.classList[0] == "nav-links")
-        || (element.tagName == "A" && element.parentElement.classList[0] == "nav-links")
-        || (element.classList[0] == "nav-links" && element.parentElement.tagName == "DIV")
-        || (element.tagName == "A" && element.parentElement.classList[0] == "admin-tools")
-        || (element.classList[0] == "admin-tools" && element.parentElement.classList[0] == "nav-links")
+    let element = event.target,
+        isElementActive = (element.tagName == "SPAN" && element.parentElement.tagName == "A" && element.parentElement.parentElement.classList[0] == "nav-links")
+            || (element.tagName == "A" && element.parentElement.classList[0] == "nav-links")
+            || (element.classList[0] == "nav-links" && element.parentElement.tagName == "DIV")
+            || (element.tagName == "A" && element.parentElement.classList[0] == "admin-tools")
+            || (element.classList[0] == "admin-tools" && element.parentElement.classList[0] == "nav-links")
 
     if (!isElementActive) {
         hamIcon.classList.remove("active")

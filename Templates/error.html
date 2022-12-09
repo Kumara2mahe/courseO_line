@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en-US" dir="ltr">
+
+<head>
+    <title>{% block title %}{% if statuscode == 403 %}
+        Forbidden : {{ statuscode }}
+        {% elif statuscode == 400 %}
+        Bad Request : {{ statuscode }}
+        {% elif statuscode == 500 %}
+        Internal Server Error : {{ statuscode }}
+        {% else %}
+        Not Found : 404
+        {% endif %}{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="{% block meta_description %}courseO_line - {{ statuscode }} error{% endblock %}">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #EAEAEA;
+        }
+
+        .error-page {
+            position: relative;
+            background-color: #FFFFFF;
+            width: 30em;
+            margin: 1rem;
+            padding: 2rem;
+        }
+
+        .error-page h1 {
+            font-size: 2em;
+        }
+
+        .error-page h1 span {
+            color: rgb(252, 78, 25);
+        }
+
+        .error-page p {
+            padding: 0.5rem 1rem;
+        }
+
+        .error-page a {
+            display: block;
+            text-align: right;
+            color: #007BFF;
+            cursor: pointer;
+        }
+
+        .error-page a span {
+            text-decoration: underline;
+        }
+
+        .error-page a:hover {
+            color: #023E8A;
+        }
+
+        .error-page a:active {
+            color: #FFA500;
+        }
+
+        @media (min-width: 500px) and (max-width: 1000px) {
+            .error-page h1 {
+                font-size: 1.5em;
+            }
+
+            .error-page a {
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 499px) {
+            .error-page h1 {
+                font-size: 1em;
+            }
+
+            .error-page a {
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="error-page">
+        {% if statuscode == 403 %}
+        <h1>Forbidden : <span>{{ statuscode }}</span></h1>
+        {% elif statuscode == 400 %}
+        <h1>Bad Request : <span>{{ statuscode }}</span></h1>
+        {% elif statuscode == 500 %}
+        <h1>Internal Server Error : <span>{{ statuscode }}</span></h1>
+        {% else %}
+        <h1>Not Found : <span>404</span></h1>
+        {% endif %}
+        <hr>
+        <a href="{% url 'home' %}">&#11178;&nbsp;<span>go home</span></a>
+    </section>
+</body>
+
+</html>

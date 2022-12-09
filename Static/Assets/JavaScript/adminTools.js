@@ -11,9 +11,9 @@ const showAdminTools = () => {
 }
 // ---- Function for closing Admin Tools Dropdown ---- //
 const closeAdminTools = (event) => {
-    let element = event.target
-    let isElementActive = (element.tagName == "A" && element.parentElement.classList[0] == "admin-tools")
-        || (element.classList[0] == "admin-tools" && element.parentElement.classList[0] == "nav-links")
+    let element = event.target,
+        isElementActive = (element.tagName == "A" && element.parentElement.classList[0] == "admin-tools")
+            || (element.classList[0] == "admin-tools" && element.parentElement.classList[0] == "nav-links")
 
     if (!isElementActive) {
         adminTools.nextElementSibling.classList.remove("show")
