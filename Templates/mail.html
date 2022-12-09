@@ -98,6 +98,53 @@
             <small>Note: Password can be changed at anytime from this <a href="{{ resetlink }}"
                     target="_blank">link</a>.</small>
         </section>
+        {% elif feedback %}
+        <table cellspacing="10" style="width:100%; margin-left: auto; font-size: 0.9rem;">
+            <tbody>
+                <tr>
+                    <td style="width: 70%;">
+                        <h2>It's <span style="color: #6B1853;">courseO_line</span></h2>
+                    </td>
+                    <td style="text-align:right;"><a style="background-color: #6B1853;
+                        color: #F0F8FF;
+                        padding: 0.6rem 1.2rem 0.6rem 1.2rem;
+                        border-radius: 0.6rem;
+                        box-shadow: 0 0 0.4em #001219;
+                        text-decoration: none;
+                        cursor: pointer;" href="mailto:{{ email }}">Reply</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+        <section style="text-align: justify; margin: 1rem 1rem 0 1rem;">
+            {% if subject %}
+            <p style="color: #000000;">{{ subject }}</p>
+            {% endif %}
+            <table cellspacing="10" style="width:100%; margin-left: auto; font-size: 0.9rem;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="{{ sitelink }}" target="_blank" style="display: inline-block; width: 5em;">
+                                <img src="https://raw.githubusercontent.com/Kumara2mahe/courseO_line/main/Static/Assets/Images/favicon.png"
+                                    alt="courseO_line logo" style="width: 100%;">
+                            </a>
+                        </td>
+                        <td style="width: 40%;">
+                            <h4 style="margin-bottom: 0.8em;"><small style="color: #808080;">Name:</small>&nbsp;
+                                <span style="color: #800000;">{{ name }}</span>
+                            </h4>
+                            <h4 style="margin-top: 0.8em;"><small style="color: #808080;">Email:</small>&nbsp;
+                                <span style="color: #800000;">{{ email }}</span>
+                            </h4>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="color: #000000;">{{ feedback }}</p>
+            <hr>
+            <small>Disclaimer: This is a system-generated e-mail by the {{ domain }} project, please don't
+                reply to this message.</small>
+        </section>
         {% endif %}
 
     </article>

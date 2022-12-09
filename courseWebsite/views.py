@@ -82,6 +82,37 @@ def courses(request):
 def contact(request):
     """ View for rendering Contact-Page """
 
+    if request.method == "POST":
+        name = request.POST["visitername"]
+        email = request.POST["visiteremail"]
+        subject = request.POST["querysubject"]
+        query = request.POST["visiterquery"]
+
+        if name == "" and email == "" and query == "":
+            return JsonResponse({"info": "empty",
+                                 "message": "Make sure the fields with asterisk(*) are not empty"})
+        elif name == "":
+            return JsonResponse({"info": "empty",
+                                 "message": "Oops! without a name how can we call you"})
+        elif email == "":
+            return JsonResponse({"info": "empty",
+                                 "message": "Sorry, you forgot to enter your email"})
+        elif query == "":
+            return JsonResponse({"info": "empty",
+                                 "message": "Don't hesitate to give us feedback"})
+
+        # Filling user feedback with content and Sending as mail
+        sitelinks = getlinks(request, False)
+        mailcontent = {
+            "name": name,
+            "email": email,
+            "feedback": query,
+            "subject": subject
+        }
+        response = sendMail(to=EMAIL_HOST_USER, as_="feedback",
+                            **mailcontent, **sitelinks)
+        return JsonResponse(response)
+
     # Random course categories
     footer_topics = collectCourse(coursemodel=CourseCategory,
                                   rand=True,

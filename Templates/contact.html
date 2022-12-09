@@ -4,7 +4,6 @@
 {% block meta_description %}courseO_line - contact us for more support or else you have any queries{% endblock%}
 
 {% block content %}
-
 <article class="contact-page">
 
     <!-- Title | Container -->
@@ -26,19 +25,19 @@
 
         <!-- Contact | Form -->
         <form class="contact-form" method="POST" autocomplete="on">
-
             {% csrf_token %}
             <h3 class="form-heading">Get In Touch</h3>
-            <textarea class="visiter_query" name="visiterquery" type="text" placeholder="Enter your Message"></textarea>
-            
+            <textarea class="visiter_query field" name="visiterquery" placeholder="Enter your Message *"></textarea>
+
             <!-- Visiter Details -->
             <div class="visiter-details">
-                <input class="visiter_name" name="visitername" type="text" placeholder="Your Name" autocomplete="name">
-                <input class="visiter_email" name="visiteremail" type="text" placeholder="Your Email" autocomplete="email">
+                <input class="visiter_name field" name="visitername" type="text" placeholder="Your Name *"
+                    autocomplete="name">
+                <input class="visiter_email field" name="visiteremail" type="email" placeholder="Your Email *"
+                    autocomplete="email">
             </div>
-            <input class="query_subject" name="querysubject" type="text" placeholder="Subject">
-            <input class="send_button" type="submit" value="Send">
-
+            <input class="query_subject field" name="querysubject" type="text" placeholder="Subject">
+            <input class="send_button field" type="submit" value="Send">
         </form>
 
         <div class="contacts-wrapper">
@@ -67,5 +66,4 @@
     </section>
 
 </article>
-
 {% endblock %}

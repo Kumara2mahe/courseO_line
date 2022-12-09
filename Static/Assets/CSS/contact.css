@@ -1,3 +1,5 @@
+@import url("./status.css");
+
 /* ----------------------------------------- Contact Page | Styles ------------------------------------------
 ---------------------------------------------------------------------------------------------------- */
 
@@ -72,7 +74,7 @@
     transition: 250ms;
 }
 
-.contact-page .feedback-container .contact-form .send_button:hover {
+.contact-page .feedback-container .contact-form .send_button:not(:disabled):hover {
     background-color: var(--amaranthmp);
     box-shadow: 0 0 0.2rem var(--richblackfogra29);
     transform: scale(1.04);

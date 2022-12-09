@@ -144,7 +144,7 @@ def render_to_plain(html):
 def sendMail(to, as_, **content):
     """
         Send passed in data as a mail by rendering it with the mail template to generate the concurrent mail,
-        according to certain circumstances like sending mail for account creation and otp verification.
+        according to certain circumstances like sending mail for account creation, otp verification and as feedback mail.
 
         Parameters:
             to (str): email id which the mail is to be sent
@@ -165,9 +165,13 @@ def sendMail(to, as_, **content):
         if as_ == "password":
             msubject = "Admin Account have been created"
             msg = f"Admin created and Password sent to '{to}'"
-        else:
+        elif as_ == "otp":
             msubject = "Your 6-digit Verification Code"
             msg = f"OTP {content['msg']} successfully to '{to}'"
+        else:
+            msubject = f"Feedback: {subject}" if (
+                subject := content["subject"]) != "" else f"Got a Feedback from {content['name']}"
+            msg = "Thank you we got your feedback, will respond to you shortly"
 
         # Sending E-mail
         mail = EmailMultiAlternatives(subject=msubject,
