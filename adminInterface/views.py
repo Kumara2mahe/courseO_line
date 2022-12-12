@@ -11,6 +11,7 @@ from common.utils import collectCourse
 from .utils import isUTubeLink, fieldValidation, removeInstance
 
 OPERATIONS = ["add", "update", "delete"]
+PREKEY = "previousurl"
 IKEY = "interface"
 
 
@@ -25,8 +26,12 @@ def adminSettings(request):
                                   count=4)
 
     # Storing current url in session
-    request.session["previousurl"] = {"user": request.session["previousurl"]["user"],
-                                      "auth": request.path}
+    if not [key for key in request.session.keys() if key == PREKEY]:
+        request.session[PREKEY] = {"user": "/",
+                                   "auth": request.path}
+    else:
+        request.session[PREKEY] = {"user": request.session[PREKEY]["user"],
+                                   "auth": request.path}
 
     # Storing default interface name
     if not [key for key in request.session.keys() if key == IKEY]:
