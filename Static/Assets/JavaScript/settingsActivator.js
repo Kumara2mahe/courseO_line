@@ -250,12 +250,12 @@ const optionPopulator = (event, selectBox, fieldname = "course_name") => {
 
     let formData = { csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(), }
     if (event) {
-        // Disabling & Highlighting selected value
+        // Highlighting & Disabling selected value
         selectBox = event.target
-        selectBox.disabled = true
         highlightSelected(selectBox, defaultBoxValues[0])
         formData["category"] = selectBox.value
     }
+    selectBox.disabled = true
 
     // Sending request through AJAX
     $.ajax({
@@ -277,29 +277,27 @@ const optionPopulator = (event, selectBox, fieldname = "course_name") => {
                     newoption.value = newoption.innerHTML = title
                     courseBox.append(newoption)
                 })
+                selectBox.disabled = false
                 if (event) {
                     // Resetting Form except Category Selectbox
                     resetUpdateForm(selectBox.parentElement, true)
 
-                    // Enabling both Selectboxes
-                    selectBox.disabled = false
+                    // Enabling course box
                     courseBox.disabled = false
                     courseBox.addEventListener("change", activateCourseModification)
                 }
             }
             else {
-                // Resetting the Selectbox
-                optionPopulator(null, selectBox, selectBox.classList[0])
-
                 // Creating Status Message
-                let status = new Status()
+                let status = new Status(), msgs = ["Oops! Something went wrong try again",
+                    `No Course available to ${selectBox.parentElement.classList[0]}, why can't you add one.`]
 
                 // Populating and Showing the Status message
-                status.message("Oops! Something went wrong try again")
+                status.message(event ? msgs[0] : msgs[1])
                 status.show("article")
                 setTimeout(() => {
                     status.remove()
-                    selectBox.disabled = false
+                    if (event) window.location.reload()
                 }, 3000)
             }
         },

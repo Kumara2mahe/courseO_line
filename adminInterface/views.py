@@ -37,7 +37,8 @@ def adminSettings(request):
     if not [key for key in request.session.keys() if key == IKEY]:
         request.session[IKEY] = "addcourse"
 
-    return render(request, "settings.html", {"footer_topics": footer_topics,
+    return render(request, "settings.html", {"has_footer": True,
+                                             "footer_topics": footer_topics,
                                              IKEY: request.session[IKEY]})
 
 

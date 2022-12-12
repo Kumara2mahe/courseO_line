@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{% static 'Assets/CSS/settings.css' %}">
     {% endif %}
     <link rel="icon" type="image/png" href="{% static 'Assets/Images/favicon.png' %}">
-    {% if not user.is_authenticated and not footer_topics or user.is_authenticated and not footer_topics %}
+    {% if not user.is_authenticated and not has_footer or user.is_authenticated and not has_footer %}
     <link rel="stylesheet" href="{% static 'Assets/CSS/authenticate.css' %}">
     {% if request.path != "/administrator/reset-password" %}
     <script type="module" src="{% static 'Assets/JavaScript/admin.js' %}"></script>
@@ -53,7 +53,7 @@
 </head>
 
 <body>
-    {% if footer_topics %}
+    {% if has_footer %}
     <header>
 
         <!-- Navigation-Bar -->
@@ -104,7 +104,7 @@
     {% block content %}
     {% endblock %}
 
-    {% if footer_topics %}
+    {% if has_footer %}
     <footer>
 
         <!-- Bottom-Info | Social-Links -->
@@ -124,12 +124,14 @@
         {% if request.path != "/contact" %}
         <!-- Bottom-Info | Course-Topics -->
         <section class="bottom-info topics-section">
+            {% if footer_topics %}
             <h3>Our Topics</h3>
             <ul class="topics">
                 {% for category in footer_topics %}
                 <li><a class="topic-link">{{category.category_name}}</a></li>
                 {% endfor %}
             </ul>
+            {% endif %}
         </section>
 
         <!-- Bottom-Info | Support -->

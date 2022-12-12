@@ -32,6 +32,7 @@ def home(request):
     return render(request, "home.html", {"placeholder_img": placeholder_img,
                                          "top_courses": top_courses,
                                          "categories": categories,
+                                         "has_footer": True,
                                          "footer_topics": categories[0:4]})
 
 
@@ -48,7 +49,8 @@ def about(request):
     request.session["previousurl"] = {"user": request.path,
                                       "auth": None}
 
-    return render(request, "about.html", {"footer_topics": footer_topics})
+    return render(request, "about.html", {"has_footer": True,
+                                          "footer_topics": footer_topics})
 
 
 def courses(request):
@@ -76,6 +78,7 @@ def courses(request):
     return render(request, "courses.html", {"placeholder_img": placeholder_img,
                                             "courses": all_courses,
                                             "categories": categories,
+                                            "has_footer": True,
                                             "footer_topics": footer_topics})
 
 
@@ -123,4 +126,5 @@ def contact(request):
     request.session["previousurl"] = {"user": request.path,
                                       "auth": None}
 
-    return render(request, "contact.html", {"footer_topics": footer_topics})
+    return render(request, "contact.html", {"has_footer": True,
+                                            "footer_topics": footer_topics})
