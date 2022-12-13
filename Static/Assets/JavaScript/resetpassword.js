@@ -96,7 +96,7 @@ const validateEmailandSendOtp = (e) => {
     form.classList.add("processing")
 
     // Creating Status Message
-    let status = new Status(), millisec = 2500,
+    let status = new Status(), millisec,
         emailInput = form.querySelector(".registered_email"), enteredemail = emailInput.value
 
     // Sending request through AJAX for Generating and Sending OTP to email
@@ -114,20 +114,19 @@ const validateEmailandSendOtp = (e) => {
             if (data.info == "sent") {
 
                 // Showing status
-                status.show(article, true)
+                millisec = status.show(article, true)
                 setTimeout(() => {
                     form.classList.add(HID) // Hiding Email-otp Form & Activating Change Password Form
                     form.removeEventListener("submit", validateEmailandSendOtp)
                     showChangePasswordForm(enteredemail)
-                }, millisec)
+                }, millisec - 500)
             }
             else {
                 // Showing status as error
-                status.show(article)
+                millisec = status.show(article)
                 if (data.info == "failed") {
                     window.location.reload()
                 }
-                millisec = 3500
             }
             // Clearing Email input
             emailInput.value = ""
@@ -136,7 +135,7 @@ const validateEmailandSendOtp = (e) => {
                 form.classList.remove("processing")
                 button.disabled = false
                 emailInput.focus()
-            }, millisec - 500)
+            }, millisec)
         },
         error: () => {
             window.location.reload()
@@ -162,9 +161,9 @@ else {
 const clearOTPInput = (input, text) => {
 
     // Creating Status Message
-    let status = new Status()
+    let status = new Status(), millisec
     status.message(text)
-    status.show(article)
+    millisec = status.show(article)
 
     // Clearing Input
     input.value = ""
@@ -174,7 +173,7 @@ const clearOTPInput = (input, text) => {
         status.remove()
         input.classList.remove("error")
         input.disabled = false
-    }, 3000)
+    }, millisec)
 }
 
 // ---- Function to validate and update new password ---- //
@@ -186,7 +185,7 @@ const validateUpdateNewPassword = (form, emailId) => {
     form.classList.add("processing")
 
     // Creating Status Message
-    let status = new Status(), millisec = 2000,
+    let status = new Status(), millisec,
         confirmpassword = form.querySelector(".confirm_password"),
         newpassword = form.querySelector(".new_password")
 
@@ -207,7 +206,7 @@ const validateUpdateNewPassword = (form, emailId) => {
             if (data.info == "updated") {
 
                 // Showing status
-                status.show(article, true)
+                millisec = status.show(article, true, 2000)
                 setTimeout(() => {
                     form.classList.remove("processing")
                     window.location.href = window.location.origin + data.url
@@ -215,7 +214,7 @@ const validateUpdateNewPassword = (form, emailId) => {
             }
             else {
                 // Showing status as error
-                status.show(article)
+                millisec = status.show(article, false, 2500)
 
                 // Clearing Password Inputs
                 confirmpassword.value = ""
@@ -229,7 +228,7 @@ const validateUpdateNewPassword = (form, emailId) => {
                     status.remove()
                     form.classList.remove("processing")
                     button.disabled = false
-                }, millisec + 500)
+                }, millisec)
             }
         },
         error: () => {

@@ -93,7 +93,7 @@ const addNewCourse = (event) => {
     form.classList.add("processing")
 
     // Creating Status Message and collecting formdata
-    let status = new Status(), formData = new FormData(form)
+    let status = new Status(), millisec, formData = new FormData(form)
 
     // Sending the formdata as request through AJAX
     $.ajax({
@@ -111,11 +111,11 @@ const addNewCourse = (event) => {
 
                 // Clearing form & showing status
                 resetAddForm(null, form)
-                status.show("article", true)
+                millisec = status.show("article", true)
             }
             else {
                 // Showing status
-                status.show("article")
+                millisec = status.show("article")
 
                 let exceptions = []
                 if (data.info == "exists") {
@@ -130,7 +130,7 @@ const addNewCourse = (event) => {
                 status.remove()
                 button.disabled = false
                 form.classList.remove("processing")
-            }, 3000)
+            }, millisec)
         },
         error: pageReload
     })
@@ -146,7 +146,7 @@ const updateOldCourse = (event) => {
     form.classList.add("processing")
 
     // Creating Status Message and collecting formdata
-    let status = new Status(), formData = new FormData(form), disablebtn = false
+    let status = new Status(), millisec, formData = new FormData(form), disablebtn = false
 
     // Sending the formdata as request through AJAX
     $.ajax({
@@ -164,17 +164,17 @@ const updateOldCourse = (event) => {
 
                 // Clearing form edit section & showing status
                 resetUpdateForm(form, true, form.querySelector(".course_name"))
-                status.show("article")
+                millisec = status.show("article")
             }
             else if (data.info == "invalidlink") {
 
                 // Showing status
-                status.show("article")
+                millisec = status.show("article")
                 form.querySelector(".course_link").value = ""
             }
             else {
                 // Clearing form & showing status
-                status.show("article", data.info == "updated")
+                millisec = status.show("article", data.info == "updated")
                 resetUpdateForm(form)
                 disablebtn = true
                 form.removeEventListener("submit", updateOldCourse)
@@ -184,7 +184,7 @@ const updateOldCourse = (event) => {
                 status.remove()
                 button.disabled = disablebtn
                 form.classList.remove("processing")
-            }, 3000)
+            }, millisec)
         },
         error: pageReload
     })
@@ -201,7 +201,7 @@ const deleteOldCourse = (event) => {
     form.classList.add("processing")
 
     // Creating Status Message
-    let status = new Status()
+    let status = new Status(), millisec
 
     // Sending the formdata as request through AJAX
     $.ajax({
@@ -218,14 +218,14 @@ const deleteOldCourse = (event) => {
             // Clearing form & showing status
             resetUpdateForm(form)
             status.message(data.message)
-            status.show("article", data.info == "deleted")
+            millisec = status.show("article", data.info == "deleted")
 
             setTimeout(() => {
                 status.remove()
                 form.querySelector(".course_name").removeEventListener("change", activateCourseModification)
                 form.removeEventListener("submit", deleteOldCourse)
                 form.classList.remove("processing")
-            }, 3000)
+            }, millisec)
         },
         error: pageReload
     })
@@ -289,16 +289,16 @@ const optionPopulator = (event, selectBox, fieldname = "course_name") => {
             }
             else {
                 // Creating Status Message
-                let status = new Status(), msgs = ["Oops! Something went wrong try again",
+                let status = new Status(), millisec, msgs = ["Oops! Something went wrong try again",
                     `No Course available to ${selectBox.parentElement.classList[0]}, why can't you add one.`]
 
                 // Populating and Showing the Status message
                 status.message(event ? msgs[0] : msgs[1])
-                status.show("article")
+                millisec = status.show("article")
                 setTimeout(() => {
                     status.remove()
                     if (event) window.location.reload()
-                }, 3000)
+                }, millisec)
             }
         },
         error: pageReload
@@ -456,9 +456,9 @@ const triggerFileUpload = (event) => {
         }
         else {
             // Creating & Showing Status Message
-            let status = new Status()
+            let status = new Status(), millisec
             status.message(`Only ${filetype} files are allowed`)
-            status.show("article")
+            millisec = status.show("article")
 
             // Disabling and Enabling the upload button
             fileField.previousElementSibling.disabled = true
@@ -466,7 +466,7 @@ const triggerFileUpload = (event) => {
             setTimeout(() => {
                 status.remove()
                 fileField.previousElementSibling.disabled = false
-            }, 3000)
+            }, millisec)
         }
     }
     let fileField = event.target.nextElementSibling

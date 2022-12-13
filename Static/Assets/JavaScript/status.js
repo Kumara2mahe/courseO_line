@@ -1,6 +1,9 @@
 
 // ------------------- Status Message - Creator Script ---------------------------------------- //
 
+const STATUS_CLS = "statuscontainer", M_CLS = "message", S_CLS = "success"
+
+
 class Status {
     /** 
      * Class for creating and working with Status message
@@ -14,26 +17,28 @@ class Status {
         this._tagName = tagName
         this._element = (() => {
             let element = document.createElement(this._tagName)
-            element.classList.add("statuscontainer")
-            element.innerHTML = `<span class="message"></span>`
+            element.classList.add(STATUS_CLS)
+            element.innerHTML = `<span class="${M_CLS}"></span>`
             if (hasClose) {
                 element.innerHTML += `<span class="close" onclick="this.parentElement.remove()">&times;</span>`
             }
             return element
         })()
         this._parent = document
-        this._message = this._element.querySelector(".message").innerHTML = "Error 404 - Check your Internet Connection and Try Again!"
+        this._message = this._element.querySelector(`.${M_CLS}`).innerHTML = "Error 404 - Check your Internet Connection and Try Again!"
     }
 
     /**
      * Show Status
      * @param {string | HTMLElement} selectors one or more valid CSS selector string
-     * @param {boolean} noerror defines the status message visually as a error or success
+     * @param {boolean} noerror defines the status message visually as a error or success, default is false
+     * @param {number} millisecs minimum duration to show status message (in milliseconds), default is 3000ms
+     * @returns {number} calculated maximum duration to show status message in (in milliseconds)
      */
-    show(selectors, noerror = false) {
+    show(selectors, noerror = false, millisecs = 3000) {
         if (selectors != null) {
 
-            let parentElement = selectors, className = selectors.constructor.name
+            let oldstatus, parentElement = selectors, className = selectors.constructor.name
             if (className == "String") {
                 parentElement = document.querySelector(selectors)
             }
@@ -41,10 +46,15 @@ class Status {
             // Confirming element not null
             if (parentElement) {
                 if (noerror) {
-                    this._element.classList.add("success")
+                    this._element.classList.add(S_CLS)
                 }
                 this._parent = parentElement
-                parentElement.prepend(this._element)
+                if (oldstatus = parentElement.querySelector(`.${STATUS_CLS}:not(.${S_CLS})`)) {
+                    oldstatus.remove()
+                    parentElement.append(this._element)
+                }
+                else parentElement.prepend(this._element)
+                return this.after(millisecs)
             }
             else throw Error(`"${selectors}" is not a valid selector`)
         }
@@ -56,7 +66,19 @@ class Status {
      * @param {string} info string to show inside Status
      */
     message(info) {
-        this._message = this._element.querySelector(".message").innerHTML = info || this._message
+        this._message = this._element.querySelector(`.${M_CLS}`).innerHTML = info || this._message
+    }
+
+    /**
+     * Calculating Max Visible time,
+     * from the existing counting of Status message
+     * @param {number} millisecs minimum duration to show status message (in milliseconds), default is 3000ms
+     * @returns {number} calculated maximum duration to show status message in (in milliseconds)
+     */
+    after(millisec) {
+        this._after = millisec
+        let previous = this._parent.querySelectorAll(`.${STATUS_CLS}`)
+        return this._after = this._after * (previous.length || 1)
     }
 
     /**

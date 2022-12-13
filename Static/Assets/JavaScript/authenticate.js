@@ -63,13 +63,14 @@ const adminAuthentication = (tourl, formData, status, form) => {
             }
             else {
                 // Populating status & clearing fields
+                let millisec
                 if (data.info == "sent") {
                     status.message(data.message)
-                    status.show(article, true)
+                    millisec = status.show(article, true)
                 }
                 else {
                     status.message(data.message)
-                    status.show(article)
+                    millisec = status.show(article)
                 }
 
                 form.querySelectorAll("input:not([type=hidden]):not([type=submit])").forEach((input) => {
@@ -78,7 +79,7 @@ const adminAuthentication = (tourl, formData, status, form) => {
                 setTimeout(() => {
                     status.remove()
                     form.querySelector("input[type=submit]").disabled = false
-                }, 3000)
+                }, millisec)
             }
         },
         error: () => {

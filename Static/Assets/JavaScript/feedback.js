@@ -16,7 +16,7 @@ const sendFeedBack = (e) => {
     form.classList.add("processing")
 
     // Creating Status Message
-    let status = new Status(), info
+    let status = new Status(), info, millisec
     $.ajax({
         type: "POST",
         url: "/contact",
@@ -27,15 +27,17 @@ const sendFeedBack = (e) => {
 
             // Populating & Showing status
             status.message(data.message)
-            status.show("article", (info = data.info) == "sent")
+            millisec = status.show("article", info = (data.info == "sent"), 2500)
             setTimeout(() => {
                 status.remove()
                 fields.forEach((element) => {
-                    if (info && element.type != "submit") { element.value = "" }
+                    if (info && element.type != "submit") {
+                        element.value = ""
+                    }
                     element.disabled = false
                 })
                 form.classList.remove("processing")
-            }, 2500)
+            }, millisec)
         },
         error: () => {
             window.location.reload()
