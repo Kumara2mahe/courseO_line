@@ -20,3 +20,20 @@ def placeholderPicker() -> Path:
     """
     random.shuffle(PLACEHOLDERS_IMGS)
     return random.choice(PLACEHOLDERS_IMGS)
+
+
+def footerTopics(topics):
+    """
+        Collect four random topics for Footer section from the passed in topics list
+
+        Parameters:
+            topics (list[CourseCategory]): a sequence of all topics
+
+        Return:
+            list[CourseCategory] - list of shuffled items of length 4
+    """
+    if type(topics).__name__ != "list":
+        topics = list(topics)
+    topics = topics.copy()
+    random.shuffle(topics)
+    return topics[0:4]

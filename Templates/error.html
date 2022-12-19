@@ -37,6 +37,7 @@
 
         .error-page h1 {
             font-size: 2em;
+            text-align: center;
         }
 
         .error-page h1 span {
@@ -96,11 +97,16 @@
         <h1>Bad Request : <span>{{ statuscode }}</span></h1>
         {% elif statuscode == 500 %}
         <h1>Internal Server Error : <span>{{ statuscode }}</span></h1>
+        <p>Sorry for the disconvenience, this not you, its on us and we will be back in no time.</p>
         {% else %}
         <h1>Not Found : <span>404</span></h1>
         {% endif %}
         <hr>
+        {% if statuscode == 500 %}
+        <a onclick="window.location.reload()">&#10227;&nbsp;<span>reload</span></a>
+        {% else %}
         <a href="{% url 'home' %}">&#11178;&nbsp;<span>go home</span></a>
+        {% endif %}
     </section>
 </body>
 

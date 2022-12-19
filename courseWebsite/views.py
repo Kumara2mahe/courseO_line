@@ -5,8 +5,8 @@ from django.http import JsonResponse
 
 # Local Django
 from .models import CourseCategory, CourseDetail
-from common.utils import collectCourse, footerTopics, getlinks, sendMail
-from .utils import placeholderPicker
+from common.utils import collectCourse, showError, getlinks, sendMail
+from .utils import placeholderPicker, footerTopics
 from mainserver.settings import EMAIL_HOST_USER
 
 
@@ -22,8 +22,10 @@ def home(request):
                                hascourse=True,
                                count=8)
 
-    # Pick a random placeholder image
+    # Pick a random placeholder image & footer topics
     placeholder_img = placeholderPicker()
+    if not (footer_topics := categories[0:4]):
+        return showError(request, 500)
 
     # Storing current url in session
     request.session["previousurl"] = {"user": request.path,
@@ -33,7 +35,7 @@ def home(request):
                                          "top_courses": top_courses,
                                          "categories": categories,
                                          "has_footer": True,
-                                         "footer_topics": categories[0:4]})
+                                         "footer_topics": footer_topics})
 
 
 def about(request):
@@ -69,7 +71,8 @@ def courses(request):
 
     # Pick random placeholder image & footer topics
     placeholder_img = placeholderPicker()
-    footer_topics = footerTopics(categories)
+    if not (footer_topics := footerTopics(categories)):
+        return showError(request, 500)
 
     # Storing current url in session
     request.session["previousurl"] = {"user": request.path,

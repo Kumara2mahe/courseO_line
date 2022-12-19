@@ -7,7 +7,7 @@ from django.http import JsonResponse
 
 # Local Django
 from courseWebsite.models import CourseCategory, CourseDetail
-from common.utils import collectCourse
+from common.utils import collectCourse, getPreviousUrl
 from .utils import isUTubeLink, fieldValidation, removeInstance
 
 OPERATIONS = ["add", "update", "delete"]
@@ -26,15 +26,11 @@ def adminSettings(request):
                                   count=4)
 
     # Storing current url in session
-    if not [key for key in request.session.keys() if key == PREKEY]:
-        request.session[PREKEY] = {"user": "/",
-                                   "auth": request.path}
-    else:
-        request.session[PREKEY] = {"user": request.session[PREKEY]["user"],
-                                   "auth": request.path}
+    request.session[PREKEY] = {"user": getPreviousUrl(request, False),
+                               "auth": request.path}
 
     # Storing default interface name
-    if not [key for key in request.session.keys() if key == IKEY]:
+    if IKEY not in request.session.keys():
         request.session[IKEY] = "addcourse"
 
     return render(request, "settings.html", {"has_footer": True,

@@ -21,7 +21,7 @@ def login(request):
     """ View for rendering Login-Page and authenticate Admin """
 
     # Get previous url from session
-    previous_url = getPreviousUrl(request, default="/")
+    previous_url = getPreviousUrl(request)
 
     if request.method == "POST":
         admin_name = request.POST["adminname"]
@@ -88,7 +88,7 @@ def resetPassword(request):
     """ View for rendering ResetPassword-Page """
 
     # Get previous url from session
-    previous_url = getPreviousUrl(request, default="/")
+    previous_url = getPreviousUrl(request)
 
     if request.user.is_authenticated:
         return redirect(previous_url)
@@ -194,7 +194,7 @@ def logout(request):
     which has don't require admin authentication """
 
     # Get previous url from session
-    previous_url = getPreviousUrl(request, False, default="/")
+    previous_url = getPreviousUrl(request, False)
 
     if not (previous_url and request.user.is_authenticated):
         return showError(request, 400)
@@ -210,10 +210,7 @@ def redirectOrClose(request):
     if request.path == "/administrator/close":
 
         # Get previous url from session
-        to_url = getPreviousUrl(request, default="/")
-
-        if to_url is None:
-            to_url = "/"
+        to_url = getPreviousUrl(request)
     else:
         to_url = LOGIN_PATH
 

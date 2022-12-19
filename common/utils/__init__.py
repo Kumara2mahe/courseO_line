@@ -42,23 +42,6 @@ def collectCourse(coursemodel, rand: bool, order_by="id", hascourse=False, count
     return all_courses
 
 
-def footerTopics(topics):
-    """
-        Collect four random topics for Footer section from the passed in topics list
-
-        Parameters:
-            topics (list[CourseCategory]): a sequence of all topics
-
-        Return:
-            list[CourseCategory] - list of shuffled items of length 4
-    """
-    if type(topics).__name__ != "list":
-        topics = list(topics)
-    topics = topics.copy()
-    random.shuffle(topics)
-    return topics[0:4]
-
-
 def showError(uRequest, status: int):
     """
         Render the error template with a status code
@@ -76,25 +59,23 @@ def showError(uRequest, status: int):
     return response
 
 
-def getPreviousUrl(request, admin=True, default=None):
+def getPreviousUrl(request, admin=True, default="/"):
     """ 
         Get the previous url stored in the session object
 
             Parameters:
                 uRequest (HttpRequest)
                 [admin] (bool): True means check under the 'auth' key in session object
-                [default] (str|None): path to the redirect url
+                [default] (str): path to the redirect url, if nothing is given redirect to home page 
 
             Return
-                None|str: path to previous url or path in parameter(default)
+                str: path to previous url or path in parameter(default)
     """
-    url = {PRE_URL: request.session[key]
-           for key in request.session.keys() if key == PRE_URL}
-    if url:
-        if admin and (preurl := url[PRE_URL]["auth"]) is not None:
+    if PRE_URL in request.session.keys() and (url := request.session[PRE_URL]):
+        if admin and (preurl := url["auth"]) is not None:
             return preurl
         else:
-            return url[PRE_URL]["user"]
+            return url["user"]
     return default
 
 
