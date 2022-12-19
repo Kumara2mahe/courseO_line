@@ -1,8 +1,9 @@
 # Third Party
 import requests
+from cloudinary import uploader
 
 # local Django
-from mainserver.settings import MEDIA_ROOT
+from mainserver.settings import DEBUG, MEDIA_ROOT
 from courseWebsite.models import CourseDetail
 
 ERROR = '"playabilitystatus":{"status":"error","reason":"video unavailable"'
@@ -79,7 +80,7 @@ def removeInstance(object, onlyfile=False):
 
         Parameters:
             object (CourseCategory|CourseDetail): instance of custom Model
-            [onlyfile] (bool): true means deletes the whole instance also
+            [onlyfile] (bool): true means deletes the file and leave the instance
     """
 
     if type(object).__name__ == "CourseCategory":
@@ -87,6 +88,9 @@ def removeInstance(object, onlyfile=False):
     else:
         file = object.course_pdf.name
     if file != "":
-        (MEDIA_ROOT / file).unlink(True)
+        if not DEBUG:
+            (MEDIA_ROOT / file).unlink(True)
+        else:
+            uploader.destroy(file)
     if not onlyfile:
         object.delete()

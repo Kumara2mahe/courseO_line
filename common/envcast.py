@@ -1,6 +1,9 @@
 # Standard library
 import os
 
+# Third Party
+import cloudinary
+
 
 def toBool(key: str) -> bool:
     """
@@ -87,3 +90,20 @@ def toTuple(key: str):
                         value[n] = val
 
                 return tuple(value)
+
+
+def getCloudConfig():
+    """
+        Get the cloudinary url from the environment variable,
+        and splitting configs as a dict
+
+        Return:
+            dict[str, str]: cloudinary configs to authenticate
+    """
+
+    config = cloudinary.config(secure=True)
+    return {
+        "CLOUD_NAME": config.cloud_name,
+        "API_KEY": config.api_key,
+        "API_SECRET": config.api_secret,
+    }
