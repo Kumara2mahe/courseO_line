@@ -33,9 +33,9 @@ def adminSettings(request):
     if IKEY not in request.session.keys():
         request.session[IKEY] = "addcourse"
 
-    return render(request, "settings.html", {"has_footer": True,
-                                             "footer_topics": footer_topics,
-                                             IKEY: request.session[IKEY]})
+    return render(request, "adminInterface/settings.html", {"has_footer": True,
+                                                            "footer_topics": footer_topics,
+                                                            IKEY: request.session[IKEY]})
 
 
 @require_POST

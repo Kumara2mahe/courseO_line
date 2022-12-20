@@ -1,28 +1,29 @@
-{% extends "base.html" %}
+{% extends "../common/base.html" %}
 {% load static %}
 
 {% block meta_description %}courseO_line - Create new admin account to modify the site content{% endblock %}
 
 {% block content %}
-<article class="signup-page">
+<article class="login-page">
 
-    <!-- Admin Signup | Container -->
+    <!-- Admin Login | Container -->
     <section class="auth-menu">
 
-        <h2>{% block page_title %}Create Admin{% endblock %} Account</h2>
-        <form class="create" method="POST" autocomplete="on">
+        <h2>{% block page_title %}Admin Authentication{% endblock %}</h2>
+        <form class="login" method="POST" autocomplete="on">
             {% csrf_token %}
             <p>&ensp;User Id</p>
             <input class="admin_name" type="text" name="adminname" placeholder="eg: Phil Coulson"
-                autocomplete="username" autofocus>
-            <p>&ensp;Email Id</p>
-            <input class="email" type="email" name="email" placeholder="daisyjohnson@shield.com" autocomplete="email">
-            <input type="submit" class="signup-button" value="Sign Up">
+                autocomplete="username">
+            <p>&ensp;Password</p>
+            <input class="pass_word" type="password" name="password" autocomplete="current-password">
+            <input type="submit" class="login-button" value="Log In">
         </form>
 
         <!-- More Options | Container -->
         <div class="more-options">
             <a class="abort-button" href="{% url 'close' %}">&#129092;&nbsp;back</a>
+            <a class="forgot-password" href="{% url 'reset-password' %}">Password</a>
         </div>
 
     </section>

@@ -88,7 +88,7 @@ def removeInstance(object, onlyfile=False):
     else:
         file = object.course_pdf.name
     if file != "":
-        if not DEBUG:
+        if DEBUG:
             (MEDIA_ROOT / file).unlink(True)
         else:
             uploader.destroy(file)

@@ -1,5 +1,5 @@
 
-import Status from "./status.js"
+import Status from "../../common/JavaScript/status.js"
 
 
 // ------------- Admin-Settings Form - Activator Script ----------------------- //

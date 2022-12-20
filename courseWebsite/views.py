@@ -9,6 +9,8 @@ from common.utils import collectCourse, showError, getlinks, sendMail
 from .utils import placeholderPicker, footerTopics
 from mainserver.settings import EMAIL_HOST_USER
 
+APP_NAME = "courseWebsite"
+
 
 def home(request):
     """ View for rendering Home-Page """
@@ -31,11 +33,11 @@ def home(request):
     request.session["previousurl"] = {"user": request.path,
                                       "auth": None}
 
-    return render(request, "home.html", {"placeholder_img": placeholder_img,
-                                         "top_courses": top_courses,
-                                         "categories": categories,
-                                         "has_footer": True,
-                                         "footer_topics": footer_topics})
+    return render(request, f"{APP_NAME}/home.html", {"placeholder_img": placeholder_img,
+                                                     "top_courses": top_courses,
+                                                     "categories": categories,
+                                                     "has_footer": True,
+                                                     "footer_topics": footer_topics})
 
 
 def about(request):
@@ -51,8 +53,8 @@ def about(request):
     request.session["previousurl"] = {"user": request.path,
                                       "auth": None}
 
-    return render(request, "about.html", {"has_footer": True,
-                                          "footer_topics": footer_topics})
+    return render(request, f"{APP_NAME}/about.html", {"has_footer": True,
+                                                      "footer_topics": footer_topics})
 
 
 def courses(request):
@@ -78,11 +80,11 @@ def courses(request):
     request.session["previousurl"] = {"user": request.path,
                                       "auth": None}
 
-    return render(request, "courses.html", {"placeholder_img": placeholder_img,
-                                            "courses": all_courses,
-                                            "categories": categories,
-                                            "has_footer": True,
-                                            "footer_topics": footer_topics})
+    return render(request, f"{APP_NAME}/courses.html", {"placeholder_img": placeholder_img,
+                                                        "courses": all_courses,
+                                                        "categories": categories,
+                                                        "has_footer": True,
+                                                        "footer_topics": footer_topics})
 
 
 def contact(request):
@@ -129,5 +131,5 @@ def contact(request):
     request.session["previousurl"] = {"user": request.path,
                                       "auth": None}
 
-    return render(request, "contact.html", {"has_footer": True,
-                                            "footer_topics": footer_topics})
+    return render(request, f"{APP_NAME}/contact.html", {"has_footer": True,
+                                                        "footer_topics": footer_topics})

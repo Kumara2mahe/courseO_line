@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "../common/base.html" %}
 {% load static %}
 
 {% block meta_description %}courseO_line - Admin authentication to modify the site content, video tutorials and materials{% endblock %}
@@ -28,15 +28,15 @@
             <input class="whichI" type="hidden" value="{{ interface }}">
             <div class="navigation">
                 <a class="addcourse">
-                    <img src="{% static 'Assets/Images/settings_01.png' %}">
+                    <img src="{% static 'adminInterface/Images/settings_01.png' %}">
                     <span>Add</span>
                 </a>
                 <a class="updatecourse">
-                    <img src="{% static 'Assets/Images/settings_02.png' %}">
+                    <img src="{% static 'adminInterface/Images/settings_02.png' %}">
                     <span>Update</span>
                 </a>
                 <a class="deletecourse">
-                    <img src="{% static 'Assets/Images/settings_03.png' %}">
+                    <img src="{% static 'adminInterface/Images/settings_03.png' %}">
                     <span>Delete</span>
                 </a>
             </div>

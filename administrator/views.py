@@ -14,7 +14,8 @@ from .models import VerificationOtp
 from common.utils import showError, getPreviousUrl, getlinks, sendMail
 from .utils import generatePassword, validatePassword
 
-LOGIN_PATH = "/administrator/login"
+APP_NAME = "administrator"
+LOGIN_PATH = f"/{APP_NAME}/login"
 
 
 def login(request):
@@ -45,7 +46,7 @@ def login(request):
     elif request.user.is_authenticated:
         return redirect(previous_url)
 
-    return render(request, "login.html")
+    return render(request, f"{APP_NAME}/login.html")
 
 
 @login_required(login_url=LOGIN_PATH)
@@ -81,7 +82,7 @@ def signup(request):
                             **mailcontent, **sitelinks)
         return JsonResponse(response)
 
-    return render(request, "signup.html")
+    return render(request, f"{APP_NAME}/signup.html")
 
 
 def resetPassword(request):
@@ -93,7 +94,7 @@ def resetPassword(request):
     if request.user.is_authenticated:
         return redirect(previous_url)
     else:
-        response = render(request, "resetpassword.html")
+        response = render(request, f"{APP_NAME}/resetpassword.html")
         if (email := request.GET.get("email")):
 
             # Validating email and checking for otp expirated
@@ -207,7 +208,7 @@ def logout(request):
 def redirectOrClose(request):
     """ View for redirecting to Login-Page / any previous-page"""
 
-    if request.path == "/administrator/close":
+    if request.path == f"/{APP_NAME}/close":
 
         # Get previous url from session
         to_url = getPreviousUrl(request)

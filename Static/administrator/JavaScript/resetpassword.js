@@ -1,5 +1,5 @@
-import dimensionChanger from "./admin.js"
-import Status from "./status.js"
+import dimensionChanger from "../JavaScript/admin.js"
+import Status from "../../common/JavaScript/status.js"
 
 
 // ------------------ Send OTP to Mail - Script --------------- //

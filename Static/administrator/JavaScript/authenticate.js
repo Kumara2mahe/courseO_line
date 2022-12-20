@@ -1,5 +1,5 @@
 
-import Status from "./status.js"
+import Status from "../../common/JavaScript/status.js"
 
 // ------------------- Admin SignIn/SignUp - Script ---------------------------------------- //
 

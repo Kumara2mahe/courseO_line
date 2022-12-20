@@ -54,7 +54,7 @@ def showError(uRequest, status: int):
                 a HttpResponse of Error template with its respective status code
     """
 
-    response = render(uRequest, "error.html", {"statuscode": status})
+    response = render(uRequest, "common/error.html", {"statuscode": status})
     response.status_code = status
     return response
 
@@ -137,7 +137,7 @@ def sendMail(to, as_, **content):
     """
 
     # Html template to plain string of HTML version
-    plainHTML = render_to_string("mail.html", content)
+    plainHTML = render_to_string("common/mail.html", content)
 
     # HTML version to a plain Text version
     plainTEXT = render_to_plain(plainHTML)
