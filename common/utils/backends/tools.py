@@ -93,17 +93,16 @@ def copyFile(obj, dbname: str, create=None, storeOnline=False):
         oldfile, newfile, extension = (Path(obj.replace(toDir, fromDir)), Path(obj.replace(fromDir, toDir)), True) if obj.startswith(
             MEDIA) else (Path(fromDir).joinpath(obj), Path(toDir).joinpath(obj), False)
 
-        # Spliting dir path
-        filename, path_to_file = newfile.name, newfile.as_posix()
-        filedir = Path(path_to_file.split(filename)[0])
+        # Spliting dir path, file name
+        filedir, filename, path_to_file = newfile.parent, newfile.name, newfile.as_posix()
         name_of_file = None
 
         # Copying old file data to new
         if storeOnline and create:
             oldfile = getpath_with_ext(oldfile, filedir, root_dirs=(toDir, fromDir),
                                         file_name=filename,
-                                        no_extension=extension)
-            filename = sliceExt(filename)
+                                        no_extension=extension) # Getting file path with extension
+            filename = sliceExt(newfile, filename)
             fileinfo = cloudinary.uploader.upload(file=oldfile.as_posix(),
                                                   folder=filedir.as_posix(),
                                                   public_id=filename,
@@ -111,7 +110,7 @@ def copyFile(obj, dbname: str, create=None, storeOnline=False):
             path_to_file, filename = fileinfo["public_id"], f'{filename}.{fileinfo["format"]}'
         else:
             if dbname == BACKEND_NAMES[1]:
-                public_id = sliceExt(oldfile.as_posix())
+                public_id = sliceExt(oldfile)
                 fileinfo = cloudinary.api.resource(public_id)
                 formmat, secureurl = fileinfo["format"], fileinfo["secure_url"]
                 path_to_file, filename = f"{path_to_file}.{formmat}", f"{filename}.{formmat}"
@@ -120,7 +119,7 @@ def copyFile(obj, dbname: str, create=None, storeOnline=False):
                 if create:
                     oldfile = getpath_with_ext(oldfile, filedir, root_dirs=(toDir, fromDir),
                                                file_name=filename,
-                                               no_extension=extension)
+                                               no_extension=extension) # Getting file path with extension
                     path_to_file = newfile.as_posix().replace(newfile.name, filename := oldfile.name)
                     name_of_file = path_to_file.removeprefix(f"{MEDIA}/")
                 oldfile = oldfile.read_bytes()
@@ -155,19 +154,19 @@ def getpath_with_ext(file: Path, parent_dir: Path, root_dirs: tuple[str, str], f
     return file
 
 
-def sliceExt(filename: str):
-    """ Remove any extension from filename 
+def sliceExt(filepath: Path, filename: str|None=None):
+    """ Remove any extension from filename or filepath
 
         Parameter:
-            filename (str): name or path of the file which extension is removed
+            filepath (Path): path of the file which extension is removed
+            [filename] (str|None): name of the file only
 
         Return:
             (str): filename without extension
     """
-    if filename.rfind(".") > 0:
-        index = filename.rindex(".")
-        return filename[0:index]
-    return filename
+    if filename is None:
+        filename = filepath.as_posix()
+    return filename.removesuffix(filepath.suffix)
 
 
 def makeDirTree(dirs: tuple[str, ...]):
