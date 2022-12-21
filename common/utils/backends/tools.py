@@ -17,6 +17,7 @@ from commandValidator import BACKEND_NAMES
 
 # Search for Tables names
 TABLE_NAMES = ("courseWebsite_coursecategory", "courseWebsite_coursedetail")
+MEDIA_FIELDS = ("category_image", "course_pdf")
 KEY_TO_REPLACE = "course_category"
 REPLACE_WITH = KEY_TO_REPLACE + "_id"
 MEDIA_DIR = "ParsedMedia"
@@ -45,11 +46,11 @@ def objToDict(listObjs: list, tableName: str, categorys: list[str], dbname: str)
         lookfor = None
         if tableName == TABLE_NAMES[1]:
             dictObj = replaceKey(dictObj)
-            lookfor = "course_pdf"
+            lookfor = MEDIA_FIELDS[1]
 
         elif tableName == TABLE_NAMES[0]:
             categorys.append(dictObj["category_name"])
-            lookfor = "category_image"
+            lookfor = MEDIA_FIELDS[0]
 
         # Copying files from its stored in fields
         for key in dictObj:
