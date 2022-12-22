@@ -3,7 +3,7 @@ import requests
 from cloudinary import uploader
 
 # local Django
-from mainserver.settings import DEBUG, MEDIA_ROOT
+from mainserver.settings.base import DEBUG, MEDIA_ROOT
 from courseWebsite.models import CourseDetail
 
 ERROR = '"playabilitystatus":{"status":"error","reason":"video unavailable"'

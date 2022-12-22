@@ -1,6 +1,8 @@
 # Cache
 __pycache__/
 
+# Static and migration files
+staticfiles/
 */migrations/*.py
 !*/migrations/__init__.py
 

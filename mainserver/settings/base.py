@@ -12,11 +12,13 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # local
-from common.envcast import toStr, toBool, toInt
+from common.envcast import (toStr, toBool,
+                            toInt, toTuple,
+                            getCloudConfig)
 
 
 # courseO_line Project's BASE Directory
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 load_dotenv()
 
@@ -24,7 +26,8 @@ load_dotenv()
 SECRET_KEY = toStr("SECRET_KEY")
 DEBUG = toBool("DEBUG")
 
-ALLOWED_HOSTS = []
+# Securing Cookies
+SESSION_COOKIE_SECURE = toBool("SESSION_COOKIE_SECURE")
 
 
 # Application definition
@@ -57,7 +60,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            BASE_DIR / "Templates"
+            BASE_DIR / "Templates",
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -75,15 +78,6 @@ WSGI_APPLICATION = "mainserver.wsgi.application"
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-# Database
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
 
 
 # Password validation
@@ -119,7 +113,7 @@ USE_TZ = True
 
 STATIC_URL = "Static/"
 STATICFILES_DIRS = [
-    BASE_DIR / "Static"
+    BASE_DIR / "Static",
 ]
 
 MEDIA_URL = "Media/"
@@ -129,9 +123,7 @@ MEDIA_ROOT = BASE_DIR / "Media"
 # Email Configuration
 
 DEFAULT_FROM_EMAIL = toStr("DEFAULT_FROM_EMAIL")
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = toStr("EMAIL_HOST")
-EMAIL_HOST_USER = toStr("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = toStr("EMAIL_HOST_PASSWORD")
-EMAIL_PORT = toInt("EMAIL_PORT")
-EMAIL_USE_TLS = toBool("EMAIL_USE_TLS")
+EMAIL_HOST_USER = "developer@courseO_line.com"
+
+if toBool("EMAIL_SERVER_ONLINE"):
+    EMAIL_HOST_USER = toStr("EMAIL_HOST_USER")

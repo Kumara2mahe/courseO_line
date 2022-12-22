@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 # local Django
-from .settings import DEBUG
+from .settings.base import DEBUG
 
 urlpatterns = [
     path("admin/", admin.site.urls),

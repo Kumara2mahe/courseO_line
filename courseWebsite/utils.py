@@ -3,7 +3,7 @@ import random
 from pathlib import Path
 
 # local Django
-from mainserver.settings import STATIC_URL
+from mainserver.settings.base import STATIC_URL
 
 
 # Placeholder Images

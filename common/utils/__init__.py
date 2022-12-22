@@ -10,7 +10,7 @@ from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives, BadHeaderError
 
 # local Django
-from mainserver.settings import DEFAULT_FROM_EMAIL
+from mainserver.settings.base import DEFAULT_FROM_EMAIL
 from courseWebsite.models import CourseDetail
 
 PRE_URL = "previousurl"

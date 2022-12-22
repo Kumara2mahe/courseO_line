@@ -7,7 +7,7 @@ from django.http import JsonResponse
 from .models import CourseCategory, CourseDetail
 from common.utils import collectCourse, showError, getlinks, sendMail
 from .utils import placeholderPicker, footerTopics
-from mainserver.settings import EMAIL_HOST_USER
+from mainserver.settings.base import EMAIL_HOST_USER
 
 APP_NAME = "courseWebsite"
 
