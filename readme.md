@@ -20,9 +20,9 @@ First clone/download this repository from Github to your local machine and switc
     $ cd courseO_line
 
     
-Install project dependencies using the 'requirements' file in the project directory:
+Install project dependencies using the 'requirements/local' file in the project directory:
 
-    $ pip install -r requirements.txt
+    $ pip install -r requirements/local.txt
 
 
 Rename the '.env.example' to '.env' and change the environment values with your own like below
@@ -66,6 +66,8 @@ You can now run the development server:
     - There is a limit of 5 attempts to reset admin password, if the admin exceeds the limit they can only retry after 24hrs and untill then no new OTPs can't sent.
 
 - Some hand made modules are there for performing some operations like sending email, picking random course, category, placeholder image for home page, footer and course without videos. Some unique modules for validating inputted youtube link and generating random password for new admin accounts.
+
+- Separate developer and production settings as well as requirements files.
 
 <br>
 
