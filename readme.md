@@ -42,6 +42,7 @@ You can now run the development server:
 
     $ python manage.py runserver
 
+<br>
 
 ## Features
 
@@ -68,6 +69,57 @@ You can now run the development server:
 - Some hand made modules are there for performing some operations like sending email, picking random course, category, placeholder image for home page, footer and course without videos. Some unique modules for validating inputted youtube link and generating random password for new admin accounts.
 
 - Separate developer and production settings as well as requirements files.
+
+<br>
+
+### Custom Packages & Modules
+
+<br>
+
+> [DB-backup & restore](https://github.com/Kumara2mahe/courseO_line/blob/main/common/utils/)
+
+- In addition to the project, a fully hand made database backup & restore command line python package is included, which backups specific tables in database as a '.json' file and downloads media files in the same structure inside a 'ParsedMedia' Directory
+
+- Structure of backup & restore package
+
+    ```
+    # common/utils/
+        |   dbParser.py                     (1) backup database to local machine as json
+        |   dbPopulator.py                  (2) restore backuped database from json, back to sql
+        |   __init__.py
+        |
+        +---backends
+        |       tools.py                    (3) contains functions to download/upload media files
+        |       __init__.py
+        |
+        \---commandValidator                (4) valids the command line arguments for both modules
+                __init__.py
+    ```
+
+- dbParser.py - which backups specific tables in database as a '.json' file and downloads media files in the same structure inside a 'ParsedMedia' Directory
+
+        USAGE:  dbParser.py pathtodb [jsonpath]
+
+    HINT: pathtodb - (path/URL) to Database, could be [sqlite3 | postgresql]
+
+
+- dbPopulator.py - which restores the tables in the backuped '.json' file and uploads media files from the 'ParsedMedia' Directory to root dir as 'Media' in same structure and it only populates when the table is completely empty
+
+        USAGE:  dbPopulator.py pathtodb jsonpath
+
+<br>
+
+> [Envcast.py](https://github.com/Kumara2mahe/courseO_line/blob/main/common/envcast.py)
+
+- One of the main custom python module, which is used to type cast the '.env' values into required datatypes
+
+- List of functions available to type cast string value,
+
+        toBool(key: str) -> bool                            (1) to boolean value, default is False
+        toInt(key: str) -> int                              (2) to integer value, default is 0
+        toStr(key: str) -> str                              (3) always returns a string, eventhough the key doesn't exists
+        toTuple(key: str) -> tuple                          (4) to a python special data type, tuple
+
 
 <br>
 
