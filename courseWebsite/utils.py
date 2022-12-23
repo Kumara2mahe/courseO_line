@@ -8,7 +8,7 @@ from mainserver.settings.base import STATIC_URL
 
 # Placeholder Images
 PLACEHOLDERS_PATH = f"{STATIC_URL}courseWebsite/Images/Placeholders"
-PLACEHOLDERS_IMGS = [img for img in Path(PLACEHOLDERS_PATH).glob("VID_*.jpg")]
+PLACEHOLDERS_IMGS = [img for img in Path(PLACEHOLDERS_PATH).iterdir()]
 
 
 def placeholderPicker() -> Path:
