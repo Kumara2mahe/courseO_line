@@ -123,5 +123,10 @@ You can now run the development server:
 
 <br>
 
+____
+
+Check [here!](https://drive.google.com/drive/folders/1D1YfnE9CDVfDKTWl1Q7p98MyrVxE1-8r?usp=share_link) for some screenshots of this project
+<br>
+
 ### License
 [MIT](https://choosealicense.com/licenses/mit/)
